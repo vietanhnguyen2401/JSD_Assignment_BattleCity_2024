@@ -30,17 +30,17 @@
 
         public void getPlayerImage(){
             try{
-                up1 = ImageIO.read(getClass().getResourceAsStream("/res/player/green_small (1).png"));
-                up2 = ImageIO.read(getClass().getResourceAsStream("/res/player/green_small (2).png"));
+                up1 = ImageIO.read(getClass().getResourceAsStream("/res/player/yellow_small (1).png"));
+                up2 = ImageIO.read(getClass().getResourceAsStream("/res/player/yellow_small (2).png"));
 
-                left1 = ImageIO.read(getClass().getResourceAsStream("/res/player/green_small (3).png"));
-                left2 = ImageIO.read(getClass().getResourceAsStream("/res/player/green_small (4).png"));
+                left1 = ImageIO.read(getClass().getResourceAsStream("/res/player/yellow_small (3).png"));
+                left2 = ImageIO.read(getClass().getResourceAsStream("/res/player/yellow_small (4).png"));
 
-                down1 = ImageIO.read(getClass().getResourceAsStream("/res/player/green_small (5).png"));
-                down2 = ImageIO.read(getClass().getResourceAsStream("/res/player/green_small (6).png"));
+                down1 = ImageIO.read(getClass().getResourceAsStream("/res/player/yellow_small (5).png"));
+                down2 = ImageIO.read(getClass().getResourceAsStream("/res/player/yellow_small (6).png"));
 
-                right1 = ImageIO.read(getClass().getResourceAsStream("/res/player/green_small (7).png"));
-                right2 = ImageIO.read(getClass().getResourceAsStream("/res/player/green_small (8).png"));
+                right1 = ImageIO.read(getClass().getResourceAsStream("/res/player/yellow_small (7).png"));
+                right2 = ImageIO.read(getClass().getResourceAsStream("/res/player/yellow_small (8).png"));
 
 
             }catch(IOException e){

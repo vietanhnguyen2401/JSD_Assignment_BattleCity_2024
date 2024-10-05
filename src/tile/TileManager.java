@@ -1,7 +1,7 @@
 package tile;
 
 import main.GamePanel;
-
+import entity.Player;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.BufferedReader;
@@ -47,7 +47,7 @@ public class TileManager {
 
     public void loadMap() {
         try {
-            InputStream is = getClass().getResourceAsStream("/res/maps/level01.txt");
+            InputStream is = getClass().getResourceAsStream("/res/maps/level04.txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
             int col = 0;
@@ -73,14 +73,41 @@ public class TileManager {
             e.printStackTrace();
         }
     }
-    public void draw(Graphics2D g2) {
+    public void draw(Graphics2D g2, Player player) {
         int col = 0;
         int row = 0;
         int x = 0;
         int y = 0;
         while(col < gp.maxScreenCol && row < gp.maxScreenRow){
             int tileNum = mapTileNum[col][row];
-            g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
+            if(tileNum != 5) { // If the tile is not grass, draw it
+                g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
+            }
+            col++;
+            x+= gp.tileSize;
+
+            if (col == gp.maxScreenCol){
+                col = 0;
+                x=0;
+                row++;
+                y += gp.tileSize;
+            }
+        }
+
+
+        // Draw the player
+        player.draw(g2);
+
+        // Draw the grass tiles
+        col = 0;
+        row = 0;
+        x = 0;
+        y = 0;
+        while(col < gp.maxScreenCol && row < gp.maxScreenRow){
+            int tileNum = mapTileNum[col][row];
+            if(tileNum == 5) { // If the tile is grass, draw it
+                g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
+            }
             col++;
             x+= gp.tileSize;
 
