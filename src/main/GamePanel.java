@@ -1,6 +1,7 @@
 package main;
 
 import entity.Player;
+import item.SuperItem;
 import tile.TileManager;
 
 import javax.swing.*;
@@ -21,8 +22,12 @@ public class GamePanel extends JPanel implements Runnable{
     TileManager TManager = new TileManager(this);
     KeyHandler keyHandler = new KeyHandler();
     Thread gameThread;
+
+    public AssetSetter aSetter = new AssetSetter(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
     Player player = new Player(this, keyHandler);
+
+    public SuperItem item[] = new SuperItem[10];
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
@@ -31,6 +36,9 @@ public class GamePanel extends JPanel implements Runnable{
         this.setFocusable(true);
     }
 
+    public void setupGame() {
+        aSetter.setItem();
+    }
     public void startGameThread(){
         gameThread = new Thread(this);
         gameThread.start();
@@ -88,8 +96,14 @@ public class GamePanel extends JPanel implements Runnable{
     public void paintComponent( Graphics g ){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
-        TManager.draw(g2);
-        player.draw(g2);
+
+        // this will draw tiles and player
+        TManager.draw(g2, player);
+        for(int i  = 0; i < item.length; i++){
+            if(item[i] != null) {
+                item[i].draw(g2, this);
+            }
+        }
         g2.dispose();
 
     }
