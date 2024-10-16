@@ -20,12 +20,21 @@ public class GamePanel extends JPanel implements Runnable{
     // FPS
     int FPS = 60;
     TileManager TManager = new TileManager(this);
-    KeyHandler keyHandler = new KeyHandler();
+    KeyHandler keyHandler = new KeyHandler(this);
     Thread gameThread;
+    UI ui = new UI(this);
 
     public AssetSetter aSetter = new AssetSetter(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
     Player player = new Player(this, keyHandler);
+
+    public int gameState;
+
+    public final int TITLE_STATE = 0;
+    public final int PLAY_STATE = 1;
+    public final int PAUSE_STATE = 2;
+
+
 
     public SuperItem[] item = new SuperItem[10];
     public GamePanel(){
@@ -34,10 +43,12 @@ public class GamePanel extends JPanel implements Runnable{
         this.setDoubleBuffered(true);
         this.addKeyListener(keyHandler);
         this.setFocusable(true);
+
     }
 
     public void setupGame() {
         aSetter.setItem();
+        gameState = PLAY_STATE;
     }
     public void startGameThread(){
         gameThread = new Thread(this);
@@ -90,7 +101,12 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void update(){
-        player.update();
+        if (gameState == PLAY_STATE){
+            player.update();
+        }
+        if (gameState == PAUSE_STATE){
+
+        }
     }
 
     public void paintComponent( Graphics g ){
@@ -98,12 +114,14 @@ public class GamePanel extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D)g;
 
         // this will draw tiles and player
+        System.out.println(this.gameState);
         TManager.draw(g2, player);
         for(int i  = 0; i < item.length; i++){
             if(item[i] != null) {
                 item[i].draw(g2, this);
             }
         }
+        ui.draw(g2);
         g2.dispose();
 
     }
