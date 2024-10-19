@@ -82,10 +82,10 @@ public class TileManager {
         int row = 0;
         int x = 0;
         int y = 0;
-        while(col < gp.maxScreenCol && row < gp.maxScreenRow){
+        while(col < gp.maxScreenCol  && row < gp.maxScreenRow){
             int tileNum = mapTileNum[col][row];
             if(tileNum != 5) { // If the tile is not grass, draw it
-                g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
+                g2.drawImage(tile[tileNum].image, x , y, gp.tileSize, gp.tileSize, null);
             }
             col++;
             x+= gp.tileSize;

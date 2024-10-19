@@ -10,10 +10,15 @@ public class Main {
         window.setTitle("demo");
 
         GamePanel gamePanel = new GamePanel();
-        window.add(gamePanel);
-        window.pack();
+
+        // Create the custom background panel with the GamePanel centered
+        BackgroundPanel backgroundPanel = new BackgroundPanel(gamePanel);
+
+        window.add(backgroundPanel);
+        window.setSize(1000, 488); // Set window size according to your needs
         window.setLocationRelativeTo(null);
         window.setVisible(true);
+
         gamePanel.setupGame();
         gamePanel.startGameThread();
     }

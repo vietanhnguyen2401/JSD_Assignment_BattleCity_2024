@@ -17,6 +17,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int screenWidth = tileSize * maxScreenCol;
     public final int screenHeight = tileSize * maxScreenRow;
 
+
     // FPS
     int FPS = 60;
     TileManager TManager = new TileManager(this);
@@ -48,7 +49,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void setupGame() {
         aSetter.setItem();
-        gameState = PLAY_STATE;
+        gameState = TITLE_STATE;
     }
     public void startGameThread(){
         gameThread = new Thread(this);
@@ -113,16 +114,20 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
 
-        // this will draw tiles and player
-        System.out.println(this.gameState);
-        TManager.draw(g2, player);
-        for(int i  = 0; i < item.length; i++){
-            if(item[i] != null) {
-                item[i].draw(g2, this);
-            }
-        }
-        ui.draw(g2);
-        g2.dispose();
 
+        // TITLE SCREEN
+        if(gameState == TITLE_STATE){
+            ui.draw(g2);
+        } else {
+            // this will draw tiles and player
+            TManager.draw(g2, player);
+            for(int i  = 0; i < item.length; i++){
+                if(item[i] != null) {
+                    item[i].draw(g2, this);
+                }
+            }
+            ui.draw(g2);
+        }
+        g2.dispose();
     }
 }
