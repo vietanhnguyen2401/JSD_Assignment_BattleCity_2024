@@ -26,7 +26,10 @@ public class UI {
 
         if (gp.gameState == gp.PLAY_STATE) {
 
-        } if (gp.gameState == gp.PAUSE_STATE){
+        }
+
+        // PAUSE STATE
+        if (gp.gameState == gp.PAUSE_STATE){
             drawPauseScreen();
         }
     }
@@ -54,7 +57,7 @@ public class UI {
         g2.drawString(text, x, y);
 
 
-        // MENU
+        // MENU OPTIONS
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 14));
 
         String onePlayer = "1 PLAYER";

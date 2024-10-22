@@ -5,16 +5,15 @@ import java.awt.*;
 
 public class BackgroundPanel extends JPanel {
     private GamePanel gamePanel;
-    private Image sideImage;
+    private final Image sideImage;
 
     public BackgroundPanel(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         setLayout(null); // Absolute positioning
 
-        // Load the image to be displayed in the side spaces
-        // You can load the image from a file or resource
-        // Assuming you have an image named "side_image.png" in your project folder
-        sideImage = new ImageIcon("res/").getImage();
+        // Load the image from the resources
+        // Assuming "sideInstruction.png" is located in the "res/instruction" folder within the project
+        sideImage = new ImageIcon(getClass().getResource("/res/instruction/sideInstruction.png")).getImage();
 
         // Add the GamePanel to the BackgroundPanel and center it
         add(gamePanel);
@@ -30,29 +29,31 @@ public class BackgroundPanel extends JPanel {
         g2.setColor(Color.black);
 
         // Define the size of the wider rectangle
-        int rectWidth = 1000;
-        int rectHeight = 500;
+        int rectWidth = 1140;
+        int rectHeight = 488;
         int x = (getWidth() - rectWidth) / 2; // Center horizontally
         int y = (getHeight() - rectHeight) / 2; // Center vertically
 
         g2.fillRect(x, y, rectWidth, rectHeight);
 
-        // Draw the image in the left and right empty spaces
-        drawImageInSideSpaces(g2);
+        // Draw the image in the left side space only
+        drawImageInLeftSpace(g2);
 
         // Update GamePanel's position to keep it centered
         gamePanel.setBounds(getCenteredX(), getCenteredY(), gamePanel.screenWidth, gamePanel.screenHeight);
     }
 
-    // Method to draw the image in the side spaces
-    private void drawImageInSideSpaces(Graphics2D g2) {
-        int leftX = getCenteredX() - sideImage.getWidth(null) - 20; // Left side with some margin
-        int rightX = getCenteredX() + gamePanel.screenWidth + 20;   // Right side with some margin
-        int imageY = (getHeight() - sideImage.getHeight(null)) / 2; // Vertically center the image
+    // Method to draw the image in the left side space only
+    private void drawImageInLeftSpace(Graphics2D g2) {
+        if (sideImage != null) {
+            int leftX = getCenteredX() - sideImage.getWidth(null) - 20; // Left side with some margin
+            int imageY = (getHeight() - sideImage.getHeight(null)) / 2; // Vertically center the image
 
-        // Draw the image on the left and right sides of the GamePanel
-        g2.drawImage(sideImage, leftX, imageY, null);  // Left side
-        g2.drawImage(sideImage, rightX, imageY, null); // Right side
+            // Draw the image on the left side of the GamePanel
+            g2.drawImage(sideImage, leftX, imageY, null);  // Left side
+        } else {
+            System.err.println("Image not found or failed to load.");
+        }
     }
 
     // Get X coordinate to center GamePanel horizontally
