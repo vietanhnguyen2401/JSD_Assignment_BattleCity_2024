@@ -32,10 +32,20 @@ public class UI {
         if (gp.gameState == gp.PAUSE_STATE){
             drawPauseScreen();
         }
+        if (gp.gameState == gp.GAME_OVER_STATE){
+            drawGameOverScreen();
+        }
     }
 
     public void drawPauseScreen(){
         String text = "PAUSED";
+        int x = getXForCenteredText(text);
+        int y = gp.screenHeight / 2;
+        g2.drawString(text, x, y);
+    }
+
+    public void drawGameOverScreen(){
+        String text = "GAME OVER";
         int x = getXForCenteredText(text);
         int y = gp.screenHeight / 2;
         g2.drawString(text, x, y);

@@ -1,5 +1,6 @@
 package main;
 
+import entity.Base;
 import entity.Player;
 import item.SuperItem;
 import tile.TileManager;
@@ -28,12 +29,14 @@ public class GamePanel extends JPanel implements Runnable{
     public AssetSetter aSetter = new AssetSetter(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
     Player player = new Player(this, keyHandler);
+    Base base = new Base(this);
 
     public int gameState;
 
     public final int TITLE_STATE = 0;
     public final int PLAY_STATE = 1;
     public final int PAUSE_STATE = 2;
+    public final int GAME_OVER_STATE = 3;
 
 
 
@@ -49,7 +52,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void setupGame() {
         aSetter.setItem();
-        gameState = TITLE_STATE;
+        gameState = PLAY_STATE;
     }
     public void startGameThread(){
         gameThread = new Thread(this);
@@ -108,6 +111,10 @@ public class GamePanel extends JPanel implements Runnable{
         if (gameState == PAUSE_STATE){
 
         }
+//        if (gameState == GAME_OVER_STATE){
+//            base.
+//        }
+
     }
 
     public void paintComponent( Graphics g ){
@@ -121,6 +128,7 @@ public class GamePanel extends JPanel implements Runnable{
         } else {
             // this will draw tiles and player
             TManager.draw(g2, player);
+            base.draw(g2);
             for(int i  = 0; i < item.length; i++){
                 if(item[i] != null) {
                     item[i].draw(g2, this);
