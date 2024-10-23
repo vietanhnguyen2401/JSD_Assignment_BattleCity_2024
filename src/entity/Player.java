@@ -16,14 +16,17 @@
             this.gp = gp;
             this.kh = kh;
 
-            solidArea = new Rectangle(0,0, gp.tileSize*2 - 6, gp.tileSize*2 -6);
+            solidArea = new Rectangle(0,0, gp.tileSize*2 - 6, gp.tileSize*2 - 6);
+
+            solidAreaDefaultX = solidArea.x;
+            solidAreaDefaultY = solidArea.y;
             setDefaultValues();
             getPlayerImage();
         }
 
         public void setDefaultValues(){
             x = 132;
-            y = 380;
+            y = 400;
             speed = 1;
             direction = "up";
         }
@@ -43,7 +46,7 @@
                 right2 = ImageIO.read(getClass().getResourceAsStream("/res/player/yellow_small (8).png"));
 
 
-            }catch(IOException e){
+            } catch(IOException e) {
                 e.printStackTrace();
             }
         }
@@ -88,6 +91,8 @@
                 collisionOn = false;
                 gp.cChecker.checkTile(this);
 
+                // CHECK ITEM COLLISION
+                int itemIndex = gp.cChecker.checkItem(this, true);
                 // IF COLLISION IS FALSE, PLAYER CAN MOVE
                 if (!collisionOn){
                     switch (direction){

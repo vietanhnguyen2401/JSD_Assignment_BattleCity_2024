@@ -1,5 +1,6 @@
 package main;
 
+import entity.Base;
 import entity.Player;
 import item.SuperItem;
 import tile.TileManager;
@@ -12,32 +13,46 @@ public class GamePanel extends JPanel implements Runnable{
     final int scale = 2;
 
     public final int tileSize = originalTileSize * scale;
-    public final int maxScreenCol = 26;
-    public final int maxScreenRow = 26;
+    public final int maxScreenCol = 28;
+    public final int maxScreenRow = 28;
     public final int screenWidth = tileSize * maxScreenCol;
     public final int screenHeight = tileSize * maxScreenRow;
+
 
     // FPS
     int FPS = 60;
     TileManager TManager = new TileManager(this);
-    KeyHandler keyHandler = new KeyHandler();
+    KeyHandler keyHandler = new KeyHandler(this);
     Thread gameThread;
+    UI ui = new UI(this);
 
     public AssetSetter aSetter = new AssetSetter(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
     Player player = new Player(this, keyHandler);
+    Base base = new Base(this);
 
-    public SuperItem item[] = new SuperItem[10];
+    public int gameState;
+
+    public final int TITLE_STATE = 0;
+    public final int PLAY_STATE = 1;
+    public final int PAUSE_STATE = 2;
+    public final int GAME_OVER_STATE = 3;
+
+
+
+    public SuperItem[] item = new SuperItem[10];
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyHandler);
         this.setFocusable(true);
+
     }
 
     public void setupGame() {
         aSetter.setItem();
+        gameState = PLAY_STATE;
     }
     public void startGameThread(){
         gameThread = new Thread(this);
@@ -90,21 +105,37 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void update(){
-        player.update();
+        if (gameState == PLAY_STATE){
+            player.update();
+        }
+        if (gameState == PAUSE_STATE){
+
+        }
+//        if (gameState == GAME_OVER_STATE){
+//            base.
+//        }
+
     }
 
     public void paintComponent( Graphics g ){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
 
-        // this will draw tiles and player
-        TManager.draw(g2, player);
-        for(int i  = 0; i < item.length; i++){
-            if(item[i] != null) {
-                item[i].draw(g2, this);
+
+        // TITLE SCREEN
+        if(gameState == TITLE_STATE){
+            ui.draw(g2);
+        } else {
+            // this will draw tiles and player
+            TManager.draw(g2, player);
+            base.draw(g2);
+            for(int i  = 0; i < item.length; i++){
+                if(item[i] != null) {
+                    item[i].draw(g2, this);
+                }
             }
+            ui.draw(g2);
         }
         g2.dispose();
-
     }
 }
