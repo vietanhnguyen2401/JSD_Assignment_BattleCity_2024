@@ -24,7 +24,7 @@ public class Enemy extends Entity{
         x = 132;
         y = 380;
         speed = 1;
-        direction = "up";
+        direction = "down";
     }
     public void setAction(){
         actionLockCounter++;

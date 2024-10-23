@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c3a2440-d807-4f5c-832f-6f4ca297b1dd" name="Changes" comment="updated" />
+    <list default="true" id="3c3a2440-d807-4f5c-832f-6f4ca297b1dd" name="Changes" comment="xml">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/entity/Enemy.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-tank/entity/Enemy.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/entity/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-tank/entity/Entity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/entity/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-tank/entity/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/main/GamePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-tank/main/GamePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/CollisionChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,20 +31,20 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "history": [
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
     {
-      "state": "OPEN",
-      "assignee": "Levu5203",
-      "reviewState": "NO_REVIEW"
+      &quot;state&quot;: &quot;OPEN&quot;,
+      &quot;assignee&quot;: &quot;Levu5203&quot;,
+      &quot;reviewState&quot;: &quot;NO_REVIEW&quot;
     }
   ],
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Levu5203",
-    "reviewState": "NO_REVIEW"
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Levu5203&quot;,
+    &quot;reviewState&quot;: &quot;NO_REVIEW&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/vietanhnguyen2401/JSD_Assignment_BattleCity_2024.git&quot;,
@@ -98,6 +109,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated" />
+    <MESSAGE value="xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="xml" />
   </component>
 </project>

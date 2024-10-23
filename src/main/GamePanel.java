@@ -28,6 +28,7 @@ public class GamePanel extends JPanel implements Runnable{
     public AssetSetter aSetter = new AssetSetter(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
     Player player = new Player(this, keyHandler);
+    //npc
     public Enemy npc[] = new Enemy[10];
 
     public SuperItem item[] = new SuperItem[10];
