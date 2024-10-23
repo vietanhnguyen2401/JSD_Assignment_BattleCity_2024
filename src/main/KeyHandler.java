@@ -60,9 +60,27 @@ public class KeyHandler implements KeyListener {
         } else if (gp.gameState == gp.PAUSE_STATE){
             if (code == KeyEvent.VK_P){
                 gp.gameState = gp.PLAY_STATE;
-
             }
         }
+        // TITLE STATE
+        if (gp.gameState == gp.GAME_OVER_STATE){
+            if (code == KeyEvent.VK_W){
+                if (gp.ui.commandNumber == 3) gp.ui.commandNumber = 0;
+            }
+            if (code == KeyEvent.VK_S){
+                if(gp.ui.commandNumber == 0) gp.ui.commandNumber = 3;
+            }
+            if (code == KeyEvent.VK_ENTER){
+                if(gp.ui.commandNumber == 0){
+                    gp.gameState = gp.PLAY_STATE;
+                }
+                if(gp.ui.commandNumber == 3){
+                    gp.gameState = gp.TITLE_STATE;
+                    gp.ui.commandNumber = 0;
+                }
+            }
+        }
+
 
 
     }

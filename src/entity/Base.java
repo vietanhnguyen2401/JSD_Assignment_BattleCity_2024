@@ -10,7 +10,7 @@ import java.io.IOException;
 public class Base extends Entity {
     GamePanel gp;
 
-    public BufferedImage normalBase, destroyedBase;
+    public BufferedImage normalBase, destroyedBase, explosion1, explosion2;
 
     public Base(GamePanel gp){
         this.gp = gp;
@@ -34,6 +34,8 @@ public class Base extends Entity {
         try{
             normalBase = ImageIO.read(getClass().getResourceAsStream("/res/base/base.png"));
             destroyedBase = ImageIO.read(getClass().getResourceAsStream("/res/base/destroyed_base.png"));
+            explosion1 = ImageIO.read(getClass().getResourceAsStream("/res/explosion/small.png"));
+            explosion2 = ImageIO.read(getClass().getResourceAsStream("/res/explosion/big.png"));
         } catch(IOException e) {
             e.printStackTrace();
         }

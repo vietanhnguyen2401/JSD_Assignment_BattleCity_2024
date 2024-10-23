@@ -21,18 +21,22 @@ public class GamePanel extends JPanel implements Runnable{
 
     // FPS
     int FPS = 60;
+
+    // System
     TileManager TManager = new TileManager(this);
     KeyHandler keyHandler = new KeyHandler(this);
     Thread gameThread;
     UI ui = new UI(this);
-
     public AssetSetter aSetter = new AssetSetter(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
+    Sound sound = new Sound();
+
+    // Entity
     Player player = new Player(this, keyHandler);
     Base base = new Base(this);
 
+    // Game state
     public int gameState;
-
     public final int TITLE_STATE = 0;
     public final int PLAY_STATE = 1;
     public final int PAUSE_STATE = 2;
@@ -52,7 +56,10 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void setupGame() {
         aSetter.setItem();
-        gameState = PLAY_STATE;
+        //        gameState = PLAY_STATE;
+        gameState = TITLE_STATE;
+        playMusic(0);
+
     }
     public void startGameThread(){
         gameThread = new Thread(this);
@@ -137,5 +144,11 @@ public class GamePanel extends JPanel implements Runnable{
             ui.draw(g2);
         }
         g2.dispose();
+    }
+
+    public void playMusic(int i){
+        sound.setFile(i);
+        sound.play();
+//        sound.loop();
     }
 }
