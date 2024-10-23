@@ -19,4 +19,5 @@ public class Entity {
     public boolean collisionOn = false;
     public int actionLockCounter = 0;
 
+
 }

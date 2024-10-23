@@ -1,11 +1,9 @@
 package main;
 
-import entity.Enemy;
-import entity.Entity;
 import entity.Player;
 import item.SuperItem;
 import tile.TileManager;
-
+import entity.Enemy;
 import javax.swing.*;
 import java.awt.*;
 
@@ -22,8 +20,9 @@ public class GamePanel extends JPanel implements Runnable{
     // FPS
     int FPS = 60;
     TileManager TManager = new TileManager(this);
-    KeyHandler keyHandler = new KeyHandler();
+    KeyHandler keyHandler = new KeyHandler(this);
     Thread gameThread;
+    UI ui = new UI(this);
 
     public AssetSetter aSetter = new AssetSetter(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
@@ -31,18 +30,28 @@ public class GamePanel extends JPanel implements Runnable{
     //npc
     public Enemy npc[] = new Enemy[10];
 
-    public SuperItem item[] = new SuperItem[10];
+    public int gameState;
+
+    public final int TITLE_STATE = 0;
+    public final int PLAY_STATE = 1;
+    public final int PAUSE_STATE = 2;
+
+
+
+    public SuperItem[] item = new SuperItem[10];
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyHandler);
         this.setFocusable(true);
+
     }
 
     public void setupGame() {
         aSetter.setItem();
         aSetter.setNPC();
+        gameState = PLAY_STATE;
     }
     public void startGameThread(){
         gameThread = new Thread(this);
@@ -101,6 +110,12 @@ public class GamePanel extends JPanel implements Runnable{
                 npc[i].update();
             }
         }
+        if (gameState == PLAY_STATE){
+            player.update();
+        }
+        if (gameState == PAUSE_STATE){
+
+        }
     }
 
     public void paintComponent( Graphics g ){
@@ -108,12 +123,14 @@ public class GamePanel extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D)g;
 
         // this will draw tiles and player
+        System.out.println(this.gameState);
         TManager.draw(g2, player);
         for(int i  = 0; i < item.length; i++){
             if(item[i] != null) {
                 item[i].draw(g2, this);
             }
         }
+        ui.draw(g2);
         // NPC
         for(int i  = 0; i < npc.length; i++){
             if(npc[i] != null) {
