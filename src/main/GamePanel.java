@@ -1,5 +1,7 @@
 package main;
 import entity.Enemy;
+
+import entity.Base;
 import entity.Player;
 import item.SuperItem;
 import tile.TileManager;
@@ -12,14 +14,16 @@ public class GamePanel extends JPanel implements Runnable{
     final int scale = 2;
 
     public final int tileSize = originalTileSize * scale;
-    public final int maxScreenCol = 26;
-    public final int maxScreenRow = 26;
+    public final int maxScreenCol = 28;
+    public final int maxScreenRow = 28;
     public final int screenWidth = tileSize * maxScreenCol;
     public final int screenHeight = tileSize * maxScreenRow;
 
 
     // FPS
     int FPS = 60;
+
+    // System
     TileManager TManager = new TileManager(this);
     KeyHandler keyHandler = new KeyHandler(this);
     Thread gameThread;
@@ -27,15 +31,21 @@ public class GamePanel extends JPanel implements Runnable{
 
     public AssetSetter aSetter = new AssetSetter(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
+    Sound sound = new Sound();
+
+    // Entity
     Player player = new Player(this, keyHandler);
+    Base base = new Base(this);
     //npc
     public Enemy npc[] = new Enemy[10];
 
+    // Game state
     public int gameState;
 
     public final int TITLE_STATE = 0;
     public final int PLAY_STATE = 1;
     public final int PAUSE_STATE = 2;
+    public final int GAME_OVER_STATE = 3;
 
 
 
@@ -51,9 +61,12 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void setupGame() {
         aSetter.setItem();
+        //        gameState = PLAY_STATE;
         aSetter.setNPC();
         gameState = PLAY_STATE;
         gameState = TITLE_STATE;
+        playMusic(0);
+
     }
     public void startGameThread(){
         gameThread = new Thread(this);
@@ -117,6 +130,10 @@ public class GamePanel extends JPanel implements Runnable{
         if (gameState == PAUSE_STATE){
 
         }
+//        if (gameState == GAME_OVER_STATE){
+//            base.
+//        }
+
 
     }
 
@@ -131,6 +148,7 @@ public class GamePanel extends JPanel implements Runnable{
         } else {
             // this will draw tiles and player
             TManager.draw(g2, player);
+            base.draw(g2);
             for(int i  = 0; i < item.length; i++){
                 if(item[i] != null) {
                     item[i].draw(g2, this);
@@ -145,5 +163,11 @@ public class GamePanel extends JPanel implements Runnable{
         }
         g2.dispose();
 
+    }
+
+    public void playMusic(int i){
+        sound.setFile(i);
+        sound.play();
+//        sound.loop();
     }
 }

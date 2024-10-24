@@ -6,7 +6,7 @@ public class UI {
     GamePanel gp;
     Graphics2D g2;
     Font gameFont, arial_80B;
-    public int commandNumber = 0;
+    public int commandNumber = 0; // 0: one player, 1: two players, 2: game exit, 3: back to main menu
     public UI(GamePanel gp){
         this.gp = gp;
         gameFont = new Font("Font 7x7 Regular", Font.PLAIN, 40);
@@ -32,6 +32,9 @@ public class UI {
         if (gp.gameState == gp.PAUSE_STATE){
             drawPauseScreen();
         }
+        if (gp.gameState == gp.GAME_OVER_STATE){
+            drawGameOverScreen();
+        }
     }
 
     public void drawPauseScreen(){
@@ -39,6 +42,42 @@ public class UI {
         int x = getXForCenteredText(text);
         int y = gp.screenHeight / 2;
         g2.drawString(text, x, y);
+    }
+
+    public void drawGameOverScreen(){
+        g2.setColor(new Color(0,0,0,170 ));
+        g2.fillRect(0,0, gp.screenWidth, gp.screenHeight);
+
+        String text = "GAME OVER";
+        g2.setColor(Color.WHITE);
+
+
+        int x = getXForCenteredText(text);
+        int y = gp.screenHeight / 3;
+        g2.drawString(text, x, y);
+
+
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 14));
+
+        // retry option
+        String retry = "RETRY";
+
+        // back to main menu option
+        String quit = "QUIT";
+
+        x = getXForCenteredText(retry);
+        y = gp.tileSize*15;
+        if (commandNumber == 0){
+            g2.drawString(">",  x - x/5, y);
+        }
+        g2.drawString(retry, x, y);
+
+        x = getXForCenteredText(quit);
+        y = gp.tileSize*17;
+        if (commandNumber == 3){
+            g2.drawString(">",  x - x/5, y);
+        }
+        g2.drawString(quit, x, y);
     }
 
     public int getXForCenteredText (String text){
@@ -61,7 +100,7 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 14));
 
         String onePlayer = "1 PLAYER";
-        String twoPlayer = "2 PLAYER";
+        String twoPlayer = "2 PLAYERS";
         String quit = "QUIT";
 
         x = getXForCenteredText(onePlayer);
