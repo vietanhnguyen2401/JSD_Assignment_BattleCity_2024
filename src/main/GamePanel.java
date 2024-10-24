@@ -108,14 +108,14 @@ public class GamePanel extends JPanel implements Runnable{
     public void update(){
         if (gameState == PLAY_STATE){
             player.update();
+            for (int i = 0; i < npc.length; i++) {
+                if(npc[i] != null){
+                    npc[i].update();
+                }
+            }
         }
         if (gameState == PAUSE_STATE){
 
-        }
-        for (int i = 0; i < npc.length; i++) {
-            if(npc[i] != null){
-                npc[i].update();
-            }
         }
 
     }
@@ -128,7 +128,6 @@ public class GamePanel extends JPanel implements Runnable{
         // TITLE SCREEN
         if(gameState == TITLE_STATE){
             ui.draw(g2);
-
         } else {
             // this will draw tiles and player
             TManager.draw(g2, player);
@@ -137,8 +136,8 @@ public class GamePanel extends JPanel implements Runnable{
                     item[i].draw(g2, this);
                 }
             }
-            for(int i  = 0; i < npc.length; i++){
-                if(npc[i] != null) {
+            for (int i = 0; i < npc.length; i++) {
+                if(npc[i] != null){
                     npc[i].draw(g2);
                 }
             }
