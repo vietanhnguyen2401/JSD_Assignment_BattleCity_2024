@@ -6,6 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="3c3a2440-d807-4f5c-832f-6f4ca297b1dd" name="Changes" comment="updated">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/entity/Enemy.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-tank/entity/Enemy.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/entity/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-tank/entity/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/main/AssetSetter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-tank/main/AssetSetter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/main/CollisionChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-tank/main/CollisionChecker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/main/GamePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-tank/main/GamePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AssetSetter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/CollisionChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +98,8 @@
       <workItem from="1728442247727" duration="12180000" />
       <workItem from="1729574265891" duration="154000" />
       <workItem from="1729612812041" duration="3403000" />
+      <workItem from="1729820440315" duration="757000" />
+      <workItem from="1730182450742" duration="201000" />
     </task>
     <task id="LOCAL-00001" summary="updated">
       <option name="closed" value="true" />
@@ -137,7 +149,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729784739621</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="updated">
+      <option name="closed" value="true" />
+      <created>1729785775070</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1729785775070</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

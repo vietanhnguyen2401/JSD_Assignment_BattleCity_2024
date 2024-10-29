@@ -46,10 +46,12 @@ public class Enemy extends Entity{
             actionLockCounter = 0;
         }
     }
-    public void update(){
+    public void update() {
         setAction();
         collisionOn = false;
         gp.cChecker.checkTile(this);
+        gp.cChecker.checkPlayer(this);
+
         // IF COLLISION IS FALSE, PLAYER CAN MOVE
         if (!collisionOn){
             switch (direction){

@@ -65,7 +65,7 @@ public class GamePanel extends JPanel implements Runnable{
         aSetter.setNPC();
         gameState = PLAY_STATE;
         gameState = TITLE_STATE;
-        playMusic(0);
+//        playMusic(0);
 
     }
     public void startGameThread(){

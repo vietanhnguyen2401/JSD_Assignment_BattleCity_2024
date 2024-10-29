@@ -89,7 +89,9 @@
                 // CHECK TILE COLLISION
                 collisionOn = false;
                 gp.cChecker.checkTile(this);
-
+                // CHECK NPC COLLISION
+                int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
+                interactNPC(npcIndex);
                 // CHECK ITEM COLLISION
                 int itemIndex = gp.cChecker.checkItem(this, true);
                 // IF COLLISION IS FALSE, PLAYER CAN MOVE
@@ -118,6 +120,13 @@
 
 
         }
+
+        private void interactNPC(int i) {
+            if(i != 999){
+                System.out.println("Hitting enemy");
+            }
+        }
+
         public void draw(Graphics2D g2){
 
             BufferedImage image = null;
