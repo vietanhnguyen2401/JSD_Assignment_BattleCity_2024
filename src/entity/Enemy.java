@@ -1,16 +1,23 @@
 package entity;
 
 import main.GamePanel;
-import main.KeyHandler;
+
+import main.Sound;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Enemy extends Entity{
     GamePanel gp;
+    private final long shotCooldown = 1000;
+    private long lastShotTime;
+    public ArrayList<Bullet> bullets = new ArrayList<>();
+    Sound sound = new Sound();
+
     public Enemy(GamePanel gp){
         this.gp = gp;
         solidArea = new Rectangle(0,0, gp.tileSize*2 - 6, gp.tileSize*2 -6);
@@ -73,7 +80,60 @@ public class Enemy extends Entity{
                     break;
             }
         }
+        // Shooting
+
+        if ( canFire()) {
+            fireBullet();
+        }
+
+
+        // Update bullets
+        for (int i = 0; i < bullets.size(); i++) {
+            Bullet bullet = bullets.get(i);
+            if (bullet.alive) {
+                bullet.update();
+            } else {
+                bullets.remove(i);
+                i--;
+            }
+        }
         updateSprites();
+    }
+    private void fireBullet() {
+        int bulletWidth = gp.tileSize - 6;
+        int bulletHeight = gp.tileSize - 6;
+
+        int tankWidth = gp.tileSize * 2 - 6;
+        int tankHeight = gp.tileSize * 2 - 6;
+
+        int tankCenterX = x + tankWidth / 2;
+        int tankCenterY = y + tankHeight / 2;
+
+        int bulletX = tankCenterX - bulletWidth / 2;
+        int bulletY = tankCenterY - bulletHeight / 2;
+
+        // Adjust bullet position based on tank's direction
+        switch (direction) {
+            case "up":
+                bulletY = y - bulletHeight; // Start just above the tank
+                break;
+            case "down":
+                bulletY = y + tankHeight; // Start just below the tank
+                break;
+            case "left":
+                bulletX = x - bulletWidth; // Start just left of the tank
+                break;
+            case "right":
+                bulletX = x + tankWidth; // Start just right of the tank
+                break;
+        }
+
+        // Play firing sound
+
+        sound.setFile(1); // Adjust the index to match the firing sound
+        sound.play();
+        bullets.add(new Bullet(gp, bulletX, bulletY, direction));
+        lastShotTime = System.currentTimeMillis();
     }
         public void updateSprites(){
             spriteCounter++;
@@ -86,6 +146,9 @@ public class Enemy extends Entity{
                 spriteCounter=0;
             }
         }
+    private boolean canFire() {
+        return System.currentTimeMillis() - lastShotTime >= shotCooldown;
+    }
 
     public void getPlayerImage(){
         try{
