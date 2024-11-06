@@ -4,29 +4,78 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c3a2440-d807-4f5c-832f-6f4ca297b1dd" name="Changes" comment="updated">
-      <change afterPath="$PROJECT_DIR$/src/entity/Bullet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sounds/bullet_shot.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sounds/explosion_1.wav" afterDir="false" />
+    <list default="true" id="3c3a2440-d807-4f5c-832f-6f4ca297b1dd" name="Changes" comment="enemy-player interactions/shielded revival effects">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/entity/Enemy.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-tank/entity/Enemy.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/entity/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-tank/entity/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/main/AssetSetter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-tank/main/AssetSetter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/main/GamePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-tank/main/GamePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/main/KeyHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-tank/main/KeyHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AssetSetter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/KeyHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Sound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Sound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 5.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/sounds/SFX 5.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 8.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/sounds/SFX 8.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/entity/Enemy.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/entity/Entity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/entity/Player.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/item/Item_Grenade.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/item/Item_Helmet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/item/Item_Shovel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/item/Item_Star.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/item/Item_Tank.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/item/Item_Timer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/item/SuperItem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/main/AssetSetter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/main/CollisionChecker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/main/GamePanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/main/KeyHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/main/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/base/base.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/base/destroyed_base.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/bullets/down.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/bullets/left.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/bullets/right.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/bullets/up.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/explosion/big.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/explosion/small.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/items/grenade.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/items/helmet.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/items/shovel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/items/star.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/items/tank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/items/timer.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/maps/level01.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/maps/level02.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/maps/level03.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/maps/level04.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/maps/level05.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/green_small (1).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/green_small (2).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/green_small (3).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/green_small (4).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/green_small (5).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/green_small (6).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/green_small (7).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/green_small (8).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/yellow_small (1).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/yellow_small (2).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/yellow_small (3).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/yellow_small (4).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/yellow_small (5).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/yellow_small (6).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/yellow_small (7).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/yellow_small (8).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/shield/shield (1).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/shield/shield (2).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/tiles/black_tile.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/tiles/brick_tile.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/tiles/grass_tile.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/tiles/iron_tile.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/tiles/water_tile.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/tile/Tile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/tile/TileManager.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+      <option value="module" />
+    </option>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -40,6 +89,11 @@
       <list>
         <option value="Levu5023 &lt;levi01237797458@gmail.com&gt;" />
       </list>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="uc/shooting" />
+      </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -71,27 +125,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;uc/shooting&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/InteliJProject/JSD__Project/JSD_Final_Project/github-demo-tank/Tank-Game-Java&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "uc/shooting-01",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/InteliJProject/JSD__Project/JSD_Final_Project/JSD_Final/JSD_Assignment_BattleCity_2024",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
+        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
       </set>
     </attachedChunks>
   </component>
@@ -113,9 +167,19 @@
       <workItem from="1729831228379" duration="1905000" />
       <workItem from="1729833793019" duration="257000" />
       <workItem from="1730182843221" duration="111000" />
-      <workItem from="1729820440315" duration="757000" />
-      <workItem from="1730182450742" duration="201000" />
-      <workItem from="1730734503084" duration="1477000" />
+      <workItem from="1730206284950" duration="1498000" />
+      <workItem from="1730218259553" duration="1499000" />
+      <workItem from="1730222363425" duration="843000" />
+      <workItem from="1730798675419" duration="424000" />
+      <workItem from="1730799116460" duration="84000" />
+      <workItem from="1730799211736" duration="970000" />
+      <workItem from="1730800224977" duration="188000" />
+      <workItem from="1730800425922" duration="835000" />
+      <workItem from="1730801286980" duration="25000" />
+      <workItem from="1730801323280" duration="1530000" />
+      <workItem from="1730820755274" duration="5525000" />
+      <workItem from="1730826631996" duration="22000" />
+      <workItem from="1730868017811" duration="13990000" />
     </task>
     <task id="LOCAL-00001" summary="updated">
       <option name="closed" value="true" />
@@ -165,15 +229,47 @@
       <option name="project" value="LOCAL" />
       <updated>1729784739621</updated>
     </task>
-    <task id="LOCAL-00007" summary="updated">
+    <task id="LOCAL-00007" summary="shooting and sound">
       <option name="closed" value="true" />
-      <created>1729785775070</created>
+      <created>1730206423856</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1729785775070</updated>
+      <updated>1730206423856</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="fix enemy bullet image/add shooting enemy and eplosion animation">
+      <option name="closed" value="true" />
+      <created>1730872828913</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1730872828913</updated>
+    </task>
+    <task id="LOCAL-00009" summary="enemy-player interactions/shielded revival effects">
+      <option name="closed" value="true" />
+      <created>1730884167918</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1730884167918</updated>
+    </task>
+    <task id="LOCAL-00010" summary="enemy-player interactions/shielded revival effects">
+      <option name="closed" value="true" />
+      <created>1730905592234</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1730905592234</updated>
+    </task>
+    <task id="LOCAL-00011" summary="enemy-player interactions/shielded revival effects">
+      <option name="closed" value="true" />
+      <created>1730905810638</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1730905810638</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,6 +278,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="xml" />
     <MESSAGE value="updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated" />
+    <MESSAGE value="shooting and sound" />
+    <MESSAGE value="fix enemy bullet image/add shooting enemy and eplosion animation" />
+    <MESSAGE value="enemy-player interactions/shielded revival effects" />
+    <option name="LAST_COMMIT_MESSAGE" value="enemy-player interactions/shielded revival effects" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>
