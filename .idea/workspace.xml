@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3c3a2440-d807-4f5c-832f-6f4ca297b1dd" name="Changes" comment="updated">
+      <change afterPath="$PROJECT_DIR$/src/entity/Bullet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/sounds/bullet_shot.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/sounds/explosion_1.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/entity/Enemy.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-tank/entity/Enemy.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/entity/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-tank/entity/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/main/AssetSetter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-tank/main/AssetSetter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/main/GamePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-tank/main/GamePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/main/KeyHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-tank/main/KeyHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AssetSetter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/KeyHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Sound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Sound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 5.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/sounds/SFX 5.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 8.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/sounds/SFX 8.wav" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Levu5023 &lt;levi01237797458@gmail.com&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
+    {
+      &quot;state&quot;: &quot;OPEN&quot;,
+      &quot;assignee&quot;: &quot;Levu5203&quot;,
+      &quot;reviewState&quot;: &quot;NO_REVIEW&quot;
+    }
+  ],
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Levu5203&quot;,
+    &quot;reviewState&quot;: &quot;NO_REVIEW&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/vietanhnguyen2401/JSD_Assignment_BattleCity_2024.git&quot;,
+    &quot;accountId&quot;: &quot;529c4f1e-aee2-43bf-a171-a04b04bb2c91&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2nBMvZ0VjshQH1AeRVMUoumKGnL" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;uc/shooting&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/InteliJProject/JSD__Project/JSD_Final_Project/github-demo-tank/Tank-Game-Java&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3c3a2440-d807-4f5c-832f-6f4ca297b1dd" name="Changes" comment="" />
+      <created>1728442246673</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1728442246673</updated>
+      <workItem from="1728442247727" duration="12180000" />
+      <workItem from="1729574265891" duration="154000" />
+      <workItem from="1729612812041" duration="3403000" />
+      <workItem from="1729791135655" duration="115000" />
+      <workItem from="1729791360520" duration="361000" />
+      <workItem from="1729820381654" duration="337000" />
+      <workItem from="1729820746023" duration="130000" />
+      <workItem from="1729831228379" duration="1905000" />
+      <workItem from="1729833793019" duration="257000" />
+      <workItem from="1730182843221" duration="111000" />
+      <workItem from="1729820440315" duration="757000" />
+      <workItem from="1730182450742" duration="201000" />
+      <workItem from="1730734503084" duration="1477000" />
+    </task>
+    <task id="LOCAL-00001" summary="updated">
+      <option name="closed" value="true" />
+      <created>1729651752545</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1729651752545</updated>
+    </task>
+    <task id="LOCAL-00002" summary="updated">
+      <option name="closed" value="true" />
+      <created>1729700878338</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1729700878338</updated>
+    </task>
+    <task id="LOCAL-00003" summary="updated">
+      <option name="closed" value="true" />
+      <created>1729701183863</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1729701183863</updated>
+    </task>
+    <task id="LOCAL-00004" summary="updated">
+      <option name="closed" value="true" />
+      <created>1729782377942</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1729782377942</updated>
+    </task>
+    <task id="LOCAL-00005" summary="updated">
+      <option name="closed" value="true" />
+      <created>1729784400969</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1729784400969</updated>
+    </task>
+    <task id="LOCAL-00006" summary="updated">
+      <option name="closed" value="true" />
+      <created>1729784739620</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1729784739621</updated>
+    </task>
+    <task id="LOCAL-00007" summary="updated">
+      <option name="closed" value="true" />
+      <created>1729785775070</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1729785775070</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="xml" />
+    <MESSAGE value="updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated" />
+  </component>
+</project>
