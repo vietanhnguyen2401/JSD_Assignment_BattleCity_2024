@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c3a2440-d807-4f5c-832f-6f4ca297b1dd" name="Changes" comment="updated">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src.zip" beforeDir="false" afterPath="$PROJECT_DIR$/src.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/CollisionChecker.java" afterDir="false" />
@@ -66,7 +67,7 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "bugfix/collision",
+    "git-widget-placeholder": "Merging develop",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/InteliJProject/JSD__Project/JSD_Final_Project/github-demo-tank/Tank-Game-Java",
     "node.js.detected.package.eslint": "true",
@@ -194,17 +195,5 @@
     <MESSAGE value="xml" />
     <MESSAGE value="updated" />
     <option name="LAST_COMMIT_MESSAGE" value="updated" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/src/main/GamePanel.java</url>
-          <line>47</line>
-          <properties field="enemyCount" class="main.GamePanel" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
