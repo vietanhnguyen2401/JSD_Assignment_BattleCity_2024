@@ -1,5 +1,6 @@
     package entity;
 
+    import item.Shield;
     import main.GamePanel;
     import main.KeyHandler;
     import main.Sound;
@@ -13,11 +14,23 @@
     public class Player extends Entity{
         GamePanel gp;
         KeyHandler kh;
-
+        Shield shield;
         Sound sound = new Sound();
+
+        // Bullet Assist
         public ArrayList<Bullet> bullets = new ArrayList<>();
         private long lastShotTime;
         private final long shotCooldown = 1000;
+        // Revive Assist
+        public int lives = 3; // Number of lives the player has
+        private boolean isDead = false; // Tracks if the player is currently dead
+        private long respawnTime = 500; // 2-second respawn delay
+        private long deathTime; // Time at which player died
+        private boolean isFlickering = false; // To track flickering state
+        private int flickerCounter = 0; // Counter to control flicker effect
+        private final int flickerDuration = 60; // Total duration for flickering
+
+
         public Player(GamePanel gp, KeyHandler kh){
             this.gp = gp;
             this.kh = kh;
@@ -35,6 +48,7 @@
             y = 400;
             speed = 1;
             direction = "up";
+            shield = new Shield(120, 10, gp.tileSize * 2 + 5);
         }
 
         public void getPlayerImage(){
@@ -69,6 +83,21 @@
             }
         }
         public void update(){
+            if (isDead) {
+                if (System.currentTimeMillis() - deathTime >= respawnTime) {
+                    revive();
+                }
+
+                if (isFlickering) {
+                    flickerCounter++;
+                    if (flickerCounter >= flickerDuration) {
+                        isFlickering = false;
+                    }
+                }
+                return;
+            }
+
+            shield.update(x, y);
 
             if (kh.downPressed || kh.upPressed || kh.leftPressed || kh.rightPressed){
                 if (kh.downPressed){
@@ -143,6 +172,31 @@
 
         }
 
+        public void die() {
+            lives--;
+            isDead = true;
+            deathTime = System.currentTimeMillis();
+            System.out.println("Player has died! Lives left: " + lives);
+
+            if (lives <= 0) {
+                System.out.println("Game Over! No lives left.");
+                // Optionally, set game over state here if needed
+            }
+        }
+
+        public void revive() {
+            if (lives > 0) {
+                System.out.println("Player is reviving...");
+                isDead = false;
+                isFlickering = true;
+                shield.activate(x, y); // Activate shield on revive
+                x = 132;
+                y = 400;
+            } else {
+                System.out.println("No lives left. Cannot revive.");
+            }
+        }
+
 
         private void fireBullet() {
             int bulletWidth = gp.tileSize - 6;
@@ -177,7 +231,7 @@
 
             sound.setFile(1); // Adjust the index to match the firing sound
             sound.play();
-            bullets.add(new Bullet(gp, bulletX, bulletY, direction));
+            bullets.add(new Bullet(gp, bulletX, bulletY, direction, false));
             lastShotTime = System.currentTimeMillis();
         }
 
@@ -187,47 +241,60 @@
             }
         }
 
+        public Shield getShield() {
+            return shield;
+        }
+
 
         private boolean canFire() {
             return System.currentTimeMillis() - lastShotTime >= shotCooldown;
         }
 
 
-        public void draw(Graphics2D g2){
+        public void draw(Graphics2D g2) {
+            boolean shouldDraw = !isDead || (isDead && flickerCounter % 10 < 5);
 
-            BufferedImage image = null;
+            if (shouldDraw) {
+                BufferedImage image = null;
 
-            switch(direction){
-                case "up":
-                    if (spriteNum == 1){
-                        image = up1;
-                    } if (spriteNum == 2) {
-                        image = up2;
-                    }
-                    break;
-                case "down":
-                    if (spriteNum == 1){
-                        image = down1;
-                    } if (spriteNum == 2) {
-                    image = down2;
+                switch (direction) {
+                    case "up":
+                        if (spriteNum == 1) {
+                            image = up1;
+                        }
+                        if (spriteNum == 2) {
+                            image = up2;
+                        }
+                        break;
+                    case "down":
+                        if (spriteNum == 1) {
+                            image = down1;
+                        }
+                        if (spriteNum == 2) {
+                            image = down2;
+                        }
+                        break;
+                    case "left":
+                        if (spriteNum == 1) {
+                            image = left1;
+                        }
+                        if (spriteNum == 2) {
+                            image = left2;
+                        }
+                        break;
+                    case "right":
+                        if (spriteNum == 1) {
+                            image = right1;
+                        }
+                        if (spriteNum == 2) {
+                            image = right2;
+                        }
+                        break;
                 }
-                    break;
-                case "left":
-                    if (spriteNum == 1){
-                        image = left1;
-                    } if (spriteNum == 2) {
-                    image = left2;
-                }
-                    break;
-                case "right":
-                    if (spriteNum == 1){
-                        image = right1;
-                    } if (spriteNum == 2) {
-                    image = right2;
-                }
-                    break;
+
+
+                g2.drawImage(image, x, y, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6, null);
             }
-
-            g2.drawImage(image, x, y, gp.tileSize*2 - 6, gp.tileSize*2 - 6, null);
+            shield.draw(g2);
         }
     }

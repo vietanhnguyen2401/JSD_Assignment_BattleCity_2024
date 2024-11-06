@@ -32,7 +32,7 @@ public class GamePanel extends JPanel implements Runnable {
     public List<Explosion> explosions = new ArrayList<>();
 
     // Entities
-    Player player = new Player(this, keyHandler);
+    public Player player = new Player(this, keyHandler);
     Base base = new Base(this);
     public Enemy[] npc = new Enemy[10];
     public SuperItem[] item = new SuperItem[10];
@@ -99,6 +99,13 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
+
+        if (player.lives <= 0) {
+            gameState = GAME_OVER_STATE;
+            System.out.println("Game Over!");
+            return; // Stop further updates if game is over
+        }
+
         if (gameState == PLAY_STATE) {
             player.update();
 
@@ -179,7 +186,6 @@ public class GamePanel extends JPanel implements Runnable {
                     }
                 }
             }
-
 
             // Draw bullets
             for (Bullet bullet : player.bullets) {
