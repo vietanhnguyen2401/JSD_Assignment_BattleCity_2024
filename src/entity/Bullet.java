@@ -13,6 +13,7 @@ public class Bullet extends Entity {
     GamePanel gp;
     public boolean alive = true;
     private BufferedImage upImage, downImage, leftImage, rightImage;
+    private int damage;
     Sound sound = new Sound();
     public Bullet(GamePanel gp, int x, int y, String direction) {
         this.gp = gp;
@@ -48,10 +49,12 @@ public class Bullet extends Entity {
         // Print the position of the bullet
         System.out.println("Bullet moved to (" + x + ", " + y + ")");
         checkTileInteraction();
-
+        checkEnemyCollision();
         if (x < 0 || x > gp.screenWidth || y < 0 || y > gp.screenHeight) {
             alive = false;
         }
+
+
     }
 
 
@@ -128,6 +131,31 @@ public class Bullet extends Entity {
 
             }
             // No action needed for water tile as bullets pass through
+        }
+    }
+    private void checkEnemyCollision() {
+        for (Enemy enemy : gp.npc) {
+            if (enemy != null && enemy.alive) { // Check if enemy is alive
+                Rectangle enemyRect = new Rectangle(enemy.x, enemy.y, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6);
+                Rectangle bulletRect = new Rectangle(x, y, 6, 6);
+
+                if (bulletRect.intersects(enemyRect)) {
+                    System.out.println("Hitting enemy: " + enemy); // Debug print
+                    alive = false; // Bullet is no longer alive
+                    enemy.alive = false; // Enemy is no longer alive
+                    enemy.collisionOn = false; // Ensure the enemy's collision is turned off
+
+                    // Convert enemy position to tile coordinates and set tile to non-collidable
+                    int col = enemy.x / gp.tileSize;
+                    int row = enemy.y / gp.tileSize;
+                    if (col >= 0 && col < gp.maxScreenCol && row >= 0 && row < gp.maxScreenRow) {
+                        gp.TManager.mapTileNum[col][row] = 0; // Assume tile 0 is non-collidable, like grass
+                    }
+
+                    gp.explosions.add(new Explosion(gp, enemy.x, enemy.y)); // Trigger explosion
+                    break; // Ensure only one collision is processed per update
+                }
+            }
         }
     }
 

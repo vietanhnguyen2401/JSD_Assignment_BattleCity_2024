@@ -1,14 +1,13 @@
 package main;
-import entity.Enemy;
+import entity.*;
 
-import entity.Base;
-import entity.Player;
-import entity.Bullet;
 import item.SuperItem;
 import tile.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GamePanel extends JPanel implements Runnable {
     final int originalTileSize = 8; // 8 x 8 tile size
@@ -30,6 +29,7 @@ public class GamePanel extends JPanel implements Runnable {
     public AssetSetter aSetter = new AssetSetter(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
     Sound sound = new Sound();
+    public List<Explosion> explosions = new ArrayList<>();
 
     // Entities
     Player player = new Player(this, keyHandler);
@@ -57,7 +57,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void setupGame() {
         aSetter.setItem();
         gameState = TITLE_STATE;
-        playMusic(0);
+//        playMusic(0);
         aSetter.setNPC();
 //        playMusic(0);
 
@@ -102,20 +102,47 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState == PLAY_STATE) {
             player.update();
 
-            for (Enemy enemy : npc) {
-                if (enemy != null) {
-                    enemy.update();
+            // Update player bullets
+            for (int i = 0; i < player.bullets.size(); i++) {
+                Bullet bullet = player.bullets.get(i);
+                bullet.update();
+                if (!bullet.alive) {
+                    player.bullets.remove(i);
+                    i--; // Adjust index after removal
                 }
             }
 
-            // Update bullets
-            for (int i = 0; i < player.bullets.size(); i++) {
-                Bullet bullet = player.bullets.get(i);
-                if (bullet.alive) {
-                    bullet.update();
-                } else {
-                    player.bullets.remove(i);
-                    i--;
+            // Update enemies and check for alive status
+            for (int i = 0; i < npc.length; i++) {
+                Enemy enemy = npc[i];
+                if (enemy != null && enemy.alive) {
+                    enemy.update();
+                } else if (enemy != null && !enemy.alive) {
+                    npc[i] = null; // Remove enemy when dead
+                }
+            }
+            for (Enemy enemy : npc) {
+                if (enemy != null && enemy.alive) {
+                    for (int i = 0; i < enemy.bullets.size(); i++) {
+                        Bullet bullet = enemy.bullets.get(i);
+                        if (bullet.alive) {
+                            bullet.update();
+                        } else {
+                            enemy.bullets.remove(i);
+                            i--; // Adjust index after removal
+                        }
+                    }
+                }
+            }
+
+
+            // Update explosions
+            for (int i = 0; i < explosions.size(); i++) {
+                Explosion explosion = explosions.get(i);
+                explosion.update();
+                if (!explosion.isAlive()) {
+                    explosions.remove(i); // Remove completed explosions
+                    i--; // Adjust index after removal
                 }
             }
         }
@@ -139,15 +166,29 @@ public class GamePanel extends JPanel implements Runnable {
             }
 
             for (Enemy enemy : npc) {
-                if (enemy != null) {
+                if (enemy != null && enemy.alive) {
                     enemy.draw(g2);
                 }
             }
+            for (Enemy enemy : npc) {
+                if (enemy != null && enemy.alive) {
+                    for (Bullet bullet : enemy.bullets) {
+                        if (bullet.alive) {
+                            bullet.draw(g2); // Render bullet fired by the enemy
+                        }
+                    }
+                }
+            }
+
 
             // Draw bullets
             for (Bullet bullet : player.bullets) {
                 bullet.draw(g2);
             }
+
+
+            for (Explosion explosion : explosions) {
+                explosion.draw(g2); }
 
             ui.draw(g2);
         }
