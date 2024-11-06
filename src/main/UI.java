@@ -5,12 +5,11 @@ import java.awt.*;
 public class UI {
     GamePanel gp;
     Graphics2D g2;
-    Font gameFont, arial_80B;
+    Font gameFont;
     public int commandNumber = 0; // 0: one player, 1: two players, 2: game exit, 3: back to main menu
     public UI(GamePanel gp){
         this.gp = gp;
         gameFont = new Font("Font 7x7 Regular", Font.PLAIN, 40);
-        arial_80B = new Font("Arial", Font.BOLD, 80);
 
     }
 
@@ -123,4 +122,6 @@ public class UI {
 
 
     }
+
+
 }

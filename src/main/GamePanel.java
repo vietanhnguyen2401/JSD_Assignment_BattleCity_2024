@@ -20,8 +20,8 @@ public class GamePanel extends JPanel implements Runnable{
 
 
     // FPS
-    int FPS = 60;
-
+    final int FPS = 60;
+    final long ONE_SECOND_IN_NANOSECOND = 1000000000;
     // System
     TileManager TManager = new TileManager(this);
     KeyHandler keyHandler = new KeyHandler(this);
@@ -32,7 +32,8 @@ public class GamePanel extends JPanel implements Runnable{
     Sound sound = new Sound();
 
     // Entity
-    Player player = new Player(this, keyHandler);
+    Player player1 = new Player(this, keyHandler, 132, 400, 1);
+
     Base base = new Base(this);
 
     // Game state
@@ -42,7 +43,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int PAUSE_STATE = 2;
     public final int GAME_OVER_STATE = 3;
 
-
+public int enemyCount = 10;
 
     public SuperItem[] item = new SuperItem[10];
     public GamePanel(){
@@ -51,13 +52,12 @@ public class GamePanel extends JPanel implements Runnable{
         this.setDoubleBuffered(true);
         this.addKeyListener(keyHandler);
         this.setFocusable(true);
-
-    }
+        }
 
     public void setupGame() {
         aSetter.setItem();
         //        gameState = PLAY_STATE;
-        gameState = TITLE_STATE;
+        gameState = GAME_OVER_STATE;
         playMusic(0);
 
     }
@@ -68,7 +68,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     @Override
     public void run() {
-        double drawInterval = 1000000000/FPS;  // 0.01666666 seconds
+        double drawInterval = ONE_SECOND_IN_NANOSECOND/FPS;  // 0.01666666 seconds
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime;
@@ -90,30 +90,18 @@ public class GamePanel extends JPanel implements Runnable{
                 drawCount++;
             }
 
-            if (timer >= 1000000000) {
+            if (timer >= ONE_SECOND_IN_NANOSECOND) {
                 System.out.println("FPS: " + drawCount);
                 drawCount = 0;
                  timer = 0;
 
             }
-//            try {
-//                double remainingTime = nextDrawTime - System.nanoTime();
-//                remainingTime = remainingTime/1000000;
-//
-//                if (remainingTime < 0) {
-//                    remainingTime = 0;
-//                }
-//                Thread.sleep((long)remainingTime);
-//                nextDrawTime += drawInterval;
-//            } catch (InterruptedException e) {
-//                throw new RuntimeException(e);
-//            }
         }
     }
 
     public void update(){
         if (gameState == PLAY_STATE){
-            player.update();
+            player1.update();
         }
         if (gameState == PAUSE_STATE){
 
@@ -128,13 +116,12 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
 
-
         // TITLE SCREEN
         if(gameState == TITLE_STATE){
             ui.draw(g2);
         } else {
             // this will draw tiles and player
-            TManager.draw(g2, player);
+            TManager.draw(g2, player1);
             base.draw(g2);
             for(int i  = 0; i < item.length; i++){
                 if(item[i] != null) {
@@ -142,8 +129,11 @@ public class GamePanel extends JPanel implements Runnable{
                 }
             }
             ui.draw(g2);
+
+
         }
         g2.dispose();
+
     }
 
     public void playMusic(int i){

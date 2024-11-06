@@ -4,12 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 
 public class BackgroundPanel extends JPanel {
-    private GamePanel gamePanel;
+    private GamePanel gp;
     private final Image sideImage;
+    Font gameFont;
 
     public BackgroundPanel(GamePanel gamePanel) {
-        this.gamePanel = gamePanel;
+        this.gp = gamePanel;
         setLayout(null); // Absolute positioning
+        gameFont = new Font("Font 7x7 Regular", Font.PLAIN, 40);
 
         // Load the image from the resources
         // Assuming "sideInstruction.png" is located in the "res/instruction" folder within the project
@@ -18,6 +20,8 @@ public class BackgroundPanel extends JPanel {
         // Add the GamePanel to the BackgroundPanel and center it
         add(gamePanel);
         gamePanel.setBounds(getCenteredX(), getCenteredY(), gamePanel.screenWidth, gamePanel.screenHeight);
+        Timer timer = new Timer(16, e -> repaint());  // 16 ms for ~60 FPS
+        timer.start();
     }
 
     @Override
@@ -40,8 +44,9 @@ public class BackgroundPanel extends JPanel {
         drawImageInLeftSpace(g2);
 
         // Update GamePanel's position to keep it centered
-        gamePanel.setBounds(getCenteredX(), getCenteredY(), gamePanel.screenWidth, gamePanel.screenHeight);
-    }
+        gp.setBounds(getCenteredX(), getCenteredY(), gp.screenWidth, gp.screenHeight);
+
+        drawGameInformationRightSide(g2);    }
 
     // Method to draw the image in the left side space only
     private void drawImageInLeftSpace(Graphics2D g2) {
@@ -56,13 +61,37 @@ public class BackgroundPanel extends JPanel {
         }
     }
 
+    private void drawGameInformationRightSide(Graphics2D g2) {
+            g2.setFont(g2.getFont().deriveFont(Font.BOLD, 14));
+        if (gp.gameState == gp.PLAY_STATE){
+
+            String text = "BATTLE CITY";
+            int x = 900; // center x for right panel
+            int y = gp.tileSize*5;
+            g2.setColor(Color.WHITE);
+            g2.drawString(text, x, y);
+
+            y = gp.tileSize*7;
+            String enemy = "ENEMY: ";
+            g2.drawString(enemy, x, y);
+            g2.drawString(gp.player1.health+"", x + 100, y);
+
+                y = gp.tileSize*9;
+                String player = "PLAYER: ";
+                g2.drawString(player, x, y);
+                g2.drawString(gp.player1.health+"", x + 100, y);
+
+            }
+
+    }
+
     // Get X coordinate to center GamePanel horizontally
     private int getCenteredX() {
-        return (getWidth() - gamePanel.screenWidth) / 2;
+        return (getWidth() - gp.screenWidth) / 2;
     }
 
     // Get Y coordinate to center GamePanel vertically
     private int getCenteredY() {
-        return (getHeight() - gamePanel.screenHeight) / 2;
+        return (getHeight() - gp.screenHeight) / 2;
     }
 }
