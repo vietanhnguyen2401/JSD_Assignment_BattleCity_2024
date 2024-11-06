@@ -35,14 +35,11 @@ public class GamePanel extends JPanel implements Runnable {
 
     // Entity
     Player player = new Player(this, keyHandler, 132, 400, 1);
-
-
     Base base = new Base(this);
     public Enemy[] npc = new Enemy[10];
 
     // Game state
     public int gameState;
-
     public final int TITLE_STATE = 0;
     public final int PLAY_STATE = 1;
     public final int PAUSE_STATE = 2;
