@@ -74,12 +74,12 @@ public class BackgroundPanel extends JPanel {
             y = gp.tileSize*7;
             String enemy = "ENEMY: ";
             g2.drawString(enemy, x, y);
-            g2.drawString(gp.player1.health+"", x + 100, y);
+            g2.drawString(gp.player.health+"", x + 100, y);
 
                 y = gp.tileSize*9;
                 String player = "PLAYER: ";
                 g2.drawString(player, x, y);
-                g2.drawString(gp.player1.health+"", x + 100, y);
+                g2.drawString(gp.player.health+"", x + 100, y);
 
             }
 

@@ -34,12 +34,11 @@ public class GamePanel extends JPanel implements Runnable {
     public List<Explosion> explosions = new ArrayList<>();
 
     // Entity
-    Player player1 = new Player(this, keyHandler, 132, 400, 1);
+    Player player = new Player(this, keyHandler, 132, 400, 1);
 
 
     Base base = new Base(this);
     public Enemy[] npc = new Enemy[10];
-    public SuperItem[] item = new SuperItem[10];
 
     // Game state
     public int gameState;
@@ -49,7 +48,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int PAUSE_STATE = 2;
     public final int GAME_OVER_STATE = 3;
 
-public int enemyCount = 10;
+    public int enemyCount = 10;
 
     public SuperItem[] item = new SuperItem[10];
     public GamePanel(){
@@ -169,8 +168,7 @@ public int enemyCount = 10;
             ui.draw(g2);
         } else {
             // this will draw tiles and player
-            TManager.draw(g2, player1);
-
+            TManager.draw(g2, player);
             base.draw(g2);
 
             for (SuperItem value : item) {
@@ -194,23 +192,16 @@ public int enemyCount = 10;
                 }
             }
 
-
             // Draw bullets
             for (Bullet bullet : player.bullets) {
                 bullet.draw(g2);
             }
 
-
             for (Explosion explosion : explosions) {
                 explosion.draw(g2); }
-
             ui.draw(g2);
-
-
         }
-
         g2.dispose();
-
     }
 
     public void playMusic(int i) {

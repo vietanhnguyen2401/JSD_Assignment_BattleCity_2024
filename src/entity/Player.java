@@ -223,10 +223,11 @@ public void update(){
             return System.currentTimeMillis() - lastShotTime >= shotCooldown;
         }
 
-public void pickUpItem(int i){
+        public void pickUpItem(int i){
             if(i!= 999){
-                gp.item[i] = null;
+            gp.item[i] = null;
             }
+        }
         public void draw(Graphics2D g2){
 
             BufferedImage image = null;

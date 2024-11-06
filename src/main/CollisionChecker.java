@@ -67,7 +67,7 @@ public class CollisionChecker {
         }
     }
 
-    public int checkItem(Entity entity, boolean player) {
+    public int checkItem(Entity entity, boolean isPlayer) {
         if (!entity.alive) return -1;
         int index = 999; // placeholder number, any number that is not used by the item index array
         for (int i = 0; i < gp.item.length; i++) {
