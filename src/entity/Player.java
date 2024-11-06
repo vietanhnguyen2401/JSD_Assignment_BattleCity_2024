@@ -3,11 +3,12 @@
     import main.GamePanel;
     import main.KeyHandler;
     import main.UtilityTool;
-
+    import main.Sound;
     import javax.imageio.ImageIO;
     import java.awt.*;
     import java.awt.image.BufferedImage;
     import java.io.IOException;
+    import java.util.ArrayList;
 
     public class Player extends Entity implements Runnable {
         public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2, shield1, shield2;
@@ -17,11 +18,18 @@
         int playerNumber;
         boolean isProtected = true; // To give the player tank protection
 
+
         private int shieldSpriteNum = 1;
         private int shieldCounter = 0;
         private boolean running = true; // Flag to control the player thread
 
+
+        Sound sound = new Sound();
+        public ArrayList<Bullet> bullets = new ArrayList<>();
+        private long lastShotTime;
+        private final long shotCooldown = 1000;
         public Player(GamePanel gp, KeyHandler kh, int positionX, int positionY, int pNumber) {
+
             this.gp = gp;
             this.kh = kh;
             this.playerNumber = pNumber;
@@ -93,60 +101,132 @@
                 spriteCounter=0;
             }
         }
-        public void update(){
-            if (playerNumber == 1) {
-                if (kh.downPressed || kh.upPressed || kh.leftPressed || kh.rightPressed) {
-                    if (kh.downPressed) {
-                        direction = "down";
-                        updateSprites();
-                    } else if (kh.upPressed) {
-                        direction = "up";
-                        updateSprites();
-                    } else if (kh.leftPressed) {
-                        direction = "left";
-                        updateSprites();
-                    } else if (kh.rightPressed) {
-                        direction = "right";
-                        updateSprites();
-                    }
+public void update(){
 
-                    // CHECK TILE COLLISION
-                    collisionOn = false;
-                    gp.cChecker.checkTile(this);
+            if (kh.downPressed || kh.upPressed || kh.leftPressed || kh.rightPressed){
+                if (kh.downPressed){
+                    direction = "down";
+                    updateSprites();
 
-                    // CHECK ITEM COLLISION
+                }
+                else if (kh.upPressed){
+                    direction = "up";
+                    updateSprites();
+
+                }
+                else if (kh.leftPressed){
+                    direction = "left";
+                    updateSprites();
+
+                }
+                else if (kh.rightPressed){
+                    direction = "right";
+
+                    updateSprites();
+                }
+
+
+                // CHECK TILE COLLISION
+                collisionOn = false;
+                gp.cChecker.checkTile(this);
+                // CHECK NPC COLLISION
+                int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
+                interactNPC(npcIndex);
+                // CHECK ITEM COLLISION
+ // CHECK ITEM COLLISION
                     int itemIndex = gp.cChecker.checkItem(this, true);
-                    pickUpItem(itemIndex);
-                    // IF COLLISION IS FALSE, PLAYER CAN MOVE
-                    if (!collisionOn) {
-                        switch (direction) {
-                            case "up":
-                                this.y -= speed;
+                    pickUpItem(itemIndex);                // IF COLLISION IS FALSE, PLAYER CAN MOVE
+                if (!collisionOn){
+                    switch (direction){
+                        case "up":
+                            this.y -= speed;
 
-                                break;
-                            case "down":
-                                this.y += speed;
+                            break;
+                        case "down":
+                            this.y += speed;
 
-                                break;
-                            case "left":
-                                this.x -= speed;
+                            break;
+                        case "left":
+                            this.x -= speed;
 
-                                break;
-                            case "right":
-                                this.x += speed;
+                            break;
+                        case "right":
+                            this.x += speed;
 
-                                break;
-                        }
+                            break;
                     }
+                }
+            }
+
+            // Shooting
+            if (kh.shootPressed && canFire()) {
+                fireBullet();
+            }
+
+            // Update bullets
+            for (int i = 0; i < bullets.size(); i++) {
+                Bullet bullet = bullets.get(i);
+                if (bullet.alive) {
+                    bullet.update();
+                } else {
+                    bullets.remove(i);
+                    i--;
                 }
             }
         }
 
-        public void pickUpItem(int i){
+        private void fireBullet() {
+            int bulletWidth = gp.tileSize - 6;
+            int bulletHeight = gp.tileSize - 6;
+
+            int tankWidth = gp.tileSize * 2 - 6;
+            int tankHeight = gp.tileSize * 2 - 6;
+
+            int tankCenterX = x + tankWidth / 2;
+            int tankCenterY = y + tankHeight / 2;
+
+            int bulletX = tankCenterX - bulletWidth / 2;
+            int bulletY = tankCenterY - bulletHeight / 2;
+
+            // Adjust bullet position based on tank's direction
+            switch (direction) {
+                case "up":
+                    bulletY = y - bulletHeight; // Start just above the tank
+                    break;
+                case "down":
+                    bulletY = y + tankHeight; // Start just below the tank
+                    break;
+                case "left":
+                    bulletX = x - bulletWidth; // Start just left of the tank
+                    break;
+                case "right":
+                    bulletX = x + tankWidth; // Start just right of the tank
+                    break;
+            }
+
+            // Play firing sound
+
+            sound.setFile(1); // Adjust the index to match the firing sound
+            sound.play();
+            bullets.add(new Bullet(gp, bulletX, bulletY, direction));
+            lastShotTime = System.currentTimeMillis();
+        }
+
+        private void interactNPC(int i) {
+            if(i != 999){
+                System.out.println("Hitting enemy");
+            }
+        }
+
+
+        private boolean canFire() {
+            return System.currentTimeMillis() - lastShotTime >= shotCooldown;
+        }
+
+public void pickUpItem(int i){
             if(i!= 999){
                 gp.item[i] = null;
             }
-        }
         public void draw(Graphics2D g2){
 
             BufferedImage image = null;

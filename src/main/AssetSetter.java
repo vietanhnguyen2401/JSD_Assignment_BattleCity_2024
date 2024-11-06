@@ -1,5 +1,6 @@
 package main;
 
+import entity.Enemy;
 import item.*;
 
 public class AssetSetter {
@@ -32,6 +33,23 @@ public class AssetSetter {
         gp.item[5] =  new Item_Star(gp);
         gp.item[5].x = 17 * gp.tileSize;
         gp.item[5].y = 18 * gp.tileSize;
+    }
+    public void setNPC(){
+        gp.npc[0] = new Enemy(gp);
+        gp.npc[0].x = gp.tileSize*21;
+        gp.npc[0].y = gp.tileSize*21;
+
+        gp.npc[1] = new Enemy(gp);
+        gp.npc[1].x = gp.tileSize*11;
+        gp.npc[1].y = gp.tileSize*21;
+
+        gp.npc[2] = new Enemy(gp);
+        gp.npc[2].x = gp.tileSize*25;
+        gp.npc[2].y = gp.tileSize*21;
+
+        gp.npc[3] = new Enemy(gp);
+        gp.npc[3].x = gp.tileSize*10;
+        gp.npc[3].y = gp.tileSize*21;
     }
 
 }

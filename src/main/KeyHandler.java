@@ -2,12 +2,12 @@ package main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.security.Key;
+
 
 public class KeyHandler implements KeyListener {
     GamePanel gp;
-    public boolean upPressed, downPressed, leftPressed, rightPressed;
     public boolean upPressed2, downPressed2, leftPressed2, rightPressed2;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, shootPressed;
 
     public KeyHandler(GamePanel gp){
         this.gp = gp;
@@ -37,6 +37,7 @@ public class KeyHandler implements KeyListener {
 
         // PLAY STATE
         if (gp.gameState == gp.PLAY_STATE){
+
             // PLAYER 1 CONTROLLER
             if (code == KeyEvent.VK_W) upPressed= true;
             if (code == KeyEvent.VK_S) downPressed = true;
@@ -48,8 +49,9 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_DOWN) downPressed2 = true;
             if (code == KeyEvent.VK_LEFT) leftPressed2 = true;
             if (code == KeyEvent.VK_RIGHT) rightPressed2 = true;
-
+            if (code == KeyEvent.VK_SPACE) shootPressed = true;
             if (code == KeyEvent.VK_P) gp.gameState = gp.PAUSE_STATE;
+
         } else if (gp.gameState == gp.PAUSE_STATE){
             if (code == KeyEvent.VK_P) gp.gameState = gp.PLAY_STATE;
         }
@@ -86,6 +88,9 @@ public class KeyHandler implements KeyListener {
             else if (code == KeyEvent.VK_DOWN) downPressed2 = false;
             else if (code == KeyEvent.VK_LEFT) leftPressed2 = false;
             else if (code == KeyEvent.VK_RIGHT) rightPressed2 = false;
+        }
+        else if (code == KeyEvent.VK_SPACE){
+            shootPressed = false;
         }
     }
 }
