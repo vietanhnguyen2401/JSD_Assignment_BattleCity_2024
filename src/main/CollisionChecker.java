@@ -7,7 +7,8 @@ import java.util.concurrent.ForkJoinPool;
 public class CollisionChecker {
     GamePanel gp;
 
-    public CollisionChecker(GamePanel gp) {
+
+    public CollisionChecker(GamePanel gp){
         this.gp = gp;
     }
 
@@ -68,9 +69,10 @@ public class CollisionChecker {
 
     public int checkItem(Entity entity, boolean player) {
         if (!entity.alive) return -1;
-        int index = 999;
+        int index = 999; // placeholder number, any number that is not used by the item index array
         for (int i = 0; i < gp.item.length; i++) {
             if (gp.item[i] != null) {
+
                 // Get entity's solid area position
                 entity.solidArea.x = entity.x + entity.solidArea.x;
                 entity.solidArea.y = entity.y + entity.solidArea.y;
@@ -81,30 +83,37 @@ public class CollisionChecker {
                 switch (entity.direction) {
                     case "up":
                         entity.solidArea.y -= entity.speed;
-                        if (entity.solidArea.intersects(gp.item[i].solidArea)) {
-                            System.out.println("up collision");
-                            break;
+
+                        if (entity.solidArea.intersects(gp.item[i].solidArea)){
+                           if (isPlayer == true){
+                                index = i;
+                           }
+
                         }
 
                     case "down":
                         entity.solidArea.y += entity.speed;
-                        if (entity.solidArea.intersects(gp.item[i].solidArea)) {
-                            System.out.println("down collision");
-                            break;
+                        if (entity.solidArea.intersects(gp.item[i].solidArea)){
+                            if (isPlayer == true){
+                                index = i;
+                            }
                         }
 
                     case "left":
                         entity.solidArea.x -= entity.speed;
-                        if (entity.solidArea.intersects(gp.item[i].solidArea)) {
-                            System.out.println("left collision");
-                            break;
+                        if (entity.solidArea.intersects(gp.item[i].solidArea)){
+                            if (isPlayer == true){
+                                index = i;
+                            }
                         }
 
                     case "right":
                         entity.solidArea.x += entity.speed;
-                        if (entity.solidArea.intersects(gp.item[i].solidArea)) {
-                            System.out.println("right collision");
-                            break;
+                        if (entity.solidArea.intersects(gp.item[i].solidArea)){
+                            if (isPlayer == true){
+                                index = i;
+                            }
+
                         }
 
                 }
@@ -112,8 +121,6 @@ public class CollisionChecker {
                 entity.solidArea.y = entity.solidAreaDefaultY;
                 gp.item[i].solidArea.x = gp.item[i].solidAreaDefaultX;
                 gp.item[i].solidArea.y = gp.item[i].solidAreaDefaultY;
-
-
             }
         }
         return index;

@@ -2,6 +2,8 @@ package tile;
 
 import main.GamePanel;
 import entity.Player;
+import main.UtilityTool;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.BufferedReader;
@@ -23,32 +25,26 @@ public class TileManager {
         loadMap();
     }
     public void getTileImage() {
-        try {
-            tile[0] = new Tile();
-            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/black_tile.png"));
+            setup(0, "black", false);
+            setup(1, "brick", true);
+            setup(2, "iron", true);
+            setup(3, "boundary", true);
+            setup(4, "water", true);
+            setup(5, "grass", false);
+    }
 
-            tile[1] = new Tile();
-            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/brick_tile.png"));
-            tile[1].collision = true;
+    public void setup(int index, String imagePath, boolean collision){
+        UtilityTool uTool = new UtilityTool();
 
-            tile[2] = new Tile();
-            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/iron_tile.png"));
-            tile[2].collision = true;
-
-            tile[3] = new Tile();
-            tile[3].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/boundary_tile.png"));
-            tile[3].collision = true;
-
-            tile[4] = new Tile();
-            tile[4].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/water_tile.png"));
-            tile[4].collision = true;
-
-            tile[5] = new Tile();
-            tile[5].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/grass_tile.png"));        } catch ( IOException e){
+        try{
+            tile[index] = new Tile();
+            tile[index].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/" + imagePath + "_tile.png"));
+            tile[index].image = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
+            tile[index].collision = collision;
+        } catch (IOException e){
             e.printStackTrace();
         }
     }
-
     public void loadMap() {
         try {
             InputStream is = getClass().getResourceAsStream("/res/maps/level01.txt");
@@ -85,7 +81,7 @@ public class TileManager {
         while(col < gp.maxScreenCol  && row < gp.maxScreenRow){
             int tileNum = mapTileNum[col][row];
             if(tileNum != 5) { // If the tile is not grass, draw it
-                g2.drawImage(tile[tileNum].image, x , y, gp.tileSize, gp.tileSize, null);
+                g2.drawImage(tile[tileNum].image, x , y, null);
             }
             col++;
             x+= gp.tileSize;
@@ -110,7 +106,7 @@ public class TileManager {
         while(col < gp.maxScreenCol && row < gp.maxScreenRow){
             int tileNum = mapTileNum[col][row];
             if(tileNum == 5) { // If the tile is grass, draw it
-                g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
+                g2.drawImage(tile[tileNum].image, x, y, null);
             }
             col++;
             x+= gp.tileSize;
