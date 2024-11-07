@@ -5,38 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c3a2440-d807-4f5c-832f-6f4ca297b1dd" name="Changes" comment="updated">
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/entity/Base.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/entity/Bullet.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/main/BackgroundPanel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/main/Sound.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/main/UI.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/instruction/sideInstruction.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/sounds/1 - Track 1.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/sounds/2 - Track 2.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/sounds/3 - Track 3.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/sounds/4 - Track 4.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/sounds/SFX 1.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/sounds/SFX 10.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/sounds/SFX 11.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/sounds/SFX 12.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/sounds/SFX 13.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/sounds/SFX 14.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/sounds/SFX 15.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/sounds/SFX 16.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/sounds/SFX 17.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/sounds/SFX 2.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/sounds/SFX 3.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/sounds/SFX 4.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/sounds/SFX 5.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/sounds/SFX 6.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/sounds/SFX 7.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/sounds/SFX 8.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/sounds/SFX 9.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/sounds/bullet_shot.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/sounds/explosion_1.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/sounds/game_start.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/final-project-tank/res/tiles/boundary_tile.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/entity/Enemy.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/final-project-tank/entity/Enemy.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Enemy.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -132,7 +101,7 @@
       <workItem from="1729820440315" duration="757000" />
       <workItem from="1730182450742" duration="201000" />
       <workItem from="1730734503084" duration="4663000" />
-      <workItem from="1730974251329" duration="881000" />
+      <workItem from="1730974251329" duration="1105000" />
     </task>
     <task id="LOCAL-00001" summary="updated">
       <option name="closed" value="true" />
@@ -198,7 +167,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730799654404</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="updated">
+      <option name="closed" value="true" />
+      <created>1730975344707</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1730975344707</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

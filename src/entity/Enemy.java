@@ -30,7 +30,7 @@ public class Enemy extends Entity{
     private void setDefaultValues() {
         x = 132;
         y = 380;
-        speed = 3;
+        speed = 1;
         direction = "up";
     }
     public void setAction(){
