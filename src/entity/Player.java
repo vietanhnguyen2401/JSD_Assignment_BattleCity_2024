@@ -13,7 +13,7 @@
 
     public class Player extends Entity implements Runnable {
         public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2, shield1, shield2;
-        public int health = 3;
+
         GamePanel gp;
         KeyHandler kh;
         Shield shield;
@@ -25,7 +25,7 @@
         private long lastShotTime;
         private final long shotCooldown = 300;
         // Revive Assist
-        public int lives = 1; // Number of lives the player has
+        public int lives = 3; // Number of lives the player has
         private boolean isDead = false; // Tracks if the player is currently dead
         private long respawnTime = 500; // 2-second respawn delay
         private long deathTime; // Time at which player died
@@ -158,15 +158,16 @@
                 // CHECK TILE COLLISION
                 collisionOn = false;
                 gp.cChecker.checkTile(this);
+                boolean baseCollision = gp.cChecker.checkBaseCollision(this);
                 // CHECK NPC COLLISION
                 int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
                 interactNPC(npcIndex);
-                // CHECK ITEM COLLISION
+              
                 // CHECK ITEM COLLISION
                     int itemIndex = gp.cChecker.checkItem(this, true);
                     pickUpItem(itemIndex);
                     // IF COLLISION IS FALSE, PLAYER CAN MOVE
-                if (!collisionOn){
+                if (!collisionOn  && !baseCollision){
                     switch (direction){
                         case "up":
                             this.y -= speed;

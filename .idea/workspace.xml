@@ -6,6 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="3c3a2440-d807-4f5c-832f-6f4ca297b1dd" name="Changes" comment="enemy-player interactions/shielded revival effects">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Base.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Base.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Bullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/CollisionChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +80,7 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "feature/level-change",
+    "git-widget-placeholder": "Merging feature/level-change-backup",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/InteliJProject/JSD__Project/JSD_Final_Project/github-demo-tank/Tank-Game-Java",
     "node.js.detected.package.eslint": "true",
@@ -143,7 +149,9 @@
       <workItem from="1730820755274" duration="5525000" />
       <workItem from="1730826631996" duration="22000" />
       <workItem from="1730868017811" duration="14774000" />
-      <workItem from="1730963589675" duration="3056000" />
+      <workItem from="1730963589675" duration="4546000" />
+      <workItem from="1730976076777" duration="1081000" />
+      <workItem from="1730987334161" duration="6197000" />
     </task>
     <task id="LOCAL-00001" summary="updated">
       <option name="closed" value="true" />
@@ -258,5 +266,16 @@
     <MESSAGE value="enemy-player interactions/shielded revival effects" />
     <option name="LAST_COMMIT_MESSAGE" value="enemy-player interactions/shielded revival effects" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/entity/Bullet.java</url>
+          <line>192</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

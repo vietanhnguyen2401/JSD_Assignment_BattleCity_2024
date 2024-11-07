@@ -33,10 +33,11 @@ public class GamePanel extends JPanel implements Runnable {
     Sound sound = new Sound();
     public List<Explosion> explosions = new ArrayList<>();
 
-
-    // Entity
+    // Entities
     public Player player = new Player(this, keyHandler);
-    Base base = new Base(this);
+    public Base base = new Base(this);
+
+
     public Enemy[] npc = new Enemy[10];
 
     // Game state
@@ -109,7 +110,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 
     public void retry(){
-        player.lives = 3;
+        player.setDefaultValues();
         totalPoint = 0;
         currentLevel = 1;
         aSetter.setNPC();

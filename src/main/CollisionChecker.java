@@ -224,4 +224,50 @@ public class CollisionChecker {
         gp.player.solidArea.y = gp.player.solidAreaDefaultY;
     }
 
+    public boolean checkBaseCollision(Entity entity) {
+        // Get entity's solid area position
+        entity.solidArea.x = entity.x + entity.solidArea.x;
+        entity.solidArea.y = entity.y + entity.solidArea.y;
+
+        // Get base's solid area position
+        gp.base.solidArea.x = gp.base.x + gp.base.solidArea.x;
+        gp.base.solidArea.y = gp.base.y + gp.base.solidArea.y;
+
+        boolean collisionDetected = false;
+
+        switch (entity.direction) {
+            case "up":
+                entity.solidArea.y -= entity.speed;
+                if (entity.solidArea.intersects(gp.base.solidArea)) {
+                    collisionDetected = true;
+                }
+                break;
+            case "down":
+                entity.solidArea.y += entity.speed;
+                if (entity.solidArea.intersects(gp.base.solidArea)) {
+                    collisionDetected = true;
+                }
+                break;
+            case "left":
+                entity.solidArea.x -= entity.speed;
+                if (entity.solidArea.intersects(gp.base.solidArea)) {
+                    collisionDetected = true;
+                }
+                break;
+            case "right":
+                entity.solidArea.x += entity.speed;
+                if (entity.solidArea.intersects(gp.base.solidArea)) {
+                    collisionDetected = true;
+                }
+                break;
+        }
+
+        // Reset positions
+        entity.solidArea.x = entity.solidAreaDefaultX;
+        entity.solidArea.y = entity.solidAreaDefaultY;
+        gp.base.solidArea.x = gp.base.solidAreaDefaultX;
+        gp.base.solidArea.y = gp.base.solidAreaDefaultY;
+
+        return collisionDetected;
+    }
 }
