@@ -21,7 +21,9 @@ public class GamePanel extends JPanel implements Runnable {
     public UI ui = new UI(this);
 
     // FPS
-    int FPS = 60;
+    final int FPS = 60;
+    final long ONE_SECOND_IN_NANOSECOND = 1000000000;
+    // System
     public TileManager TManager = new TileManager(this);
     KeyHandler keyHandler = new KeyHandler(this);
     Thread gameThread;
@@ -34,33 +36,36 @@ public class GamePanel extends JPanel implements Runnable {
     // Entities
     public Player player = new Player(this, keyHandler);
     public Base base = new Base(this);
+
     public Enemy[] npc = new Enemy[10];
-    public SuperItem[] item = new SuperItem[10];
 
     // Game state
     public int gameState;
-
     public final int TITLE_STATE = 0;
     public final int PLAY_STATE = 1;
     public final int PAUSE_STATE = 2;
     public final int GAME_OVER_STATE = 3;
 
-    public GamePanel() {
+    public int enemyCount = 10;
+
+    public SuperItem[] item = new SuperItem[10];
+    public GamePanel(){
+
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyHandler);
         this.setFocusable(true);
-
-    }
+        }
 
     public void setupGame() {
         aSetter.setItem();
+        //        gameState = PLAY_STATE;
+        playMusic(0);
         gameState = TITLE_STATE;
 //        playMusic(0);
         aSetter.setNPC();
 //        playMusic(0);
-
     }
 
     public void startGameThread() {
@@ -70,7 +75,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     @Override
     public void run() {
-        double drawInterval = 1000000000 / FPS;  // 0.01666666 seconds
+        double drawInterval = ONE_SECOND_IN_NANOSECOND/FPS;  // 0.01666666 seconds
+
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime;
@@ -90,13 +96,14 @@ public class GamePanel extends JPanel implements Runnable {
                 drawCount++;
             }
 
-            if (timer >= 1000000000) {
+            if (timer >= ONE_SECOND_IN_NANOSECOND) {
                 System.out.println("FPS: " + drawCount);
                 drawCount = 0;
                 timer = 0;
             }
         }
     }
+
 
     public void update() {
 
@@ -108,7 +115,6 @@ public class GamePanel extends JPanel implements Runnable {
 
         if (gameState == PLAY_STATE) {
             player.update();
-
             // Update player bullets
             for (int i = 0; i < player.bullets.size(); i++) {
                 Bullet bullet = player.bullets.get(i);
@@ -153,16 +159,20 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
         }
+      if (gameState == PAUSE_STATE){
+
+        }
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D) g;
+        Graphics2D g2 = (Graphics2D)g;
 
-        if (gameState == TITLE_STATE) {
+        // TITLE SCREEN
+        if(gameState == TITLE_STATE){
             ui.draw(g2);
         } else {
-            // Draw tiles and player
+            // this will draw tiles and player
             TManager.draw(g2, player);
             base.draw(g2);
 
@@ -192,15 +202,11 @@ public class GamePanel extends JPanel implements Runnable {
                 bullet.draw(g2);
             }
 
-
             for (Explosion explosion : explosions) {
                 explosion.draw(g2); }
-
             ui.draw(g2);
         }
-
         g2.dispose();
-
     }
 
     public void playMusic(int i) {
