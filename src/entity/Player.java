@@ -3,18 +3,21 @@
     import item.Shield;
     import main.GamePanel;
     import main.KeyHandler;
+    import main.UtilityTool;
     import main.Sound;
-
     import javax.imageio.ImageIO;
     import java.awt.*;
     import java.awt.image.BufferedImage;
     import java.io.IOException;
     import java.util.ArrayList;
 
-    public class Player extends Entity{
+    public class Player extends Entity implements Runnable {
+        public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2, shield1, shield2;
+        public int health = 3;
         GamePanel gp;
         KeyHandler kh;
         Shield shield;
+
         Sound sound = new Sound();
 
         // Bullet Assist
@@ -31,44 +34,69 @@
         private final int flickerDuration = 60; // Total duration for flickering
 
 
-        public Player(GamePanel gp, KeyHandler kh){
+
+        public Player(GamePanel gp, KeyHandler kh, int positionX, int positionY, int pNumber) {
+
+
             this.gp = gp;
             this.kh = kh;
-
-            solidArea = new Rectangle(0,0, gp.tileSize*2 - 6, gp.tileSize*2 - 6);
+            this.playerNumber = pNumber;
+            solidArea = new Rectangle(0, 0, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6);
 
             solidAreaDefaultX = solidArea.x;
             solidAreaDefaultY = solidArea.y;
-            setDefaultValues();
+            setDefaultValues(positionX, positionY);
             getPlayerImage();
         }
 
-        public void setDefaultValues(){
-            x = 132;
-            y = 400;
+        @Override
+        public void run() {
+            while (running) {
+                update(); // Continuously update player movement and actions
+                try {
+                    Thread.sleep(16); // Adjust as needed, approximately 60 updates per second
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        public void stop() {
+            running = false; // To stop the player thread when the game ends
+        }
+
+        public void setDefaultValues(int positionX, int positionY){
+            x = positionX;
+            y = positionY;
             speed = 1;
             direction = "up";
             shield = new Shield(120, 10, gp.tileSize * 2 + 5);
         }
 
         public void getPlayerImage(){
+            up1 = setup("/res/player/yellow_small (1).png");
+            up2 = setup("/res/player/yellow_small (2).png");
+            left1 = setup("/res/player/yellow_small (3).png");
+            left2 = setup("/res/player/yellow_small (4).png");
+            down1 = setup("/res/player/yellow_small (5).png");
+            down2 = setup("/res/player/yellow_small (6).png");
+            right1 = setup("/res/player/yellow_small (7).png");
+            right2 = setup("/res/player/yellow_small (8).png");
+            shield1 = setup("/res/shield/shield (1).png");
+            shield2 = setup("/res/shield/shield (2).png");
+        }
+
+        public BufferedImage setup(String imagePath){
+            UtilityTool uTool = new UtilityTool();
+            BufferedImage image = null;
+
             try{
-                up1 = ImageIO.read(getClass().getResourceAsStream("/res/player/yellow_small (1).png"));
-                up2 = ImageIO.read(getClass().getResourceAsStream("/res/player/yellow_small (2).png"));
-
-                left1 = ImageIO.read(getClass().getResourceAsStream("/res/player/yellow_small (3).png"));
-                left2 = ImageIO.read(getClass().getResourceAsStream("/res/player/yellow_small (4).png"));
-
-                down1 = ImageIO.read(getClass().getResourceAsStream("/res/player/yellow_small (5).png"));
-                down2 = ImageIO.read(getClass().getResourceAsStream("/res/player/yellow_small (6).png"));
-
-                right1 = ImageIO.read(getClass().getResourceAsStream("/res/player/yellow_small (7).png"));
-                right2 = ImageIO.read(getClass().getResourceAsStream("/res/player/yellow_small (8).png"));
-
-
-            } catch(IOException e) {
+                image = ImageIO.read(getClass().getResourceAsStream(imagePath));
+                image = uTool.scaleImage(image, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6);
+            } catch(IOException e){
                 e.printStackTrace();
             }
+            return image;
         }
 
         public void updateSprites(){
@@ -98,6 +126,7 @@
             }
 
             shield.update(x, y);
+
 
             if (kh.downPressed || kh.upPressed || kh.leftPressed || kh.rightPressed){
                 if (kh.downPressed){
@@ -129,8 +158,9 @@
                 int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
                 interactNPC(npcIndex);
                 // CHECK ITEM COLLISION
-                int itemIndex = gp.cChecker.checkItem(this, true);
-                // IF COLLISION IS FALSE, PLAYER CAN MOVE
+ // CHECK ITEM COLLISION
+                    int itemIndex = gp.cChecker.checkItem(this, true);
+                    pickUpItem(itemIndex);                // IF COLLISION IS FALSE, PLAYER CAN MOVE
                 if (!collisionOn){
                     switch (direction){
                         case "up":
@@ -168,9 +198,8 @@
                     i--;
                 }
             }
-
-
         }
+
 
         public void die() {
             lives--;
@@ -196,6 +225,7 @@
                 System.out.println("No lives left. Cannot revive.");
             }
         }
+
 
 
         private void fireBullet() {
@@ -250,6 +280,11 @@
             return System.currentTimeMillis() - lastShotTime >= shotCooldown;
         }
 
+ public void pickUpItem(int i){
+            if(i!= 999){
+            gp.item[i] = null;
+            }
+        }
 
         public void draw(Graphics2D g2) {
             boolean shouldDraw = !isDead || (isDead && flickerCounter % 10 < 5);
@@ -297,4 +332,5 @@
             }
             shield.draw(g2);
         }
+
     }
