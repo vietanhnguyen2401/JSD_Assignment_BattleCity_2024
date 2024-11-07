@@ -33,7 +33,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // Entities
     public Player player = new Player(this, keyHandler);
-    Base base = new Base(this);
+    public Base base = new Base(this);
     public Enemy[] npc = new Enemy[10];
     public SuperItem[] item = new SuperItem[10];
 

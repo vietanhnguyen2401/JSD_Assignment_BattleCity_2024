@@ -107,7 +107,7 @@ public class Bullet extends Entity {
 
     public void checkTileInteraction() {
         // Define a small margin to expand the collision area
-        int margin = 1; // Check for tiles within 1 pixel around the bullet
+        int margin = 4;
 
         // Calculate the bullet's center position
         int centerX = x + (gp.tileSize - 8) / 2;
@@ -139,8 +139,8 @@ public class Bullet extends Entity {
                     if (tileNum == 1) { // Brick tile
                         System.out.println("Bullet hit brick. Breaking it.");
                         gp.TManager.mapTileNum[checkCol][checkRow] = 0; // Replace brick with non-collidable tile (e.g., grass)
-                        sound.setFile(2);
-                        sound.play();
+//                        sound.setFile(2);
+//                        sound.play();
                         alive = false; // Bullet is destroyed upon collision
                         return; // Stop after breaking the brick
                     } else if (tileNum == 2) { // Steel tile
@@ -160,32 +160,39 @@ public class Bullet extends Entity {
         Rectangle bulletRect = new Rectangle(x, y, 6, 6); // Bounding box for the bullet
 
         if (isEnemyBullet) {
-            // Enemy bullet: check collision with the player and consider the shield
+            // Check collision with the player
             Rectangle playerRect = new Rectangle(gp.player.x, gp.player.y, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6);
-
             if (bulletRect.intersects(playerRect)) {
-                if (!gp.player.getShield().isActive()) { // Damage player only if shield is not active
+                if (!gp.player.getShield().isActive()) {
                     System.out.println("Enemy bullet hit the player!");
                     alive = false;
-                    gp.player.die(); // Decrease player life and set to respawn if necessary
-                    gp.explosions.add(new Explosion(gp, gp.player.x, gp.player.y)); // Trigger explosion effect on player
+                    gp.player.die();
+                    gp.explosions.add(new Explosion(gp, gp.player.x, gp.player.y));
                 } else {
                     System.out.println("Enemy bullet hit the shield - no damage to player.");
-                    alive = false; // Bullet is destroyed, but no damage to the player
+                    alive = false;
                 }
             }
+
+            // Check collision with the base
+            Rectangle baseRect = new Rectangle(gp.base.x, gp.base.y, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6);
+            if (bulletRect.intersects(baseRect)) {
+                System.out.println("Enemy bullet hit the base!");
+                alive = false; // Bullet is destroyed on impact
+                gp.gameState = gp.GAME_OVER_STATE; // Set game state to GAME OVER
+                return;
+            }
         } else {
-            // Player bullet: check collision with enemies
+            // Check collision with enemies (for player bullets)
             for (Enemy enemy : gp.npc) {
                 if (enemy != null && enemy.alive) {
                     Rectangle enemyRect = new Rectangle(enemy.x, enemy.y, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6);
-
                     if (bulletRect.intersects(enemyRect)) {
                         System.out.println("Player bullet hit an enemy!");
-                        alive = false; // Bullet is destroyed
-                        enemy.alive = false; // Enemy is destroyed
-                        gp.explosions.add(new Explosion(gp, enemy.x, enemy.y)); // Trigger explosion effect on enemy
-                        break; // Stop after hitting one enemy
+                        alive = false;
+                        enemy.alive = false;
+                        gp.explosions.add(new Explosion(gp, enemy.x, enemy.y));
+                        break;
                     }
                 }
             }

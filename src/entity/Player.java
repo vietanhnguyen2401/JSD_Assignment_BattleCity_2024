@@ -125,13 +125,14 @@
                 // CHECK TILE COLLISION
                 collisionOn = false;
                 gp.cChecker.checkTile(this);
+                boolean baseCollision = gp.cChecker.checkBaseCollision(this);
                 // CHECK NPC COLLISION
                 int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
                 interactNPC(npcIndex);
                 // CHECK ITEM COLLISION
                 int itemIndex = gp.cChecker.checkItem(this, true);
                 // IF COLLISION IS FALSE, PLAYER CAN MOVE
-                if (!collisionOn){
+                if (!collisionOn && !baseCollision){
                     switch (direction){
                         case "up":
                             this.y -= speed;
