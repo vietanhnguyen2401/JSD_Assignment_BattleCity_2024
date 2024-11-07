@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-
-
     <list default="true" id="3c3a2440-d807-4f5c-832f-6f4ca297b1dd" name="Changes" comment="enemy-player interactions/shielded revival effects">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Bullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Explosion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Explosion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BackgroundPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BackgroundPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/KeyHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tile/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tile/TileManager.java" afterDir="false" />
-
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,13 +75,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "develop",
+    "git-widget-placeholder": "feature/level-change",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/InteliJProject/JSD__Project/JSD_Final_Project/github-demo-tank/Tank-Game-Java",
     "node.js.detected.package.eslint": "true",
@@ -91,7 +89,6 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
-
   }
 }]]></component>
   <component name="RunManager">
@@ -139,7 +136,6 @@
       <workItem from="1729831228379" duration="1905000" />
       <workItem from="1729833793019" duration="257000" />
       <workItem from="1730182843221" duration="111000" />
-
       <workItem from="1730206284950" duration="1498000" />
       <workItem from="1730218259553" duration="1499000" />
       <workItem from="1730222363425" duration="843000" />
@@ -154,7 +150,6 @@
       <workItem from="1730826631996" duration="22000" />
       <workItem from="1730868017811" duration="14774000" />
       <workItem from="1730963589675" duration="3056000" />
-
     </task>
     <task id="LOCAL-00001" summary="updated">
       <option name="closed" value="true" />

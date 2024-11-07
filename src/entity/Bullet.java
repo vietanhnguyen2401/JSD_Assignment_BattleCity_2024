@@ -32,29 +32,30 @@ public class Bullet extends Entity {
     }
 
     public void update() {
-        switch (direction) {
-            case "up":
-                y -= speed;
-                break;
-            case "down":
-                y += speed;
-                break;
-            case "left":
-                x -= speed;
-                break;
-            case "right":
-                x += speed;
-                break;
-        }
+        if(gp.gameState == gp.PLAY_STATE) {
+            switch (direction) {
+                case "up":
+                    y -= speed;
+                    break;
+                case "down":
+                    y += speed;
+                    break;
+                case "left":
+                    x -= speed;
+                    break;
+                case "right":
+                    x += speed;
+                    break;
+            }
 
-        // Print the position of the bullet
-        System.out.println("Bullet moved to (" + x + ", " + y + ")");
-        checkTileInteraction();
-        checkCollisionWithTarget();
-        if (x < 0 || x > gp.screenWidth || y < 0 || y > gp.screenHeight) {
-            alive = false;
+            // Print the position of the bullet
+            System.out.println("Bullet moved to (" + x + ", " + y + ")");
+            checkTileInteraction();
+            checkCollisionWithTarget();
+            if (x < 0 || x > gp.screenWidth || y < 0 || y > gp.screenHeight) {
+                alive = false;
+            }
         }
-
 
     }
 
@@ -90,7 +91,6 @@ public class Bullet extends Entity {
                 break;
         }
 
-        System.out.println("Bullet moved to (" + x + ", " + y + ")");
         checkTileInteraction();
         if (x < 0 || x > gp.screenWidth || y < 0 || y > gp.screenHeight) {
             alive = false;
@@ -107,7 +107,7 @@ public class Bullet extends Entity {
 
     public void checkTileInteraction() {
         // Define a small margin to expand the collision area
-        int margin = 1; // Check for tiles within 1 pixel around the bullet
+        int margin = 4; // Check for tiles within 1 pixel around the bullet
 
         // Calculate the bullet's center position
         int centerX = x + (gp.tileSize - 8) / 2;
