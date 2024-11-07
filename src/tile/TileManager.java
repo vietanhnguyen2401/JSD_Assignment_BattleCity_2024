@@ -46,8 +46,16 @@ public class TileManager {
         }
     }
     public void loadMap() {
+        String levelMapPath = "/res/maps/level01.txt";
+        if (gp.currentLevel == 2) levelMapPath = "/res/maps/level02.txt";
+        if (gp.currentLevel == 3) levelMapPath = "/res/maps/level03.txt";
+        if (gp.currentLevel == 4) levelMapPath = "/res/maps/level04.txt";
+        if (gp.currentLevel == 5) levelMapPath = "/res/maps/level05.txt";
+
+
+
         try {
-            InputStream is = getClass().getResourceAsStream("/res/maps/level02.txt");
+            InputStream is = getClass().getResourceAsStream(levelMapPath);
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
             int col = 0;

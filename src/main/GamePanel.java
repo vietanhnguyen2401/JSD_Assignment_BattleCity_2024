@@ -37,6 +37,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this, keyHandler);
     public Base base = new Base(this);
 
+
     public Enemy[] npc = new Enemy[10];
 
     // Game state
@@ -46,7 +47,10 @@ public class GamePanel extends JPanel implements Runnable {
     public final int PAUSE_STATE = 2;
     public final int GAME_OVER_STATE = 3;
 
-    public int enemyCount = 10;
+    public int totalPoint = 0;
+    public int currentLevel = 1; // from 1 to 5
+
+    public int enemyCount = 4;
 
     public SuperItem[] item = new SuperItem[10];
     public GamePanel(){
@@ -105,11 +109,40 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
 
-    public void update() {
+    public void retry(){
+        player.lives = 3;
+        totalPoint = 0;
+        currentLevel = 1;
+        aSetter.setNPC();
+        aSetter.setItem();
+        TManager.loadMap();
+    }
 
-        if (player.lives <= 0) {
+    public void nextLevel(){
+        player.setDefaultValues();
+        enemyCount=4;
+
+        if(currentLevel < 5) {
+            currentLevel++;
+        } else if(currentLevel == 5){
+            gameState = GAME_OVER_STATE;
+        }
+        aSetter.setNPC();
+        aSetter.setItem();
+        TManager.loadMap();
+    }
+    public void update() {
+        if (gameState == GAME_OVER_STATE) {
+            return; // Skip updates if game is over
+        }
+        if(enemyCount == 0) {
+            // todo sound level
+            nextLevel();
+        }
+        if (player.lives == 0) {
             gameState = GAME_OVER_STATE;
             System.out.println("Game Over!");
+
             return; // Stop further updates if game is over
         }
 
@@ -132,6 +165,7 @@ public class GamePanel extends JPanel implements Runnable {
                     enemy.update();
                 } else if (enemy != null && !enemy.alive) {
                     npc[i] = null; // Remove enemy when dead
+                    enemyCount--;
                 }
             }
             for (Enemy enemy : npc) {
@@ -162,6 +196,7 @@ public class GamePanel extends JPanel implements Runnable {
       if (gameState == PAUSE_STATE){
 
         }
+
     }
 
     public void paintComponent(Graphics g) {

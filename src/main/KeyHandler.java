@@ -55,7 +55,10 @@ public class KeyHandler implements KeyListener {
                 if(gp.ui.commandNumber == 0) gp.ui.commandNumber = 3;
             }
             if (code == KeyEvent.VK_ENTER){
-                if(gp.ui.commandNumber == 0) gp.gameState = gp.PLAY_STATE;
+                if(gp.ui.commandNumber == 0) {
+                    gp.gameState = gp.PLAY_STATE;
+                    gp.retry();
+                };
                 if(gp.ui.commandNumber == 3){
                     gp.gameState = gp.TITLE_STATE;
                     gp.ui.commandNumber = 0;

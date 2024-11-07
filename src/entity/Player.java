@@ -25,27 +25,27 @@
         private long lastShotTime;
         private final long shotCooldown = 300;
         // Revive Assist
-        public int lives = 3; // Number of lives the player has
+        public int lives = 1; // Number of lives the player has
         private boolean isDead = false; // Tracks if the player is currently dead
         private long respawnTime = 500; // 2-second respawn delay
         private long deathTime; // Time at which player died
         private boolean isFlickering = false; // To track flickering state
         private int flickerCounter = 0; // Counter to control flicker effect
         private final int flickerDuration = 60; // Total duration for flickering
+        private boolean running = true; // Flag to control the player thread
 
 
 
-        public Player(GamePanel gp, KeyHandler kh, int positionX, int positionY, int pNumber) {
+        public Player(GamePanel gp, KeyHandler kh) {
 
 
             this.gp = gp;
             this.kh = kh;
-            this.playerNumber = pNumber;
             solidArea = new Rectangle(0, 0, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6);
 
             solidAreaDefaultX = solidArea.x;
             solidAreaDefaultY = solidArea.y;
-            setDefaultValues(positionX, positionY);
+            setDefaultValues();
             getPlayerImage();
         }
 
@@ -65,25 +65,14 @@
             running = false; // To stop the player thread when the game ends
         }
 
-        public void setDefaultValues(int positionX, int positionY){
-            x = positionX;
-            y = positionY;
+        public void setDefaultValues(){
+            x = 132;
+            y = 400;
+            lives = 1;
+
             speed = 1;
             direction = "up";
             shield = new Shield(120, 10, gp.tileSize * 2 + 5);
-        }
-
-        public void getPlayerImage(){
-            up1 = setup("/res/player/yellow_small (1).png");
-            up2 = setup("/res/player/yellow_small (2).png");
-            left1 = setup("/res/player/yellow_small (3).png");
-            left2 = setup("/res/player/yellow_small (4).png");
-            down1 = setup("/res/player/yellow_small (5).png");
-            down2 = setup("/res/player/yellow_small (6).png");
-            right1 = setup("/res/player/yellow_small (7).png");
-            right2 = setup("/res/player/yellow_small (8).png");
-            shield1 = setup("/res/shield/shield (1).png");
-            shield2 = setup("/res/shield/shield (2).png");
         }
 
         public BufferedImage setup(String imagePath){
@@ -98,6 +87,21 @@
             }
             return image;
         }
+
+        public void getPlayerImage(){
+            up1 = setup("/res/player/yellow_small (1).png");
+            up2 = setup("/res/player/yellow_small (2).png");
+            left1 = setup("/res/player/yellow_small (3).png");
+            left2 = setup("/res/player/yellow_small (4).png");
+            down1 = setup("/res/player/yellow_small (5).png");
+            down2 = setup("/res/player/yellow_small (6).png");
+            right1 = setup("/res/player/yellow_small (7).png");
+            right2 = setup("/res/player/yellow_small (8).png");
+            shield1 = setup("/res/shield/shield1.png");
+            shield2 = setup("/res/shield/shield2.png");
+        }
+
+
 
         public void updateSprites(){
             spriteCounter++;
@@ -158,11 +162,12 @@
                 // CHECK NPC COLLISION
                 int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
                 interactNPC(npcIndex);
+              
                 // CHECK ITEM COLLISION
-
                     int itemIndex = gp.cChecker.checkItem(this, true);
-                    pickUpItem(itemIndex);                // IF COLLISION IS FALSE, PLAYER CAN MOVE
-                if (!collisionOn && !baseCollision){
+                    pickUpItem(itemIndex);
+                    // IF COLLISION IS FALSE, PLAYER CAN MOVE
+                if (!collisionOn  && !baseCollision){
                     switch (direction){
                         case "up":
                             this.y -= speed;
@@ -333,5 +338,4 @@
             }
             shield.draw(g2);
         }
-
     }
