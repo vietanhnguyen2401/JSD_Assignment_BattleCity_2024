@@ -132,7 +132,7 @@ public class Enemy extends Entity {
         // Play firing sound
         sound.setFile(1); // Adjust the index to match the firing sound
         sound.play();
-        bullets.add(new Bullet(gp, bulletX, bulletY, direction));
+        bullets.add(new Bullet(gp, bulletX, bulletY, direction, true));
         lastShotTime = System.currentTimeMillis();
     }
 
