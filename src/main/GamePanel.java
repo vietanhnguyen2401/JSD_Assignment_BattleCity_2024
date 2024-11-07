@@ -33,10 +33,10 @@ public class GamePanel extends JPanel implements Runnable {
     Sound sound = new Sound();
     public List<Explosion> explosions = new ArrayList<>();
 
-    // Entities
-    public Player player = new Player(this, keyHandler);
-    public Base base = new Base(this);
 
+    // Entity
+    Player player = new Player(this, keyHandler, 132, 400, 1);
+    Base base = new Base(this);
     public Enemy[] npc = new Enemy[10];
 
     // Game state
