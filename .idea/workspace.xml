@@ -6,65 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="3c3a2440-d807-4f5c-832f-6f4ca297b1dd" name="Changes" comment="enemy-player interactions/shielded revival effects">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/entity/Enemy.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/entity/Entity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/entity/Player.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/item/Item_Grenade.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/item/Item_Helmet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/item/Item_Shovel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/item/Item_Star.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/item/Item_Tank.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/item/Item_Timer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/item/SuperItem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/main/AssetSetter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/main/CollisionChecker.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/main/GamePanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/main/KeyHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/main/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/base/base.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/base/destroyed_base.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/bullets/down.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/bullets/left.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/bullets/right.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/bullets/up.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/explosion/big.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/explosion/small.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/items/grenade.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/items/helmet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/items/shovel.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/items/star.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/items/tank.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/items/timer.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/maps/level01.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/maps/level02.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/maps/level03.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/maps/level04.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/maps/level05.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/green_small (1).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/green_small (2).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/green_small (3).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/green_small (4).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/green_small (5).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/green_small (6).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/green_small (7).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/green_small (8).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/yellow_small (1).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/yellow_small (2).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/yellow_small (3).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/yellow_small (4).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/yellow_small (5).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/yellow_small (6).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/yellow_small (7).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/player/yellow_small (8).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/shield/shield (1).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/shield/shield (2).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/tiles/black_tile.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/tiles/brick_tile.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/tiles/grass_tile.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/tiles/iron_tile.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/res/tiles/water_tile.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/tile/Tile.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/final-project-tank/tile/TileManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Bullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Explosion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Explosion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tile/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tile/TileManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,23 +70,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "uc/shooting-01",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/InteliJProject/JSD__Project/JSD_Final_Project/JSD_Final/JSD_Assignment_BattleCity_2024",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;uc/shooting-01&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/InteliJProject/JSD__Project/JSD_Final_Project/JSD_Final/JSD_Assignment_BattleCity_2024&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -179,7 +124,8 @@
       <workItem from="1730801323280" duration="1530000" />
       <workItem from="1730820755274" duration="5525000" />
       <workItem from="1730826631996" duration="22000" />
-      <workItem from="1730868017811" duration="13990000" />
+      <workItem from="1730868017811" duration="14774000" />
+      <workItem from="1730963589675" duration="3056000" />
     </task>
     <task id="LOCAL-00001" summary="updated">
       <option name="closed" value="true" />

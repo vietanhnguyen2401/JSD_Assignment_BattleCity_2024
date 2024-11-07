@@ -20,7 +20,7 @@
         // Bullet Assist
         public ArrayList<Bullet> bullets = new ArrayList<>();
         private long lastShotTime;
-        private final long shotCooldown = 1000;
+        private final long shotCooldown = 300;
         // Revive Assist
         public int lives = 3; // Number of lives the player has
         private boolean isDead = false; // Tracks if the player is currently dead
@@ -199,8 +199,8 @@
 
 
         private void fireBullet() {
-            int bulletWidth = gp.tileSize - 6;
-            int bulletHeight = gp.tileSize - 6;
+            int bulletWidth = gp.tileSize - 10;
+            int bulletHeight = gp.tileSize - 10;
 
             int tankWidth = gp.tileSize * 2 - 6;
             int tankHeight = gp.tileSize * 2 - 6;
@@ -214,16 +214,16 @@
             // Adjust bullet position based on tank's direction
             switch (direction) {
                 case "up":
-                    bulletY = y - bulletHeight; // Start just above the tank
+                    bulletY = y - bulletHeight/2 - 5; // Start just above the tank
                     break;
                 case "down":
-                    bulletY = y + tankHeight; // Start just below the tank
+                    bulletY = y + tankHeight/2 - 5; // Start just below the tank
                     break;
                 case "left":
-                    bulletX = x - bulletWidth; // Start just left of the tank
+                    bulletX = x - bulletWidth/2 - 5; // Start just left of the tank
                     break;
                 case "right":
-                    bulletX = x + tankWidth; // Start just right of the tank
+                    bulletX = x + tankWidth/2 - 5; // Start just right of the tank
                     break;
             }
 

@@ -97,7 +97,7 @@ public class Bullet extends Entity {
         }
 
         if (bulletImage != null) {
-            g2.drawImage(bulletImage, x, y, gp.tileSize - 8, gp.tileSize - 8, null);
+            g2.drawImage(bulletImage, x, y, gp.tileSize - 10, gp.tileSize - 10, null);
         } else {
             // Fallback if image fails to load
             g2.setColor(Color.YELLOW);
@@ -106,34 +106,56 @@ public class Bullet extends Entity {
     }
 
     public void checkTileInteraction() {
-        // Use the center of the bullet for collision detection
+        // Define a small margin to expand the collision area
+        int margin = 1; // Check for tiles within 1 pixel around the bullet
+
+        // Calculate the bullet's center position
         int centerX = x + (gp.tileSize - 8) / 2;
         int centerY = y + (gp.tileSize - 8) / 2;
 
+        // Determine the primary tile the bullet is over
         int col = centerX / gp.tileSize;
         int row = centerY / gp.tileSize;
 
-        if(col < 0 || col >= gp.maxScreenCol || row < 0 || row >= gp.maxScreenRow) {
-            System.out.println("Bullet out of bounds at (" + col + ", " + row + ")");
-            return; // Prevent out-of-bounds errors
-        }
+        // Check primary tile and surrounding tiles within the margin
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                int checkCol = col + i;
+                int checkRow = row + j;
 
-        int tileNum = gp.TManager.mapTileNum[col][row];
+                // Skip if the tile is out of map bounds
+                if (checkCol < 0 || checkCol >= gp.maxScreenCol || checkRow < 0 || checkRow >= gp.maxScreenRow) {
+                    continue;
+                }
 
-        System.out.println("Bullet at (" + centerX + ", " + centerY + "), Tile: " + tileNum + " at (" + col + ", " + row + ")");
+                int tileNum = gp.TManager.mapTileNum[checkCol][checkRow];
 
-        if (gp.TManager.tile[tileNum].collision) {
-            if (tileNum == 1 || tileNum == 2) { // Brick or Iron tile
-                System.out.println("Bullet hit wall or iron. Breaking it.");
-                gp.TManager.mapTileNum[col][row] = 0; // Change to grass tile
-                sound.setFile(2);
-                sound.play();
-                alive = false;
+                // Define a slightly larger rectangle for bullet detection
+                Rectangle tileRect = new Rectangle(checkCol * gp.tileSize, checkRow * gp.tileSize, gp.tileSize, gp.tileSize);
+                Rectangle expandedBulletRect = new Rectangle(centerX - margin, centerY - margin, 6 + 2 * margin, 6 + 2 * margin);
 
+                // Check if the expanded bullet rectangle intersects with the tile's rectangle
+                if (gp.TManager.tile[tileNum].collision && expandedBulletRect.intersects(tileRect)) {
+                    if (tileNum == 1) { // Brick tile
+                        System.out.println("Bullet hit brick. Breaking it.");
+                        gp.TManager.mapTileNum[checkCol][checkRow] = 0; // Replace brick with non-collidable tile (e.g., grass)
+                        sound.setFile(2);
+                        sound.play();
+                        alive = false; // Bullet is destroyed upon collision
+                        return; // Stop after breaking the brick
+                    } else if (tileNum == 2) { // Steel tile
+                        System.out.println("Bullet hit steel. Bullet disappears.");
+                        alive = false; // Bullet disappears on hitting steel, but steel remains unbroken
+                        return; // Stop further checks as the bullet is destroyed
+                    }
+                }
             }
-            // No action needed for water tile as bullets pass through
         }
     }
+
+
+
+
     private void checkCollisionWithTarget() {
         Rectangle bulletRect = new Rectangle(x, y, 6, 6); // Bounding box for the bullet
 

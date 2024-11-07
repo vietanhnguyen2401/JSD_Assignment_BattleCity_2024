@@ -41,7 +41,7 @@ public class Explosion {
     public void draw(Graphics2D g2) {
         if (frame < explosionImages.length * 10) {
             int index = frame / 10;
-            g2.drawImage(explosionImages[index], x, y, gp.tileSize, gp.tileSize, null);
+            g2.drawImage(explosionImages[index], x, y, gp.tileSize * 2, gp.tileSize * 2, null);
         }
     }
 
