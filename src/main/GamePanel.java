@@ -33,6 +33,7 @@ public class GamePanel extends JPanel implements Runnable {
     Sound sound = new Sound();
     public List<Explosion> explosions = new ArrayList<>();
 
+
     // Entity
     Player player = new Player(this, keyHandler, 132, 400, 1);
     Base base = new Base(this);
@@ -105,6 +106,13 @@ public class GamePanel extends JPanel implements Runnable {
 
 
     public void update() {
+
+        if (player.lives <= 0) {
+            gameState = GAME_OVER_STATE;
+            System.out.println("Game Over!");
+            return; // Stop further updates if game is over
+        }
+
         if (gameState == PLAY_STATE) {
             player.update();
             // Update player bullets

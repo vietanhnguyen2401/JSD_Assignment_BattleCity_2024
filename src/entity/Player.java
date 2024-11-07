@@ -1,5 +1,6 @@
     package entity;
 
+    import item.Shield;
     import main.GamePanel;
     import main.KeyHandler;
     import main.UtilityTool;
@@ -15,20 +16,27 @@
         public int health = 3;
         GamePanel gp;
         KeyHandler kh;
-        int playerNumber;
-        boolean isProtected = true; // To give the player tank protection
-
-
-        private int shieldSpriteNum = 1;
-        private int shieldCounter = 0;
-        private boolean running = true; // Flag to control the player thread
-
+        Shield shield;
 
         Sound sound = new Sound();
+
+        // Bullet Assist
         public ArrayList<Bullet> bullets = new ArrayList<>();
         private long lastShotTime;
-        private final long shotCooldown = 1000;
+        private final long shotCooldown = 300;
+        // Revive Assist
+        public int lives = 3; // Number of lives the player has
+        private boolean isDead = false; // Tracks if the player is currently dead
+        private long respawnTime = 500; // 2-second respawn delay
+        private long deathTime; // Time at which player died
+        private boolean isFlickering = false; // To track flickering state
+        private int flickerCounter = 0; // Counter to control flicker effect
+        private final int flickerDuration = 60; // Total duration for flickering
+
+
+
         public Player(GamePanel gp, KeyHandler kh, int positionX, int positionY, int pNumber) {
+
 
             this.gp = gp;
             this.kh = kh;
@@ -62,6 +70,7 @@
             y = positionY;
             speed = 1;
             direction = "up";
+            shield = new Shield(120, 10, gp.tileSize * 2 + 5);
         }
 
         public void getPlayerImage(){
@@ -101,7 +110,23 @@
                 spriteCounter=0;
             }
         }
-public void update(){
+        public void update(){
+            if (isDead) {
+                if (System.currentTimeMillis() - deathTime >= respawnTime) {
+                    revive();
+                }
+
+                if (isFlickering) {
+                    flickerCounter++;
+                    if (flickerCounter >= flickerDuration) {
+                        isFlickering = false;
+                    }
+                }
+                return;
+            }
+
+            shield.update(x, y);
+
 
             if (kh.downPressed || kh.upPressed || kh.leftPressed || kh.rightPressed){
                 if (kh.downPressed){
@@ -175,9 +200,37 @@ public void update(){
             }
         }
 
+
+        public void die() {
+            lives--;
+            isDead = true;
+            deathTime = System.currentTimeMillis();
+            System.out.println("Player has died! Lives left: " + lives);
+
+            if (lives <= 0) {
+                System.out.println("Game Over! No lives left.");
+                // Optionally, set game over state here if needed
+            }
+        }
+
+        public void revive() {
+            if (lives > 0) {
+                System.out.println("Player is reviving...");
+                isDead = false;
+                isFlickering = true;
+                shield.activate(x, y); // Activate shield on revive
+                x = 132;
+                y = 400;
+            } else {
+                System.out.println("No lives left. Cannot revive.");
+            }
+        }
+
+
+
         private void fireBullet() {
-            int bulletWidth = gp.tileSize - 6;
-            int bulletHeight = gp.tileSize - 6;
+            int bulletWidth = gp.tileSize - 10;
+            int bulletHeight = gp.tileSize - 10;
 
             int tankWidth = gp.tileSize * 2 - 6;
             int tankHeight = gp.tileSize * 2 - 6;
@@ -191,16 +244,16 @@ public void update(){
             // Adjust bullet position based on tank's direction
             switch (direction) {
                 case "up":
-                    bulletY = y - bulletHeight; // Start just above the tank
+                    bulletY = y - bulletHeight/2 - 5; // Start just above the tank
                     break;
                 case "down":
-                    bulletY = y + tankHeight; // Start just below the tank
+                    bulletY = y + tankHeight/2 - 5; // Start just below the tank
                     break;
                 case "left":
-                    bulletX = x - bulletWidth; // Start just left of the tank
+                    bulletX = x - bulletWidth/2 - 5; // Start just left of the tank
                     break;
                 case "right":
-                    bulletX = x + tankWidth; // Start just right of the tank
+                    bulletX = x + tankWidth/2 - 5; // Start just right of the tank
                     break;
             }
 
@@ -208,7 +261,7 @@ public void update(){
 
             sound.setFile(1); // Adjust the index to match the firing sound
             sound.play();
-            bullets.add(new Bullet(gp, bulletX, bulletY, direction));
+            bullets.add(new Bullet(gp, bulletX, bulletY, direction, false));
             lastShotTime = System.currentTimeMillis();
         }
 
@@ -218,66 +271,66 @@ public void update(){
             }
         }
 
+        public Shield getShield() {
+            return shield;
+        }
+
 
         private boolean canFire() {
             return System.currentTimeMillis() - lastShotTime >= shotCooldown;
         }
 
-        public void pickUpItem(int i){
+ public void pickUpItem(int i){
             if(i!= 999){
             gp.item[i] = null;
             }
         }
-        public void draw(Graphics2D g2){
 
-            BufferedImage image = null;
-            BufferedImage shieldImage = null;
-            switch(direction){
-                case "up":
-                    if (spriteNum == 1){
-                        image = up1;
-                    } if (spriteNum == 2) {
-                        image = up2;
-                    }
-                    break;
-                case "down":
-                    if (spriteNum == 1){
-                        image = down1;
-                    } if (spriteNum == 2) {
-                    image = down2;
+        public void draw(Graphics2D g2) {
+            boolean shouldDraw = !isDead || (isDead && flickerCounter % 10 < 5);
+
+            if (shouldDraw) {
+                BufferedImage image = null;
+
+                switch (direction) {
+                    case "up":
+                        if (spriteNum == 1) {
+                            image = up1;
+                        }
+                        if (spriteNum == 2) {
+                            image = up2;
+                        }
+                        break;
+                    case "down":
+                        if (spriteNum == 1) {
+                            image = down1;
+                        }
+                        if (spriteNum == 2) {
+                            image = down2;
+                        }
+                        break;
+                    case "left":
+                        if (spriteNum == 1) {
+                            image = left1;
+                        }
+                        if (spriteNum == 2) {
+                            image = left2;
+                        }
+                        break;
+                    case "right":
+                        if (spriteNum == 1) {
+                            image = right1;
+                        }
+                        if (spriteNum == 2) {
+                            image = right2;
+                        }
+                        break;
                 }
-                    break;
-                case "left":
-                    if (spriteNum == 1){
-                        image = left1;
-                    } if (spriteNum == 2) {
-                    image = left2;
-                }
-                    break;
-                case "right":
-                    if (spriteNum == 1){
-                        image = right1;
-                    } if (spriteNum == 2) {
-                    image = right2;
-                }
-                    break;
+
+
+                g2.drawImage(image, x, y, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6, null);
             }
+            shield.draw(g2);
+        }
 
-            g2.drawImage(image, x, y, null);
-
-            // Check if the player is protected and draw the shield on top
-            if (isProtected) {
-                // Update the shield sprite
-                shieldCounter++;
-                if (shieldCounter > 10) {
-                    shieldSpriteNum = (shieldSpriteNum == 1) ? 2 : 1;
-                    shieldCounter = 0;
-                }
-
-                // Select the correct shield image based on shieldSpriteNum
-                shieldImage = (shieldSpriteNum == 1) ? shield1 : shield2;
-
-                // Draw the shield image on top of the tank
-                g2.drawImage(shieldImage, x, y + 2, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6, null);
-        }}
     }

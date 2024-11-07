@@ -4,17 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c3a2440-d807-4f5c-832f-6f4ca297b1dd" name="Changes" comment="updated">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+
+    <list default="true" id="3c3a2440-d807-4f5c-832f-6f4ca297b1dd" name="Changes" comment="enemy-player interactions/shielded revival effects">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src.zip" beforeDir="false" afterPath="$PROJECT_DIR$/src.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/CollisionChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Bullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Explosion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Explosion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tile/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tile/TileManager.java" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+      <option value="module" />
+    </option>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -28,6 +36,11 @@
       <list>
         <option value="Levu5023 &lt;levi01237797458@gmail.com&gt;" />
       </list>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="uc/shooting" />
+      </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -62,6 +75,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
@@ -76,6 +90,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
+
   }
 }]]></component>
   <component name="RunManager">
@@ -123,11 +138,22 @@
       <workItem from="1729831228379" duration="1905000" />
       <workItem from="1729833793019" duration="257000" />
       <workItem from="1730182843221" duration="111000" />
-      <workItem from="1729820440315" duration="757000" />
-      <workItem from="1730182450742" duration="201000" />
-      <workItem from="1730734503084" duration="1477000" />
-      <workItem from="1730889397175" duration="3581000" />
-      <workItem from="1730899696549" duration="2164000" />
+
+      <workItem from="1730206284950" duration="1498000" />
+      <workItem from="1730218259553" duration="1499000" />
+      <workItem from="1730222363425" duration="843000" />
+      <workItem from="1730798675419" duration="424000" />
+      <workItem from="1730799116460" duration="84000" />
+      <workItem from="1730799211736" duration="970000" />
+      <workItem from="1730800224977" duration="188000" />
+      <workItem from="1730800425922" duration="835000" />
+      <workItem from="1730801286980" duration="25000" />
+      <workItem from="1730801323280" duration="1530000" />
+      <workItem from="1730820755274" duration="5525000" />
+      <workItem from="1730826631996" duration="22000" />
+      <workItem from="1730868017811" duration="14774000" />
+      <workItem from="1730963589675" duration="3056000" />
+
     </task>
     <task id="LOCAL-00001" summary="updated">
       <option name="closed" value="true" />
@@ -177,15 +203,47 @@
       <option name="project" value="LOCAL" />
       <updated>1729784739621</updated>
     </task>
-    <task id="LOCAL-00007" summary="updated">
+    <task id="LOCAL-00007" summary="shooting and sound">
       <option name="closed" value="true" />
-      <created>1729785775070</created>
+      <created>1730206423856</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1729785775070</updated>
+      <updated>1730206423856</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="fix enemy bullet image/add shooting enemy and eplosion animation">
+      <option name="closed" value="true" />
+      <created>1730872828913</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1730872828913</updated>
+    </task>
+    <task id="LOCAL-00009" summary="enemy-player interactions/shielded revival effects">
+      <option name="closed" value="true" />
+      <created>1730884167918</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1730884167918</updated>
+    </task>
+    <task id="LOCAL-00010" summary="enemy-player interactions/shielded revival effects">
+      <option name="closed" value="true" />
+      <created>1730905592234</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1730905592234</updated>
+    </task>
+    <task id="LOCAL-00011" summary="enemy-player interactions/shielded revival effects">
+      <option name="closed" value="true" />
+      <created>1730905810638</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1730905810638</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,6 +252,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="xml" />
     <MESSAGE value="updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated" />
+    <MESSAGE value="shooting and sound" />
+    <MESSAGE value="fix enemy bullet image/add shooting enemy and eplosion animation" />
+    <MESSAGE value="enemy-player interactions/shielded revival effects" />
+    <option name="LAST_COMMIT_MESSAGE" value="enemy-player interactions/shielded revival effects" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>
