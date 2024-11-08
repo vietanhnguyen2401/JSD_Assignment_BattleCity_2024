@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import main.GamePanel;
-import main.Sound;
+//import main.Sound;
 
 import javax.imageio.ImageIO;
 
@@ -15,7 +15,7 @@ public class Bullet extends Entity {
     private BufferedImage upImage, downImage, leftImage, rightImage;
     private int damage;
     private boolean isEnemyBullet;
-    Sound sound = new Sound();
+//    Sound sound = new Sound();
     public Bullet(GamePanel gp, int x, int y, String direction, boolean isEnemyBullet) {
         this.gp = gp;
         this.x = x;
