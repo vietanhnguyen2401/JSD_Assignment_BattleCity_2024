@@ -87,7 +87,6 @@ public class CollisionChecker {
             gp.player.lives++;
         } else if (itemName == "Grenade"){
             for(Enemy e : gp.npc) {
-                //todo implement tank explosion
                 if (e != null && e.alive){
                     e.alive = false;
                     gp.explosions.add(new Explosion(gp, e.x, e.y));

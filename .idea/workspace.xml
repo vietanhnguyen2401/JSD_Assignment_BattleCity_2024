@@ -5,48 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="804422b0-75eb-4d66-bff3-a48c1b140ef9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/res/sounds/game_over.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sounds/game_win.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sounds/item_pickup.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sounds/level_up.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Bullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/item/Item_Shovel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/item/Item_Star.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/item/Item_Star.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/item/Shield.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/item/Shield.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AssetSetter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/BackgroundPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BackgroundPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/CollisionChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Sound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Sound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/maps/level01.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/maps/level01.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/maps/level02.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/maps/level02.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/maps/level04.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/maps/level04.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/sounds/1 - Track 1.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/sounds/2 - Track 2.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/sounds/3 - Track 3.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/sounds/4 - Track 4.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 1.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 10.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 11.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 12.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 13.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 14.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 15.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 16.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 17.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 2.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 3.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 4.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 5.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 6.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 7.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 8.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 9.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tile/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tile/TileManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +78,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1731073317958</updated>
-      <workItem from="1731073321263" duration="5868000" />
+      <workItem from="1731073321263" duration="6177000" />
     </task>
     <servers />
   </component>
