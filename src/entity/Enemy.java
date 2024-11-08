@@ -62,9 +62,10 @@ public class Enemy extends Entity {
         collisionOn = false;
         gp.cChecker.checkTile(this);
         gp.cChecker.checkPlayer(this);
+        boolean baseCollision = gp.cChecker.checkBaseCollision(this);
 
         // IF COLLISION IS FALSE, PLAYER CAN MOVE
-        if (!collisionOn) {
+        if (!collisionOn && !baseCollision) {
             switch (direction) {
                 case "up":
                     this.y -= speed;

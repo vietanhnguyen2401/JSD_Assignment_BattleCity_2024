@@ -27,7 +27,7 @@
         // Revive Assist
         public int lives = 3; // Number of lives the player has
         private boolean isDead = false; // Tracks if the player is currently dead
-        private long respawnTime = 500; // 2-second respawn delay
+        private long respawnTime = 500; // second respawn delay
         private long deathTime; // Time at which player died
         private boolean isFlickering = false; // To track flickering state
         private int flickerCounter = 0; // Counter to control flicker effect
@@ -68,7 +68,7 @@
         public void setDefaultValues(){
             x = 132;
             y = 400;
-            lives = 1;
+            lives = 3;
 
             speed = 1;
             direction = "up";
@@ -129,6 +129,7 @@
                 return;
             }
 
+
             shield.update(x, y);
 
 
@@ -158,6 +159,7 @@
                 // CHECK TILE COLLISION
                 collisionOn = false;
                 gp.cChecker.checkTile(this);
+                // CHECK BASE COLLISION
                 boolean baseCollision = gp.cChecker.checkBaseCollision(this);
                 // CHECK NPC COLLISION
                 int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
@@ -272,10 +274,18 @@
         }
 
         private void interactNPC(int i) {
-            if(i != 999){
-                System.out.println("Hitting enemy");
+            if (i != 999) {
+                // Check if the player's shield is active
+                if (!shield.isActive()) {
+                    die();
+                    gp.explosions.add(new Explosion(gp, gp.player.x, gp.player.y));
+                    System.out.println("Hitting enemy - Player dies");
+                } else {
+                    System.out.println("Hitting enemy - Shield is active, no damage to player");
+                }
             }
         }
+
 
         public Shield getShield() {
             return shield;
