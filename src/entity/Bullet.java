@@ -13,7 +13,7 @@ public class Bullet extends Entity {
     GamePanel gp;
     public boolean alive = true;
     private BufferedImage upImage, downImage, leftImage, rightImage;
-    Sound sound = new Sound();
+//    Sound sound = new Sound();
     public Bullet(GamePanel gp, int x, int y, String direction) {
         this.gp = gp;
         this.x = x;
@@ -122,8 +122,8 @@ public class Bullet extends Entity {
             if (tileNum == 1 || tileNum == 2) { // Brick or Iron tile
                 System.out.println("Bullet hit wall or iron. Breaking it.");
                 gp.TManager.mapTileNum[col][row] = 0; // Change to grass tile
-                sound.setFile(2);
-                sound.play();
+//                sound.setFile(2);
+//                sound.play();
                 alive = false;
 
             }

@@ -13,14 +13,16 @@ import java.util.Random;
 
 public class Enemy extends Entity{
     GamePanel gp;
+    private TankType tankType;
     private final long shotCooldown = 1000;
     private long lastShotTime;
     public ArrayList<Bullet> bullets = new ArrayList<>();
-    Sound sound = new Sound();
+//    Sound sound = new Sound();
 
     public Enemy(GamePanel gp){
         this.gp = gp;
         solidArea = new Rectangle(0,0, gp.tileSize*2 - 6, gp.tileSize*2 -6);
+        setRandomTankType();
         setDefaultValues();
         getPlayerImage();
     }
@@ -30,8 +32,9 @@ public class Enemy extends Entity{
     private void setDefaultValues() {
         x = 132;
         y = 380;
-        speed = 1;
-        direction = "up";
+        String[] directions = {"up", "down", "left", "right"};
+        Random random = new Random();
+        direction = directions[random.nextInt(directions.length)];
     }
     public void setAction(){
         actionLockCounter++;
@@ -130,8 +133,8 @@ public class Enemy extends Entity{
 
         // Play firing sound
 
-        sound.setFile(1); // Adjust the index to match the firing sound
-        sound.play();
+//        sound.setFile(1); // Adjust the index to match the firing sound
+//        sound.play();
         bullets.add(new Bullet(gp, bulletX, bulletY, direction));
         lastShotTime = System.currentTimeMillis();
     }
@@ -149,20 +152,23 @@ public class Enemy extends Entity{
     private boolean canFire() {
         return System.currentTimeMillis() - lastShotTime >= shotCooldown;
     }
-
+    private void setRandomTankType() {
+        TankType[] types = TankType.values();
+        Random random = new Random();
+        this.tankType = types[random.nextInt(types.length)];
+        this.speed = tankType.speed; // Use speed based on tank type
+    }
     public void getPlayerImage(){
         try{
-            up1 = ImageIO.read(getClass().getResourceAsStream("/res/player/yellow_small (1).png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/res/player/yellow_small (2).png"));
-
-            left1 = ImageIO.read(getClass().getResourceAsStream("/res/player/yellow_small (3).png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/res/player/yellow_small (4).png"));
-
-            down1 = ImageIO.read(getClass().getResourceAsStream("/res/player/yellow_small (5).png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/res/player/yellow_small (6).png"));
-
-            right1 = ImageIO.read(getClass().getResourceAsStream("/res/player/yellow_small (7).png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/res/player/yellow_small (8).png"));
+            String basePath = tankType.imagePath;
+            up1 = ImageIO.read(getClass().getResourceAsStream(basePath + " (1).png"));
+            up2 = ImageIO.read(getClass().getResourceAsStream(basePath + " (2).png"));
+            left1 = ImageIO.read(getClass().getResourceAsStream(basePath + " (3).png"));
+            left2 = ImageIO.read(getClass().getResourceAsStream(basePath + " (4).png"));
+            down1 = ImageIO.read(getClass().getResourceAsStream(basePath + " (5).png"));
+            down2 = ImageIO.read(getClass().getResourceAsStream(basePath + " (6).png"));
+            right1 = ImageIO.read(getClass().getResourceAsStream(basePath + " (7).png"));
+            right2 = ImageIO.read(getClass().getResourceAsStream(basePath + " (8).png"));
 
 
         }catch(IOException e){

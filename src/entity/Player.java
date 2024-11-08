@@ -176,7 +176,7 @@
             // Play firing sound
 
             sound.setFile(1); // Adjust the index to match the firing sound
-            sound.play();
+//            sound.play();
             bullets.add(new Bullet(gp, bulletX, bulletY, direction));
             lastShotTime = System.currentTimeMillis();
         }

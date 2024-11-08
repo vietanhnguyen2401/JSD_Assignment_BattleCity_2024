@@ -1,4 +1,5 @@
 package main;
+
 import entity.Enemy;
 
 import entity.Base;
@@ -7,6 +8,7 @@ import entity.Bullet;
 import item.SuperItem;
 import tile.TileManager;
 
+import java.util.Random;
 import javax.swing.*;
 import java.awt.*;
 
@@ -29,7 +31,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public AssetSetter aSetter = new AssetSetter(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
-    Sound sound = new Sound();
+//    Sound sound = new Sound();
 
     // Entities
     Player player = new Player(this, keyHandler);
@@ -44,6 +46,15 @@ public class GamePanel extends JPanel implements Runnable {
     public final int PLAY_STATE = 1;
     public final int PAUSE_STATE = 2;
     public final int GAME_OVER_STATE = 3;
+    // Variables for NPC spawn timing
+    private final int SPAWN_INTERVAL = 15 * 60; // 10 seconds * 60 FPS
+    private int spawnTimer = 0;
+
+    // Keep track of the number of spawned enemies
+    private int enemyCount = 0;
+
+    // Maximum enemies allowed on the screen at a time
+    private final int MAX_ENEMIES = npc.length;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -98,10 +109,55 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
+    private void spawnEnemies() {
+        int enemiesToSpawn = 2;
+        Random random = new Random();
+
+        for (int i = 0; i < MAX_ENEMIES && enemiesToSpawn > 0; i++) {
+            if (npc[i] == null) { // Find an empty slot in the NPC array
+                int spawnX, spawnY;
+                boolean validPosition;
+                int attempts = 0;
+
+                do {
+                    spawnX = (random.nextInt(4) + maxScreenCol - 4) * tileSize; // Cột từ 21 đến 27
+                    spawnY = (random.nextInt(4) + 1) * tileSize;
+
+                    // Check if the spawn position is unblocked and unoccupied
+                    validPosition = true;
+                    for (int x = spawnX; x < spawnX + tileSize; x += tileSize / 2) {
+                        for (int y = spawnY; y < spawnY + tileSize; y += tileSize / 2) {
+                            if (cChecker.checkTileCollision(x, y) ||
+                                    cChecker.isPositionOccupiedByEntity(x, y)) {
+                                validPosition = false;
+                                break;
+                            }
+                        }
+                        if (!validPosition) break;
+                    }
+
+                    attempts++;
+                } while (!validPosition && attempts < 10);
+
+                if (validPosition) {
+                    npc[i] = new Enemy(this);
+                    npc[i].x = spawnX;
+                    npc[i].y = spawnY;
+                    enemiesToSpawn--;
+                }
+            }
+        }
+    }
+
     public void update() {
         if (gameState == PLAY_STATE) {
             player.update();
-
+            // Spawn enemies every 10 seconds if there's space
+            spawnTimer++;
+            if (spawnTimer >= SPAWN_INTERVAL) {
+                spawnEnemies();
+                spawnTimer = 0;
+            }
             for (Enemy enemy : npc) {
                 if (enemy != null) {
                     enemy.update();
@@ -157,8 +213,8 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void playMusic(int i) {
-        sound.setFile(i);
-        sound.play();
+//        sound.setFile(i);
+//        sound.play();
 //         sound.loop();
     }
 }
