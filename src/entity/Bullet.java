@@ -49,7 +49,6 @@ public class Bullet extends Entity {
             }
 
             // Print the position of the bullet
-            System.out.println("Bullet moved to (" + x + ", " + y + ")");
             checkTileInteraction();
             checkCollisionWithTarget();
             if (x < 0 || x > gp.screenWidth || y < 0 || y > gp.screenHeight) {

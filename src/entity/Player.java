@@ -20,6 +20,7 @@
         KeyHandler kh;
         Shield shield;
 
+        public int starCount = 0;
         Sound sound = new Sound();
 
         // Bullet Assist
@@ -70,11 +71,12 @@
         public void setDefaultValues(){
             x = 132;
             y = 400;
+            starCount=0;
             lives = 3;
 
             speed = 1;
             direction = "up";
-            shield = new Shield(120, 10, gp.tileSize * 2 + 5);
+            shield = new Shield(4 * 60, 10, gp.tileSize * 2 - 5);
         }
 
         public BufferedImage setup(String imagePath){
@@ -155,6 +157,7 @@
                     direction = "right";
 
                     updateSprites();
+
                 }
 
 

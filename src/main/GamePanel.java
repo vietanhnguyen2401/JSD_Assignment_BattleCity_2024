@@ -55,15 +55,16 @@ public class GamePanel extends JPanel implements Runnable {
 
 
     // Variables for NPC spawn timing
-    private final int SPAWN_INTERVAL = 5 * 60; // 10 seconds * 60 FPS
+    private final int SPAWN_INTERVAL = 10 * 60; // 10 seconds * 60 FPS
     private int spawnTimer = 0;
 
     // Keep track of the number of spawned enemies
-    public int enemyCount = 0;
+    public int enemyCount = 10;
 
     // Maximum enemies allowed on the screen at a time
     private final int MAX_ENEMIES = npc.length;
     public GamePanel(){
+
 
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
@@ -73,12 +74,12 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
     public void setupGame() {
-        aSetter.setItem();
+        aSetter.setTimedItems();
         //        gameState = PLAY_STATE;
         playMusic(0);
         gameState = TITLE_STATE;
 //        playMusic(0);
-//        aSetter.setNPC();
+        aSetter.setNPC();
 //        playMusic(0);
     }
 
@@ -162,31 +163,35 @@ public class GamePanel extends JPanel implements Runnable {
         player.setDefaultValues();
         totalPoint = 0;
         currentLevel = 1;
+        enemyCount=1;
         aSetter.setNPC();
-        aSetter.setItem();
+        aSetter.setTimedItems();
         TManager.loadMap();
     }
 
     public void nextLevel(){
         player.setDefaultValues();
-        enemyCount = 4;
+
         for (int i = 0; i < npc.length; i++) {
             npc[i] = null; // Xóa tất cả các enemy NPC hiện tại
         }
+        enemyCount=10;
+        player.starCount=0;
+        playMusic(3);
         if(currentLevel < 5) {
             currentLevel++;
         } else if(currentLevel == 5){
             gameState = GAME_OVER_STATE;
         }
         aSetter.setNPC();
-        aSetter.setItem();
+        aSetter.setTimedItems();
         TManager.loadMap();
     }
     public void update() {
         if (gameState == GAME_OVER_STATE) {
             return; // Skip updates if game is over
         }
-        if(enemyCount == 0) {
+        if(enemyCount <= 0) {
             // todo sound level
             nextLevel();
         }
@@ -302,8 +307,8 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void playMusic(int i) {
-//        sound.setFile(i);
-//        sound.play();
+        sound.setFile(i);
+        sound.play();
 //         sound.loop();
     }
 }
