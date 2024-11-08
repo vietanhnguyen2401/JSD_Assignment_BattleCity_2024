@@ -1,6 +1,8 @@
 package main;
 
+import entity.Enemy;
 import entity.Entity;
+import entity.Explosion;
 
 import java.util.concurrent.ForkJoinPool;
 
@@ -69,6 +71,32 @@ public class CollisionChecker {
         }
     }
 
+    public void handleItemPickUp(String itemName){
+        //TODO add item effects
+        System.out.println("picked up: " + itemName);
+
+        if (itemName == "Timer"){
+            for(Enemy e : gp.npc) {
+                //todo delay 3 seconds -> e.setFreezed(false)
+                if (e != null) e.setFreezed(true);
+            }
+            } else if (itemName == "Star"){
+            gp.player.starCount++;
+            System.out.println("current star count:" + gp.player.starCount);
+        } else if (itemName == "Tank"){
+            gp.player.lives++;
+        } else if (itemName == "Grenade"){
+            for(Enemy e : gp.npc) {
+                //todo implement tank explosion
+                if (e != null && e.alive){
+                    e.alive = false;
+                    gp.explosions.add(new Explosion(gp, e.x, e.y));
+                };
+            }
+        } else if (itemName == "Helmet"){
+            gp.player.getShield().setActive(true);
+        }
+    }
     public int checkItem(Entity entity, boolean isPlayer) {
         if (!entity.alive) return -1;
         int index = 999; // placeholder number, any number that is not used by the item index array
@@ -89,6 +117,7 @@ public class CollisionChecker {
                         if (entity.solidArea.intersects(gp.item[i].solidArea)){
                            if (isPlayer == true){
                                 index = i;
+                               handleItemPickUp(gp.item[i].name);
                            }
 
                         }
@@ -98,6 +127,7 @@ public class CollisionChecker {
                         if (entity.solidArea.intersects(gp.item[i].solidArea)){
                             if (isPlayer == true){
                                 index = i;
+                                handleItemPickUp(gp.item[i].name);
                             }
                         }
 
@@ -106,6 +136,8 @@ public class CollisionChecker {
                         if (entity.solidArea.intersects(gp.item[i].solidArea)){
                             if (isPlayer == true){
                                 index = i;
+                                handleItemPickUp(gp.item[i].name);
+
                             }
                         }
 
@@ -114,6 +146,8 @@ public class CollisionChecker {
                         if (entity.solidArea.intersects(gp.item[i].solidArea)){
                             if (isPlayer == true){
                                 index = i;
+                                handleItemPickUp(gp.item[i].name);
+
                             }
 
                         }

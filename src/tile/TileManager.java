@@ -106,6 +106,8 @@ public class TileManager {
         // Draw the player
         player.draw(g2);
 
+        //todo draw enemy here
+
         // Draw the grass tiles
         col = 0;
         row = 0;

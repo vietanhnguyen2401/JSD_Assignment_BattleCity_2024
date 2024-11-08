@@ -5,7 +5,9 @@ import main.GamePanel;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
-public class Item_Star extends SuperItem{
+
+public class
+Item_Star extends SuperItem{
     GamePanel gp;
     public Item_Star(GamePanel gp) {
         this.gp = gp;

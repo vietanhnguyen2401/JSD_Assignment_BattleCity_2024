@@ -15,9 +15,18 @@ public class Enemy extends Entity {
     public boolean alive = true; // Add this attribute
     private TankType tankType;
     private final long shotCooldown = 1000;
+
+
+
+    public void setFreezed(boolean freezed) {
+        isFreezed = freezed;
+    }
+
     private long lastShotTime;
     public ArrayList<Bullet> bullets = new ArrayList<>();
     Sound sound = new Sound();
+
+    public boolean isFreezed = false;
 
     public Enemy(GamePanel gp) {
         this.gp = gp;
@@ -36,72 +45,74 @@ public class Enemy extends Entity {
     }
 
     public void setAction() {
-        actionLockCounter++;
-        if (actionLockCounter == 80) {
-            Random r = new Random();
-            int i = r.nextInt(100) + 1;
-            if (i <= 25) {
-                direction = "up";
+
+            actionLockCounter++;
+            if (actionLockCounter == 80) {
+                Random r = new Random();
+                int i = r.nextInt(100) + 1;
+                if (i <= 25) {
+                    direction = "up";
+                }
+                if (i > 25 && i <= 50) {
+                    direction = "down";
+                }
+                if (i > 50 && i <= 75) {
+                    direction = "left";
+                }
+                if (i > 75 && i <= 100) {
+                    direction = "right";
+                }
+                actionLockCounter = 0;
             }
-            if (i > 25 && i <= 50) {
-                direction = "down";
-            }
-            if (i > 50 && i <= 75) {
-                direction = "left";
-            }
-            if (i > 75 && i <= 100) {
-                direction = "right";
-            }
-            actionLockCounter = 0;
-        }
+
     }
 
     public void update() {
         if (!alive) {
             System.out.println("Enemy not alive, skipping update.");
             return;  }
+        if (!isFreezed) {
+            setAction();
+            collisionOn = false;
+            gp.cChecker.checkTile(this);
+            gp.cChecker.checkPlayer(this);
+            boolean baseCollision = gp.cChecker.checkBaseCollision(this);
 
-        setAction();
-        collisionOn = false;
-        gp.cChecker.checkTile(this);
-        gp.cChecker.checkPlayer(this);
-        boolean baseCollision = gp.cChecker.checkBaseCollision(this);
-
-        // IF COLLISION IS FALSE, PLAYER CAN MOVE
-        if (!collisionOn && !baseCollision) {
-            switch (direction) {
-                case "up":
-                    this.y -= speed;
-                    break;
-                case "down":
-                    this.y += speed;
-                    break;
-                case "left":
-                    this.x -= speed;
-                    break;
-                case "right":
-                    this.x += speed;
-                    break;
+            // IF COLLISION IS FALSE, PLAYER CAN MOVE
+            if (!collisionOn && !baseCollision) {
+                switch (direction) {
+                    case "up":
+                        this.y -= speed;
+                        break;
+                    case "down":
+                        this.y += speed;
+                        break;
+                    case "left":
+                        this.x -= speed;
+                        break;
+                    case "right":
+                        this.x += speed;
+                        break;
+                }
             }
-        }
 
-        // Shooting
-        if (canFire()) {
-            fireBullet();
-        }
-
-        // Update bullets
-        for (int i = 0; i < bullets.size(); i++) {
-            Bullet bullet = bullets.get(i);
-            if (bullet.alive) {
-                bullet.update();
-            } else {
-                bullets.remove(i);
-                i--;
+            // Shooting
+            if (canFire()) {
+                fireBullet();
             }
-        }
 
-        updateSprites();
+            // Update bullets
+            for (int i = 0; i < bullets.size(); i++) {
+                Bullet bullet = bullets.get(i);
+                if (bullet.alive) {
+                    bullet.update();
+                } else {
+                    bullets.remove(i);
+                    i--;
+                }
+            }
+            updateSprites();
+        }
     }
 
     private void fireBullet() {

@@ -4,65 +4,65 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c3a2440-d807-4f5c-832f-6f4ca297b1dd" name="Changes" comment="enemy-player interactions/shielded revival effects">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="804422b0-75eb-4d66-bff3-a48c1b140ef9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/res/sounds/game_over.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/sounds/game_win.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/sounds/item_pickup.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/sounds/level_up.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Bullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/item/Item_Shovel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/item/Item_Star.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/item/Item_Star.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/item/Shield.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/item/Shield.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AssetSetter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BackgroundPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BackgroundPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/CollisionChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Sound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Sound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/maps/level01.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/maps/level01.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/maps/level02.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/maps/level02.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/maps/level04.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/maps/level04.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/sounds/1 - Track 1.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/sounds/2 - Track 2.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/sounds/3 - Track 3.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/sounds/4 - Track 4.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 1.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 10.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 11.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 12.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 13.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 14.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 15.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 16.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 17.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 2.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 3.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 4.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 5.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 6.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 7.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 8.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/sounds/SFX 9.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tile/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tile/TileManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ChangesViewManager">
-    <option name="groupingKeys">
-      <option value="directory" />
-      <option value="module" />
-    </option>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <option name="PREVIOUS_COMMIT_AUTHORS">
-      <list>
-        <option value="Levu5023 &lt;levi01237797458@gmail.com&gt;" />
-      </list>
-    </option>
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="uc/shooting" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;history&quot;: [
-    {
-      &quot;state&quot;: &quot;OPEN&quot;,
-      &quot;assignee&quot;: &quot;Levu5203&quot;,
-      &quot;reviewState&quot;: &quot;NO_REVIEW&quot;
-    }
-  ],
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;Levu5203&quot;,
-    &quot;reviewState&quot;: &quot;NO_REVIEW&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/vietanhnguyen2401/JSD_Assignment_BattleCity_2024.git&quot;,
-    &quot;accountId&quot;: &quot;529c4f1e-aee2-43bf-a171-a04b04bb2c91&quot;
-  }
-}</component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 1
-}</component>
-  <component name="ProjectId" id="2nBMvZ0VjshQH1AeRVMUoumKGnL" />
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="2oZNowsx5ycQYHPC0BEFTL6H0UH" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -70,22 +70,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/level-change-backup&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/InteliJProject/JSD__Project/JSD_Final_Project/github-demo-tank/Tank-Game-Java&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "feature/level-change-backup",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
@@ -116,159 +114,24 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3c3a2440-d807-4f5c-832f-6f4ca297b1dd" name="Changes" comment="" />
-      <created>1728442246673</created>
+      <changelist id="804422b0-75eb-4d66-bff3-a48c1b140ef9" name="Changes" comment="" />
+      <created>1731073317958</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1728442246673</updated>
-      <workItem from="1728442247727" duration="12180000" />
-      <workItem from="1729574265891" duration="154000" />
-      <workItem from="1729612812041" duration="3403000" />
-      <workItem from="1729791135655" duration="115000" />
-      <workItem from="1729791360520" duration="361000" />
-      <workItem from="1729820381654" duration="337000" />
-      <workItem from="1729820746023" duration="130000" />
-      <workItem from="1729831228379" duration="1905000" />
-      <workItem from="1729833793019" duration="257000" />
-      <workItem from="1730182843221" duration="111000" />
-      <workItem from="1730206284950" duration="1498000" />
-      <workItem from="1730218259553" duration="1499000" />
-      <workItem from="1730222363425" duration="843000" />
-      <workItem from="1730798675419" duration="424000" />
-      <workItem from="1730799116460" duration="84000" />
-      <workItem from="1730799211736" duration="970000" />
-      <workItem from="1730800224977" duration="188000" />
-      <workItem from="1730800425922" duration="835000" />
-      <workItem from="1730801286980" duration="25000" />
-      <workItem from="1730801323280" duration="1530000" />
-      <workItem from="1730820755274" duration="5525000" />
-      <workItem from="1730826631996" duration="22000" />
-      <workItem from="1730868017811" duration="14774000" />
-      <workItem from="1730963589675" duration="4546000" />
-      <workItem from="1730976076777" duration="1081000" />
-      <workItem from="1730987334161" duration="6197000" />
-      <workItem from="1731067155350" duration="2030000" />
+      <updated>1731073317958</updated>
+      <workItem from="1731073321263" duration="5868000" />
     </task>
-    <task id="LOCAL-00001" summary="updated">
-      <option name="closed" value="true" />
-      <created>1729651752545</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1729651752545</updated>
-    </task>
-    <task id="LOCAL-00002" summary="updated">
-      <option name="closed" value="true" />
-      <created>1729700878338</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1729700878338</updated>
-    </task>
-    <task id="LOCAL-00003" summary="updated">
-      <option name="closed" value="true" />
-      <created>1729701183863</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1729701183863</updated>
-    </task>
-    <task id="LOCAL-00004" summary="updated">
-      <option name="closed" value="true" />
-      <created>1729782377942</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1729782377942</updated>
-    </task>
-    <task id="LOCAL-00005" summary="updated">
-      <option name="closed" value="true" />
-      <created>1729784400969</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1729784400969</updated>
-    </task>
-    <task id="LOCAL-00006" summary="updated">
-      <option name="closed" value="true" />
-      <created>1729784739620</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1729784739621</updated>
-    </task>
-    <task id="LOCAL-00007" summary="shooting and sound">
-      <option name="closed" value="true" />
-      <created>1730206423856</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1730206423856</updated>
-    </task>
-    <task id="LOCAL-00008" summary="fix enemy bullet image/add shooting enemy and eplosion animation">
-      <option name="closed" value="true" />
-      <created>1730872828913</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1730872828913</updated>
-    </task>
-    <task id="LOCAL-00009" summary="enemy-player interactions/shielded revival effects">
-      <option name="closed" value="true" />
-      <created>1730884167918</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1730884167918</updated>
-    </task>
-    <task id="LOCAL-00010" summary="enemy-player interactions/shielded revival effects">
-      <option name="closed" value="true" />
-      <created>1730905592234</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1730905592234</updated>
-    </task>
-    <task id="LOCAL-00011" summary="enemy-player interactions/shielded revival effects">
-      <option name="closed" value="true" />
-      <created>1730905810638</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1730905810638</updated>
-    </task>
-    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="xml" />
-    <MESSAGE value="updated" />
-    <MESSAGE value="shooting and sound" />
-    <MESSAGE value="fix enemy bullet image/add shooting enemy and eplosion animation" />
-    <MESSAGE value="enemy-player interactions/shielded revival effects" />
-    <option name="LAST_COMMIT_MESSAGE" value="enemy-player interactions/shielded revival effects" />
-    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
-  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/entity/Bullet.java</url>
-          <line>192</line>
+          <url>file://$PROJECT_DIR$/src/main/AssetSetter.java</url>
+          <line>8</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

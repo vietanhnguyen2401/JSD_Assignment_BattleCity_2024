@@ -2,58 +2,67 @@ package main;
 
 import entity.Enemy;
 import item.*;
-
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.Random;
 
 public class AssetSetter {
     GamePanel gp;
+    private Timer timer;
+
     public AssetSetter(GamePanel gp) {
         this.gp = gp;
+        this.timer = new Timer();
     }
 
-    public void setItem() {
-        gp.item[0] =  new Item_Grenade(gp);
-        gp.item[0].x = 14 * gp.tileSize;
-        gp.item[0].y = 14 * gp.tileSize;
+    public void setTimedItems() {
+        // Schedule each item to appear every 10 seconds
+        timer.schedule(new SpawnItemTask(new Item_Grenade(gp), 14, 14), 0);          // Immediate
+        timer.schedule(new SpawnItemTask(new Item_Helmet(gp), 20, 10), 10000);       // 10 seconds
+        timer.schedule(new SpawnItemTask(new Item_Timer(gp), 10, 21), 30000);        // 30 seconds
+        timer.schedule(new SpawnItemTask(new Item_Tank(gp), 15, 15), 40000);         // 40 seconds
 
-        gp.item[1] =  new Item_Helmet(gp);
-        gp.item[1].x = 20 * gp.tileSize;
-        gp.item[1].y = 10 * gp.tileSize;
+        // Schedule 3 Star items at 10-second intervals after the Tank
+        timer.schedule(new SpawnItemTask(new Item_Star(gp), 17, 18), 50000);         // 50 seconds
+        timer.schedule(new SpawnItemTask(new Item_Star(gp), 18, 18), 60000);         // 60 seconds
+        timer.schedule(new SpawnItemTask(new Item_Star(gp), 19, 18), 70000);         // 70 seconds
+    }
 
-        gp.item[2] =  new Item_Shovel(gp);
-        gp.item[2].x = 21 * gp.tileSize;
-        gp.item[2].y = 11 * gp.tileSize;
+    // Inner class to handle spawning an item at a specific position
+    private class SpawnItemTask extends TimerTask {
+        private SuperItem item;
+        private int x, y;
 
-        gp.item[3] =  new Item_Timer(gp);
-        gp.item[3].x = 10 * gp.tileSize;
-        gp.item[3].y = 21 * gp.tileSize;
+        public SpawnItemTask(SuperItem item, int x, int y) {
+            this.item = item;
+            this.x = x;
+            this.y = y;
+        }
 
-        gp.item[4] =  new Item_Tank(gp);
-        gp.item[4].x = 15 * gp.tileSize;
-        gp.item[4].y = 15 * gp.tileSize;
+        @Override
+        public void run() {
+            item.x = x * gp.tileSize;
+            item.y = y * gp.tileSize;
 
-        gp.item[5] =  new Item_Star(gp);
-        gp.item[5].x = 17 * gp.tileSize;
-        gp.item[5].y = 18 * gp.tileSize;
+            // Find the next available slot for the item in gp.item array
+            for (int i = 0; i < gp.item.length; i++) {
+                if (gp.item[i] == null) {
+                    gp.item[i] = item;
+                    break;
+                }
+            }
+        }
+    }
+
+    // Cancel the timer when no longer needed to prevent resource leaks
+    public void cancelTimers() {
+        timer.cancel();
     }
     public void setNPC(){
         Random random = new Random();
         gp.npc[0] = new Enemy(gp);
         gp.npc[0].x = (random.nextInt(6) + 22) * gp.tileSize;
         gp.npc[0].y = (random.nextInt(4) + 1) * gp.tileSize;
-
-
-//        gp.npc[1] = new Enemy(gp);
-//        gp.npc[1].x = gp.tileSize*11;
-//        gp.npc[1].y = gp.tileSize*21;
-//
-//        gp.npc[2] = new Enemy(gp);
-//        gp.npc[2].x = gp.tileSize*25;
-//        gp.npc[2].y = gp.tileSize*21;
-//
-//        gp.npc[3] = new Enemy(gp);
-//        gp.npc[3].x = gp.tileSize*10;
-//        gp.npc[3].y = gp.tileSize*21;
     }
 
 }

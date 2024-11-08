@@ -12,6 +12,10 @@ public class Shield {
     private boolean isActive = false; // Shield activation state
     private int x, y, size; // Position and size of the shield
 
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
     private BufferedImage shieldImage1, shieldImage2; // Two images for animation
 
     public Shield(int duration, int flickerFrequency, int size) {
@@ -41,8 +45,8 @@ public class Shield {
         if (!isActive) return;
 
         // Update position
-        x = playerX - 15;
-        y = playerY - 15;
+        x = playerX - 6;
+        y = playerY - 3;
 
         // Increment counter and deactivate if duration is exceeded
         counter++;
