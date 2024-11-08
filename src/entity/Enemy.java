@@ -1,7 +1,6 @@
 package entity;
 
 import main.GamePanel;
-
 import main.Sound;
 
 import javax.imageio.ImageIO;
@@ -11,23 +10,22 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Enemy extends Entity{
+public class Enemy extends Entity {
     GamePanel gp;
+    public boolean alive = true; // Add this attribute
     private TankType tankType;
     private final long shotCooldown = 1000;
     private long lastShotTime;
     public ArrayList<Bullet> bullets = new ArrayList<>();
-//    Sound sound = new Sound();
+    Sound sound = new Sound();
 
-    public Enemy(GamePanel gp){
+    public Enemy(GamePanel gp) {
         this.gp = gp;
-        solidArea = new Rectangle(0,0, gp.tileSize*2 - 6, gp.tileSize*2 -6);
+        solidArea = new Rectangle(0, 0, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6);
         setRandomTankType();
         setDefaultValues();
         getPlayerImage();
     }
-
-
 
     private void setDefaultValues() {
         x = 132;
@@ -36,9 +34,10 @@ public class Enemy extends Entity{
         Random random = new Random();
         direction = directions[random.nextInt(directions.length)];
     }
-    public void setAction(){
+
+    public void setAction() {
         actionLockCounter++;
-        if(actionLockCounter == 80) {
+        if (actionLockCounter == 80) {
             Random r = new Random();
             int i = r.nextInt(100) + 1;
             if (i <= 25) {
@@ -56,39 +55,40 @@ public class Enemy extends Entity{
             actionLockCounter = 0;
         }
     }
+
     public void update() {
+        if (!alive) {
+            System.out.println("Enemy not alive, skipping update.");
+            return;  }
+
         setAction();
         collisionOn = false;
         gp.cChecker.checkTile(this);
         gp.cChecker.checkPlayer(this);
+        boolean baseCollision = gp.cChecker.checkBaseCollision(this);
 
         // IF COLLISION IS FALSE, PLAYER CAN MOVE
-        if (!collisionOn){
-            switch (direction){
+        if (!collisionOn && !baseCollision) {
+            switch (direction) {
                 case "up":
                     this.y -= speed;
-
                     break;
                 case "down":
                     this.y += speed;
-
                     break;
                 case "left":
                     this.x -= speed;
-
                     break;
                 case "right":
                     this.x += speed;
-
                     break;
             }
         }
-        // Shooting
 
-        if ( canFire()) {
+        // Shooting
+        if (canFire()) {
             fireBullet();
         }
-
 
         // Update bullets
         for (int i = 0; i < bullets.size(); i++) {
@@ -100,8 +100,10 @@ public class Enemy extends Entity{
                 i--;
             }
         }
+
         updateSprites();
     }
+
     private void fireBullet() {
         int bulletWidth = gp.tileSize - 6;
         int bulletHeight = gp.tileSize - 6;
@@ -132,26 +134,28 @@ public class Enemy extends Entity{
         }
 
         // Play firing sound
-
 //        sound.setFile(1); // Adjust the index to match the firing sound
 //        sound.play();
-        bullets.add(new Bullet(gp, bulletX, bulletY, direction));
+        bullets.add(new Bullet(gp, bulletX, bulletY, direction, true));
         lastShotTime = System.currentTimeMillis();
     }
-        public void updateSprites(){
-            spriteCounter++;
-            if (spriteCounter > 10) {
-                if (spriteNum == 1){
-                    spriteNum = 2;
-                } else if (spriteNum == 2){
-                    spriteNum = 1;
-                }
-                spriteCounter=0;
+
+    public void updateSprites() {
+        spriteCounter++;
+        if (spriteCounter > 10) {
+            if (spriteNum == 1) {
+                spriteNum = 2;
+            } else if (spriteNum == 2) {
+                spriteNum = 1;
             }
+            spriteCounter = 0;
         }
+    }
+
     private boolean canFire() {
         return System.currentTimeMillis() - lastShotTime >= shotCooldown;
     }
+
     private void setRandomTankType() {
         TankType[] types = TankType.values();
         Random random = new Random();
@@ -175,7 +179,11 @@ public class Enemy extends Entity{
             e.printStackTrace();
         }
     }
+
+
     public void draw(Graphics2D g2) {
+        if (!alive) return; // Don't draw if the enemy is not alive
+
         BufferedImage image = null;
 
         switch (direction) {

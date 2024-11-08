@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import main.GamePanel;
-import main.Sound;
+//import main.Sound;
 
 import javax.imageio.ImageIO;
 
@@ -13,14 +13,16 @@ public class Bullet extends Entity {
     GamePanel gp;
     public boolean alive = true;
     private BufferedImage upImage, downImage, leftImage, rightImage;
+    private int damage;
+    private boolean isEnemyBullet;
 //    Sound sound = new Sound();
-    public Bullet(GamePanel gp, int x, int y, String direction) {
+    public Bullet(GamePanel gp, int x, int y, String direction, boolean isEnemyBullet) {
         this.gp = gp;
         this.x = x;
         this.y = y;
         this.direction = direction;
         this.speed = 2; // Adjust bullet speed as needed
-
+        this.isEnemyBullet = isEnemyBullet;
         // Define the bullet's collision area
         solidArea = new Rectangle(0, 0, 6, 6);
         // Load the bullet image
@@ -30,28 +32,31 @@ public class Bullet extends Entity {
     }
 
     public void update() {
-        switch (direction) {
-            case "up":
-                y -= speed;
-                break;
-            case "down":
-                y += speed;
-                break;
-            case "left":
-                x -= speed;
-                break;
-            case "right":
-                x += speed;
-                break;
+        if(gp.gameState == gp.PLAY_STATE) {
+            switch (direction) {
+                case "up":
+                    y -= speed;
+                    break;
+                case "down":
+                    y += speed;
+                    break;
+                case "left":
+                    x -= speed;
+                    break;
+                case "right":
+                    x += speed;
+                    break;
+            }
+
+            // Print the position of the bullet
+            System.out.println("Bullet moved to (" + x + ", " + y + ")");
+            checkTileInteraction();
+            checkCollisionWithTarget();
+            if (x < 0 || x > gp.screenWidth || y < 0 || y > gp.screenHeight) {
+                alive = false;
+            }
         }
 
-        // Print the position of the bullet
-        System.out.println("Bullet moved to (" + x + ", " + y + ")");
-        checkTileInteraction();
-
-        if (x < 0 || x > gp.screenWidth || y < 0 || y > gp.screenHeight) {
-            alive = false;
-        }
     }
 
 
@@ -86,14 +91,13 @@ public class Bullet extends Entity {
                 break;
         }
 
-        System.out.println("Bullet moved to (" + x + ", " + y + ")");
         checkTileInteraction();
         if (x < 0 || x > gp.screenWidth || y < 0 || y > gp.screenHeight) {
             alive = false;
         }
 
         if (bulletImage != null) {
-            g2.drawImage(bulletImage, x, y, gp.tileSize - 8, gp.tileSize - 8, null);
+            g2.drawImage(bulletImage, x, y, gp.tileSize - 10, gp.tileSize - 10, null);
         } else {
             // Fallback if image fails to load
             g2.setColor(Color.YELLOW);
@@ -102,34 +106,103 @@ public class Bullet extends Entity {
     }
 
     public void checkTileInteraction() {
-        // Use the center of the bullet for collision detection
+        // Define a small margin to expand the collision area
+
+        int margin = 4; // Check for tiles within 1 pixel around the bullet
+
+        // Calculate the bullet's center position
         int centerX = x + (gp.tileSize - 8) / 2;
         int centerY = y + (gp.tileSize - 8) / 2;
 
+        // Determine the primary tile the bullet is over
         int col = centerX / gp.tileSize;
         int row = centerY / gp.tileSize;
 
-        if(col < 0 || col >= gp.maxScreenCol || row < 0 || row >= gp.maxScreenRow) {
-            System.out.println("Bullet out of bounds at (" + col + ", " + row + ")");
-            return; // Prevent out-of-bounds errors
-        }
+        // Check primary tile and surrounding tiles within the margin
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                int checkCol = col + i;
+                int checkRow = row + j;
 
-        int tileNum = gp.TManager.mapTileNum[col][row];
+                // Skip if the tile is out of map bounds
+                if (checkCol < 0 || checkCol >= gp.maxScreenCol || checkRow < 0 || checkRow >= gp.maxScreenRow) {
+                    continue;
+                }
 
-        System.out.println("Bullet at (" + centerX + ", " + centerY + "), Tile: " + tileNum + " at (" + col + ", " + row + ")");
+                int tileNum = gp.TManager.mapTileNum[checkCol][checkRow];
 
-        if (gp.TManager.tile[tileNum].collision) {
-            if (tileNum == 1 || tileNum == 2) { // Brick or Iron tile
-                System.out.println("Bullet hit wall or iron. Breaking it.");
-                gp.TManager.mapTileNum[col][row] = 0; // Change to grass tile
-//                sound.setFile(2);
-//                sound.play();
-                alive = false;
+                // Define a slightly larger rectangle for bullet detection
+                Rectangle tileRect = new Rectangle(checkCol * gp.tileSize, checkRow * gp.tileSize, gp.tileSize, gp.tileSize);
+                Rectangle expandedBulletRect = new Rectangle(centerX - margin, centerY - margin, 6 + 2 * margin, 6 + 2 * margin);
 
+                // Check if the expanded bullet rectangle intersects with the tile's rectangle
+                if (gp.TManager.tile[tileNum].collision && expandedBulletRect.intersects(tileRect)) {
+                    if (tileNum == 1) { // Brick tile
+                        System.out.println("Bullet hit brick. Breaking it.");
+                        gp.TManager.mapTileNum[checkCol][checkRow] = 0; // Replace brick with non-collidable tile (e.g., grass)
+//                        sound.setFile(2);
+//                        sound.play();
+                        alive = false; // Bullet is destroyed upon collision
+                        return; // Stop after breaking the brick
+                    } else if (tileNum == 2) { // Steel tile
+                        System.out.println("Bullet hit steel. Bullet disappears.");
+                        alive = false; // Bullet disappears on hitting steel, but steel remains unbroken
+                        return; // Stop further checks as the bullet is destroyed
+                    }
+                }
             }
-            // No action needed for water tile as bullets pass through
         }
     }
+
+
+
+
+    private void checkCollisionWithTarget() {
+        Rectangle bulletRect = new Rectangle(x, y, 6, 6); // Bounding box for the bullet
+
+        if (isEnemyBullet) {
+            // Check collision with the player
+            Rectangle playerRect = new Rectangle(gp.player.x, gp.player.y, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6);
+            if (bulletRect.intersects(playerRect)) {
+                if (!gp.player.getShield().isActive()) {
+                    System.out.println("Enemy bullet hit the player!");
+                    alive = false;
+                    gp.player.die();
+                    gp.explosions.add(new Explosion(gp, gp.player.x, gp.player.y));
+                } else {
+                    System.out.println("Enemy bullet hit the shield - no damage to player.");
+                    alive = false;
+                }
+            }
+
+            // Check collision with the base
+            Rectangle baseRect = new Rectangle(gp.base.x, gp.base.y, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6);
+            if (bulletRect.intersects(baseRect)) {
+                System.out.println("Enemy bullet hit the base!");
+                alive = false; // Bullet is destroyed on impact
+                gp.gameState = gp.GAME_OVER_STATE; // Set game state to GAME OVER
+                return;
+            }
+        } else {
+            // Check collision with enemies (for player bullets)
+            for (Enemy enemy : gp.npc) {
+                if (enemy != null && enemy.alive) {
+                    Rectangle enemyRect = new Rectangle(enemy.x, enemy.y, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6);
+                    if (bulletRect.intersects(enemyRect)) {
+                        System.out.println("Player bullet hit an enemy!");
+                        alive = false;
+                        enemy.alive = false;
+                        gp.explosions.add(new Explosion(gp, enemy.x, enemy.y));
+                        gp.totalPoint += 200;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+
+
 
 
 

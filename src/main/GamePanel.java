@@ -1,16 +1,14 @@
 package main;
+import entity.*;
 
-import entity.Enemy;
-
-import entity.Base;
-import entity.Player;
-import entity.Bullet;
 import item.SuperItem;
 import tile.TileManager;
 
-import java.util.Random;
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class GamePanel extends JPanel implements Runnable {
     final int originalTileSize = 8; // 8 x 8 tile size
@@ -24,54 +22,64 @@ public class GamePanel extends JPanel implements Runnable {
     public UI ui = new UI(this);
 
     // FPS
-    int FPS = 60;
+    final int FPS = 60;
+    final long ONE_SECOND_IN_NANOSECOND = 1000000000;
+    // System
     public TileManager TManager = new TileManager(this);
     KeyHandler keyHandler = new KeyHandler(this);
     Thread gameThread;
 
     public AssetSetter aSetter = new AssetSetter(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
-//    Sound sound = new Sound();
+    Sound sound = new Sound();
+    public List<Explosion> explosions = new ArrayList<>();
 
     // Entities
-    Player player = new Player(this, keyHandler);
-    Base base = new Base(this);
+    public Player player = new Player(this, keyHandler);
+    public Base base = new Base(this);
+
+
     public Enemy[] npc = new Enemy[10];
-    public SuperItem[] item = new SuperItem[10];
 
     // Game state
     public int gameState;
-
     public final int TITLE_STATE = 0;
     public final int PLAY_STATE = 1;
     public final int PAUSE_STATE = 2;
     public final int GAME_OVER_STATE = 3;
+
+    public int totalPoint = 0;
+    public int currentLevel = 1; // from 1 to 5
+
+    public SuperItem[] item = new SuperItem[10];
+
+
     // Variables for NPC spawn timing
-    private final int SPAWN_INTERVAL = 15 * 60; // 10 seconds * 60 FPS
+    private final int SPAWN_INTERVAL = 5 * 60; // 10 seconds * 60 FPS
     private int spawnTimer = 0;
 
     // Keep track of the number of spawned enemies
-    private int enemyCount = 0;
+    public int enemyCount = 0;
 
     // Maximum enemies allowed on the screen at a time
     private final int MAX_ENEMIES = npc.length;
+    public GamePanel(){
 
-    public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyHandler);
         this.setFocusable(true);
-
-    }
+        }
 
     public void setupGame() {
         aSetter.setItem();
-        gameState = TITLE_STATE;
+        //        gameState = PLAY_STATE;
         playMusic(0);
-        aSetter.setNPC();
+        gameState = TITLE_STATE;
 //        playMusic(0);
-
+//        aSetter.setNPC();
+//        playMusic(0);
     }
 
     public void startGameThread() {
@@ -81,7 +89,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     @Override
     public void run() {
-        double drawInterval = 1000000000 / FPS;  // 0.01666666 seconds
+        double drawInterval = ONE_SECOND_IN_NANOSECOND/FPS;  // 0.01666666 seconds
+
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime;
@@ -101,7 +110,7 @@ public class GamePanel extends JPanel implements Runnable {
                 drawCount++;
             }
 
-            if (timer >= 1000000000) {
+            if (timer >= ONE_SECOND_IN_NANOSECOND) {
                 System.out.println("FPS: " + drawCount);
                 drawCount = 0;
                 timer = 0;
@@ -120,9 +129,10 @@ public class GamePanel extends JPanel implements Runnable {
                 int attempts = 0;
 
                 do {
-                    spawnX = (random.nextInt(4) + maxScreenCol - 4) * tileSize; // Cột từ 21 đến 27
-                    spawnY = (random.nextInt(4) + 1) * tileSize;
-
+//                    spawnX = (random.nextInt(4) + maxScreenCol - 5) * tileSize; // Cột từ 21 đến 27
+//                    spawnY = (random.nextInt(4) + 1) * tileSize;
+                      spawnX = 398;
+                      spawnY = 50;
                     // Check if the spawn position is unblocked and unoccupied
                     validPosition = true;
                     for (int x = spawnX; x < spawnX + tileSize; x += tileSize / 2) {
@@ -148,8 +158,45 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
     }
+    public void retry(){
+        player.setDefaultValues();
+        totalPoint = 0;
+        currentLevel = 1;
+        aSetter.setNPC();
+        aSetter.setItem();
+        TManager.loadMap();
+    }
 
+    public void nextLevel(){
+        player.setDefaultValues();
+        enemyCount = 4;
+        for (int i = 0; i < npc.length; i++) {
+            npc[i] = null; // Xóa tất cả các enemy NPC hiện tại
+        }
+        if(currentLevel < 5) {
+            currentLevel++;
+        } else if(currentLevel == 5){
+            gameState = GAME_OVER_STATE;
+        }
+        aSetter.setNPC();
+        aSetter.setItem();
+        TManager.loadMap();
+    }
     public void update() {
+        if (gameState == GAME_OVER_STATE) {
+            return; // Skip updates if game is over
+        }
+        if(enemyCount == 0) {
+            // todo sound level
+            nextLevel();
+        }
+        if (player.lives == 0) {
+            gameState = GAME_OVER_STATE;
+            System.out.println("Game Over!");
+
+            return; // Stop further updates if game is over
+        }
+
         if (gameState == PLAY_STATE) {
             player.update();
             // Spawn enemies every 10 seconds if there's space
@@ -158,33 +205,66 @@ public class GamePanel extends JPanel implements Runnable {
                 spawnEnemies();
                 spawnTimer = 0;
             }
-            for (Enemy enemy : npc) {
-                if (enemy != null) {
-                    enemy.update();
+            // Update player bullets
+            for (int i = 0; i < player.bullets.size(); i++) {
+                Bullet bullet = player.bullets.get(i);
+                bullet.update();
+                if (!bullet.alive) {
+                    player.bullets.remove(i);
+                    i--; // Adjust index after removal
                 }
             }
 
-            // Update bullets
-            for (int i = 0; i < player.bullets.size(); i++) {
-                Bullet bullet = player.bullets.get(i);
-                if (bullet.alive) {
-                    bullet.update();
-                } else {
-                    player.bullets.remove(i);
-                    i--;
+            // Update enemies and check for alive status
+            for (int i = 0; i < npc.length; i++) {
+                Enemy enemy = npc[i];
+                if (enemy != null && enemy.alive) {
+                    enemy.update();
+                } else if (enemy != null && !enemy.alive) {
+                    npc[i] = null; // Remove enemy when dead
+                    enemyCount--;
+                }
+            }
+            for (Enemy enemy : npc) {
+                if (enemy != null && enemy.alive) {
+                    for (int i = 0; i < enemy.bullets.size(); i++) {
+                        Bullet bullet = enemy.bullets.get(i);
+                        if (bullet.alive) {
+                            bullet.update();
+                        } else {
+                            enemy.bullets.remove(i);
+                            i--; // Adjust index after removal
+                        }
+                    }
+                }
+            }
+
+
+            // Update explosions
+            for (int i = 0; i < explosions.size(); i++) {
+                Explosion explosion = explosions.get(i);
+                explosion.update();
+                if (!explosion.isAlive()) {
+                    explosions.remove(i); // Remove completed explosions
+                    i--; // Adjust index after removal
                 }
             }
         }
+      if (gameState == PAUSE_STATE){
+
+        }
+
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D) g;
+        Graphics2D g2 = (Graphics2D)g;
 
-        if (gameState == TITLE_STATE) {
+        // TITLE SCREEN
+        if(gameState == TITLE_STATE){
             ui.draw(g2);
         } else {
-            // Draw tiles and player
+            // this will draw tiles and player
             TManager.draw(g2, player);
             base.draw(g2);
 
@@ -195,8 +275,17 @@ public class GamePanel extends JPanel implements Runnable {
             }
 
             for (Enemy enemy : npc) {
-                if (enemy != null) {
+                if (enemy != null && enemy.alive) {
                     enemy.draw(g2);
+                }
+            }
+            for (Enemy enemy : npc) {
+                if (enemy != null && enemy.alive) {
+                    for (Bullet bullet : enemy.bullets) {
+                        if (bullet.alive) {
+                            bullet.draw(g2); // Render bullet fired by the enemy
+                        }
+                    }
                 }
             }
 
@@ -205,11 +294,11 @@ public class GamePanel extends JPanel implements Runnable {
                 bullet.draw(g2);
             }
 
+            for (Explosion explosion : explosions) {
+                explosion.draw(g2); }
             ui.draw(g2);
         }
-
         g2.dispose();
-
     }
 
     public void playMusic(int i) {
