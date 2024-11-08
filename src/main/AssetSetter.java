@@ -3,6 +3,8 @@ package main;
 import entity.Enemy;
 import item.*;
 
+import java.util.Random;
+
 public class AssetSetter {
     GamePanel gp;
     public AssetSetter(GamePanel gp) {
@@ -35,21 +37,23 @@ public class AssetSetter {
         gp.item[5].y = 18 * gp.tileSize;
     }
     public void setNPC(){
+        Random random = new Random();
         gp.npc[0] = new Enemy(gp);
-        gp.npc[0].x = gp.tileSize*21;
-        gp.npc[0].y = gp.tileSize*21;
+        gp.npc[0].x = (random.nextInt(6) + 22) * gp.tileSize;
+        gp.npc[0].y = (random.nextInt(4) + 1) * gp.tileSize;
 
-        gp.npc[1] = new Enemy(gp);
-        gp.npc[1].x = gp.tileSize*11;
-        gp.npc[1].y = gp.tileSize*21;
 
-        gp.npc[2] = new Enemy(gp);
-        gp.npc[2].x = gp.tileSize*25;
-        gp.npc[2].y = gp.tileSize*21;
-
-        gp.npc[3] = new Enemy(gp);
-        gp.npc[3].x = gp.tileSize*10;
-        gp.npc[3].y = gp.tileSize*21;
+//        gp.npc[1] = new Enemy(gp);
+//        gp.npc[1].x = gp.tileSize*11;
+//        gp.npc[1].y = gp.tileSize*21;
+//
+//        gp.npc[2] = new Enemy(gp);
+//        gp.npc[2].x = gp.tileSize*25;
+//        gp.npc[2].y = gp.tileSize*21;
+//
+//        gp.npc[3] = new Enemy(gp);
+//        gp.npc[3].x = gp.tileSize*10;
+//        gp.npc[3].y = gp.tileSize*21;
     }
 
 }

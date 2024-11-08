@@ -270,4 +270,27 @@ public class CollisionChecker {
 
         return collisionDetected;
     }
+
+    public boolean checkTileCollision(int x, int y) {
+        int col = x / gp.tileSize;
+        int row = y / gp.tileSize;
+        int tileNum = gp.TManager.mapTileNum[col][row];
+        return gp.TManager.tile[tileNum].collision;
+    }
+    public boolean isPositionOccupiedByEntity(int x, int y) {
+        // Check if this position collides with the player
+        if (gp.player != null && gp.player.solidArea.contains(x, y)) {
+            return true;
+        }
+
+        // Check other NPCs or entities
+        for (Entity entity : gp.npc) {
+            if (entity != null && entity.solidArea.contains(x, y)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }
