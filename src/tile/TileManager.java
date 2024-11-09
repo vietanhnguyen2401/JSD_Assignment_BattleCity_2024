@@ -1,5 +1,7 @@
 package tile;
 
+import entity.Bullet;
+import entity.Enemy;
 import main.GamePanel;
 import entity.Player;
 import main.UtilityTool;
@@ -81,7 +83,7 @@ public class TileManager {
             e.printStackTrace();
         }
     }
-    public void draw(Graphics2D g2, Player player) {
+    public void draw(Graphics2D g2, Player player, Enemy[] enemy) {
         int col = 0;
         int row = 0;
         int x = 0;
@@ -107,7 +109,20 @@ public class TileManager {
         player.draw(g2);
 
         //todo draw enemy here
-
+        for ( int i = 0 ; i < gp.npc.length; i++) {
+            if (enemy[i] != null && enemy[i].alive) {
+                enemy[i].draw(g2);
+            }
+        }
+        for ( int i = 0 ; i < gp.npc.length; i++) {
+            if (enemy[i] != null && enemy[i].alive) {
+                for (Bullet bullet : enemy[i].bullets) {
+                    if (bullet.alive) {
+                        bullet.draw(g2); // Render bullet fired by the enemy
+                    }
+                }
+            }
+        }
         // Draw the grass tiles
         col = 0;
         row = 0;
