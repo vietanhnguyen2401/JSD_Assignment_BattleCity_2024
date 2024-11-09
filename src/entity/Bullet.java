@@ -184,13 +184,19 @@ public class Bullet extends Entity {
             }
         } else {
             // Check collision with enemies (for player bullets)
-            for (Enemy enemy : gp.npc) {
+            for (int i = 0; i < gp.npc.length; i++) {
+                Enemy enemy = gp.npc[i];
                 if (enemy != null && enemy.alive) {
                     Rectangle enemyRect = new Rectangle(enemy.x, enemy.y, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6);
                     if (bulletRect.intersects(enemyRect)) {
                         System.out.println("Player bullet hit an enemy!");
                         alive = false;
-                        enemy.alive = false;
+                        enemy.lives--;
+                        System.out.println("enemy tank " + enemy.tankType + i + " " + " Live: " + enemy.lives);
+
+                        if(enemy.lives <= 0) {
+                            enemy.alive = false;
+                        }
                         gp.explosions.add(new Explosion(gp, enemy.x, enemy.y));
                         gp.totalPoint += 200;
                         break;
