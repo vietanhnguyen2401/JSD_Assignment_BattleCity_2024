@@ -4,6 +4,8 @@ import entity.Enemy;
 import entity.Entity;
 import entity.Explosion;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ForkJoinPool;
 
 public class CollisionChecker {
@@ -80,7 +82,18 @@ public class CollisionChecker {
                 //todo delay 3 seconds -> e.setFreezed(false)
                 if (e != null) e.setFreezed(true);
             }
-            } else if (itemName == "Star"){
+            Timer timer = new Timer();
+            TimerTask task1 = new TimerTask() {
+                public void run() {
+                    for(Enemy e : gp.npc) {
+                        if (e != null) e.setFreezed(false);
+                    }
+                }
+
+            };
+            timer.schedule(task1, 3000);
+
+        } else if (itemName == "Star"){
             gp.player.starCount++;
             System.out.println("current star count:" + gp.player.starCount);
         } else if (itemName == "Tank"){
