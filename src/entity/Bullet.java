@@ -199,7 +199,7 @@ public class Bullet extends Entity {
                         sound.setFile(2);
                         sound.play();
                         gp.explosions.add(new Explosion(gp, enemy.x, enemy.y));
-                        gp.totalPoint += 200;
+                        gp.totalPoint += enemy.point;
                         break;
                     }
                 }

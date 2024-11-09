@@ -16,7 +16,7 @@ public class Enemy extends Entity {
     private TankType tankType;
     private final long shotCooldown = 1000;
 
-
+public int point = 0;
 
     public void setFreezed(boolean freezed) {
         isFreezed = freezed;
@@ -172,6 +172,7 @@ public class Enemy extends Entity {
         Random random = new Random();
         this.tankType = types[random.nextInt(types.length)];
         this.speed = tankType.speed; // Use speed based on tank type
+        this.point = tankType.point;
     }
     public void getPlayerImage(){
         try{
