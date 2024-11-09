@@ -170,6 +170,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void nextLevel(){
+
         player.setDefaultValues();
 
         for (int i = 0; i < npc.length; i++) {

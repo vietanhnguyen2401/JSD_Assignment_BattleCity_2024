@@ -20,13 +20,13 @@
         KeyHandler kh;
         Shield shield;
 
-        public int starCount = 0;
+        public int starCount = 3;
         Sound sound = new Sound();
 
         // Bullet Assist
         public ArrayList<Bullet> bullets = new ArrayList<>();
         private long lastShotTime;
-        private final long shotCooldown = 300;
+        private long shotCooldown = 1000;
         // Revive Assist
         public int lives = 3; // Number of lives the player has
         private boolean isDead = false; // Tracks if the player is currently dead
@@ -37,6 +37,10 @@
         private final int flickerDuration = 60; // Total duration for flickering
         private boolean running = true; // Flag to control the player thread
 
+
+        private int maxBulletsAllowed = 1; // Number of bullets allowed based on power level
+        private int bulletSpeed = 2; // Bullet speed modifier
+        public boolean canDestroySteel = false; // Flag for destroying steel walls
 
 
         public Player(GamePanel gp, KeyHandler kh) {
@@ -71,7 +75,7 @@
         public void setDefaultValues(){
             x = 132;
             y = 400;
-            starCount=0;
+            starCount = 0;
             lives = 3;
 
             speed = 1;
@@ -205,6 +209,13 @@
             for (int i = 0; i < bullets.size(); i++) {
                 Bullet bullet = bullets.get(i);
                 if (bullet.alive) {
+                  if (starCount >= 1) {
+                      bullet.speed = 3;
+                  }
+                  if (starCount >= 2) {
+                      shotCooldown= 400;
+                  }
+
                     bullet.update();
                 } else {
                     bullets.remove(i);
@@ -218,6 +229,7 @@
             lives--;
             isDead = true;
             deathTime = System.currentTimeMillis();
+            resetPowerLevel();
             System.out.println("Player has died! Lives left: " + lives);
 
             if (lives <= 0) {
@@ -239,6 +251,15 @@
             }
         }
 
+        public void resetPowerLevel() {
+            // Reset power level when the player dies
+            starCount = 0;
+            maxBulletsAllowed = 1;
+            for (var bullet : bullets) {
+                bullet.speed = 2;
+            }
+            canDestroySteel = false;
+        }
 
 
         private void fireBullet() {

@@ -83,8 +83,11 @@ public class CollisionChecker {
                 if (e != null) e.setFreezed(true);
             }
             } else if (itemName == "Star"){
-            gp.player.starCount++;
-            System.out.println("current star count:" + gp.player.starCount);
+            if (gp.player.starCount < 3) {
+                gp.player.starCount++;
+                System.out.println("Current star count: " + gp.player.starCount);
+
+            }
         } else if (itemName == "Tank"){
             gp.player.lives++;
         } else if (itemName == "Grenade"){
