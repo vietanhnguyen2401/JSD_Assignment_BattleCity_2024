@@ -1,5 +1,7 @@
 package main;
 
+import entity.Enemy;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -74,7 +76,13 @@ public class BackgroundPanel extends JPanel {
             y = gp.tileSize*7;
             String enemy = "ENEMY: ";
             g2.drawString(enemy, x, y);
-            g2.drawString(gp.enemyCount+"", x + 100, y);
+            int count = 0;
+            for(Enemy enemy1 : gp.npc){
+                if(enemy1 != null && enemy1.alive){
+                    count++;
+                }
+            }
+            g2.drawString(count+"", x + 100, y);
 
                 y = gp.tileSize*9;
                 String player = "PLAYER: ";

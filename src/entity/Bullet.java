@@ -196,9 +196,9 @@ public class Bullet extends Entity {
 
                         if(enemy.lives <= 0) {
                             enemy.alive = false;
+                            gp.totalPoint += 200;
                         }
                         gp.explosions.add(new Explosion(gp, enemy.x, enemy.y));
-                        gp.totalPoint += 200;
                         break;
                     }
                 }
