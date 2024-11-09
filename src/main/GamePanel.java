@@ -273,7 +273,7 @@ public class GamePanel extends JPanel implements Runnable {
             ui.draw(g2);
         } else {
             // this will draw tiles and player
-            TManager.draw(g2, player);
+            TManager.draw(g2, player, npc);
             base.draw(g2);
 
             for (SuperItem value : item) {
@@ -282,20 +282,20 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
 
-            for (Enemy enemy : npc) {
-                if (enemy != null && enemy.alive) {
-                    enemy.draw(g2);
-                }
-            }
-            for (Enemy enemy : npc) {
-                if (enemy != null && enemy.alive) {
-                    for (Bullet bullet : enemy.bullets) {
-                        if (bullet.alive) {
-                            bullet.draw(g2); // Render bullet fired by the enemy
-                        }
-                    }
-                }
-            }
+//            for (Enemy enemy : npc) {
+//                if (enemy != null && enemy.alive) {
+//                    enemy.draw(g2);
+//                }
+//            }
+//            for (Enemy enemy : npc) {
+//                if (enemy != null && enemy.alive) {
+//                    for (Bullet bullet : enemy.bullets) {
+//                        if (bullet.alive) {
+//                            bullet.draw(g2); // Render bullet fired by the enemy
+//                        }
+//                    }
+//                }
+//            }
 
             // Draw bullets
             for (Bullet bullet : player.bullets) {
