@@ -9,8 +9,6 @@ import java.util.concurrent.ForkJoinPool;
 
 public class CollisionChecker {
     GamePanel gp;
-
-
     public CollisionChecker(GamePanel gp){
         this.gp = gp;
     }
@@ -104,7 +102,7 @@ public class CollisionChecker {
                 };
             }
         } else if (itemName == "Helmet"){
-            gp.player.getShield().setActive(true);
+            gp.player.getShield().activate(gp.player.x, gp.player.y);
         }
     }
     public int checkItem(Entity entity, boolean isPlayer) {

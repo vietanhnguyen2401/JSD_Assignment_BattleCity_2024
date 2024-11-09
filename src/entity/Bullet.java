@@ -147,12 +147,18 @@ public class Bullet extends Entity {
                         sound.play();
                         alive = false; // Bullet is destroyed upon collision
                         return; // Stop after breaking the brick
-                    } else if (tileNum == 2 && canDestroySteel) { // Steel wall
+                    }
+                    else if (tileNum == 2 && canDestroySteel) { // Steel wall
                         gp.TManager.mapTileNum[checkCol][checkRow] = 0; // Destroy steel wall if player has this ability
                         sound.setFile(2);
                         sound.play();
                         alive = false;
-                    }alive = false;
+                        return;
+                    } else if (tileNum == 2 && isEnemyBullet) {
+                        alive = false;
+                    } else if (tileNum == 2 && !canDestroySteel) {
+                        alive = false;
+                    }
                 }
             }
         }
