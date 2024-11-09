@@ -15,7 +15,7 @@ public class Main {
         BackgroundPanel backgroundPanel = new BackgroundPanel(gamePanel);
 
         window.add(backgroundPanel);
-        window.setSize(1140, 488); // Set window size according to your needs
+        window.setSize(1140, 488); // Set window size according to your needsw
         window.setLocationRelativeTo(null);
         window.setVisible(true);
 

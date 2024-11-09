@@ -9,7 +9,7 @@ public class Shield {
     private int duration; // Duration of shield in frames
     private int flickerFrequency; // Frequency of flickering
     private int counter = 0; // Counter to track the flicker effect
-    private boolean isActive = false; // Shield activation state
+    private boolean isActive = true; // Shield activation state
     private int x, y, size; // Position and size of the shield
 
     public void setActive(boolean active) {

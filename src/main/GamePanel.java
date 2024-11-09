@@ -59,7 +59,7 @@ public class GamePanel extends JPanel implements Runnable {
     private int spawnTimer = 0;
 
     // Keep track of the number of spawned enemies
-    public int enemyCount = 1;
+    public int enemyCount = 10;
 
     // Maximum enemies allowed on the screen at a time
     private final int MAX_ENEMIES = npc.length;
@@ -131,9 +131,10 @@ public class GamePanel extends JPanel implements Runnable {
                 int attempts = 0;
 
                 do {
-                    spawnX = (random.nextInt(4) + maxScreenCol - 4) * tileSize; // Cột từ 21 đến 27
-                    spawnY = (random.nextInt(4) + 1) * tileSize;
-
+//                    spawnX = (random.nextInt(4) + maxScreenCol - 5) * tileSize; // Cột từ 21 đến 27
+//                    spawnY = (random.nextInt(4) + 1) * tileSize;
+                      spawnX = 398;
+                      spawnY = 50;
                     // Check if the spawn position is unblocked and unoccupied
                     validPosition = true;
                     for (int x = spawnX; x < spawnX + tileSize; x += tileSize / 2) {
@@ -170,8 +171,13 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void nextLevel(){
+
         player.setDefaultValues();
-        enemyCount=1;
+
+        for (int i = 0; i < npc.length; i++) {
+            npc[i] = null; // Xóa tất cả các enemy NPC hiện tại
+        }
+        enemyCount=10;
         player.starCount=0;
         playMusic(3);
         if(currentLevel < 5) {
@@ -188,7 +194,8 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState == GAME_OVER_STATE) {
             return; // Skip updates if game is over
         }
-        if(enemyCount == 0) {
+        if(enemyCount <= 0) {
+            // todo sound level
             nextLevel();
         }
         if (player.lives == 0) {

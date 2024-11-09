@@ -80,6 +80,7 @@ public class CollisionChecker {
                 //todo delay 3 seconds -> e.setFreezed(false)
                 if (e != null) e.setFreezed(true);
             }
+
             } else if (itemName == "Star"){
             gp.player.starCount++;
             System.out.println("current star count:" + gp.player.starCount);

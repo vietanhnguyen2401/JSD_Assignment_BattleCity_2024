@@ -24,9 +24,9 @@ public class AssetSetter {
         timer.schedule(new SpawnItemTask(new Item_Tank(gp), 15, 15), 40000);         // 40 seconds
 
         // Schedule 3 Star items at 10-second intervals after the Tank
-        timer.schedule(new SpawnItemTask(new Item_Star(gp), 17, 18), 50000);         // 50 seconds
-        timer.schedule(new SpawnItemTask(new Item_Star(gp), 18, 18), 60000);         // 60 seconds
-        timer.schedule(new SpawnItemTask(new Item_Star(gp), 19, 18), 70000);         // 70 seconds
+        timer.schedule(new SpawnItemTask(new Item_Star(gp), 17, 18), 0);         // 50 seconds
+        timer.schedule(new SpawnItemTask(new Item_Star(gp), 18, 23), 0);         // 60 seconds
+        timer.schedule(new SpawnItemTask(new Item_Star(gp), 19, 25), 0);         // 70 seconds
     }
 
     // Inner class to handle spawning an item at a specific position
@@ -74,8 +74,21 @@ public class AssetSetter {
     public void setNPC(){
         Random random = new Random();
         gp.npc[0] = new Enemy(gp);
-        gp.npc[0].x = (random.nextInt(6) + 22) * gp.tileSize;
-        gp.npc[0].y = (random.nextInt(4) + 1) * gp.tileSize;
+        gp.npc[0].x = 398;
+        gp.npc[0].y = 50;
+
+
+        gp.npc[1] = new Enemy(gp);
+        gp.npc[1].x = 398;
+        gp.npc[1].y = 50;
+
+        gp.npc[2] = new Enemy(gp);
+        gp.npc[2].x = 398;
+        gp.npc[2].y = 50;
+
+        gp.npc[3] = new Enemy(gp);
+        gp.npc[3].x = 398;
+        gp.npc[3].y = 50;
     }
 
 }

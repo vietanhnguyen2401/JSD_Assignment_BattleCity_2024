@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import main.GamePanel;
+import main.Sound;
 //import main.Sound;
 
 import javax.imageio.ImageIO;
@@ -14,15 +15,18 @@ public class Bullet extends Entity {
     public boolean alive = true;
     private BufferedImage upImage, downImage, leftImage, rightImage;
     private int damage;
+    public int speed;
     private boolean isEnemyBullet;
-//    Sound sound = new Sound();
+    private boolean canDestroySteel;
+    Sound sound = new Sound();
     public Bullet(GamePanel gp, int x, int y, String direction, boolean isEnemyBullet) {
         this.gp = gp;
         this.x = x;
         this.y = y;
         this.direction = direction;
-        this.speed = 2; // Adjust bullet speed as needed
+        this.speed = 1; // Adjust bullet speed as needed
         this.isEnemyBullet = isEnemyBullet;
+        this.canDestroySteel = !isEnemyBullet && gp.player.starCount >= 3;
         // Define the bullet's collision area
         solidArea = new Rectangle(0, 0, 6, 6);
         // Load the bullet image
@@ -139,15 +143,16 @@ public class Bullet extends Entity {
                     if (tileNum == 1) { // Brick tile
                         System.out.println("Bullet hit brick. Breaking it.");
                         gp.TManager.mapTileNum[checkCol][checkRow] = 0; // Replace brick with non-collidable tile (e.g., grass)
-//                        sound.setFile(2);
-//                        sound.play();
+                        sound.setFile(2);
+                        sound.play();
                         alive = false; // Bullet is destroyed upon collision
                         return; // Stop after breaking the brick
-                    } else if (tileNum == 2) { // Steel tile
-                        System.out.println("Bullet hit steel. Bullet disappears.");
-                        alive = false; // Bullet disappears on hitting steel, but steel remains unbroken
-                        return; // Stop further checks as the bullet is destroyed
-                    }
+                    } else if (tileNum == 2 && canDestroySteel) { // Steel wall
+                        gp.TManager.mapTileNum[checkCol][checkRow] = 0; // Destroy steel wall if player has this ability
+                        sound.setFile(2);
+                        sound.play();
+                        alive = false;
+                    }alive = false;
                 }
             }
         }
@@ -163,7 +168,7 @@ public class Bullet extends Entity {
             // Check collision with the player
             Rectangle playerRect = new Rectangle(gp.player.x, gp.player.y, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6);
             if (bulletRect.intersects(playerRect)) {
-                if (!gp.player.getShield().isActive()) {
+                if (!gp.player. getShield().isActive()) {
                     System.out.println("Enemy bullet hit the player!");
                     alive = false;
                     gp.player.die();
@@ -191,6 +196,8 @@ public class Bullet extends Entity {
                         System.out.println("Player bullet hit an enemy!");
                         alive = false;
                         enemy.alive = false;
+                        sound.setFile(2);
+                        sound.play();
                         gp.explosions.add(new Explosion(gp, enemy.x, enemy.y));
                         gp.totalPoint += 200;
                         break;
