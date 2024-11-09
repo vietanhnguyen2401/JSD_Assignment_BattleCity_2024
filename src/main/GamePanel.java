@@ -76,8 +76,9 @@ public class GamePanel extends JPanel implements Runnable {
     public void setupGame() {
         aSetter.setTimedItems();
         //        gameState = PLAY_STATE;
+
+        gameState = GAME_OVER_STATE;
         playMusic(0);
-        gameState = TITLE_STATE;
 //        playMusic(0);
         aSetter.setNPC();
 //        playMusic(0);
@@ -177,6 +178,7 @@ public class GamePanel extends JPanel implements Runnable {
             currentLevel++;
         } else if(currentLevel == 5){
             gameState = GAME_OVER_STATE;
+            playMusic(6);
         }
         aSetter.setNPC();
         aSetter.setTimedItems();
@@ -192,7 +194,7 @@ public class GamePanel extends JPanel implements Runnable {
         if (player.lives == 0) {
             gameState = GAME_OVER_STATE;
             System.out.println("Game Over!");
-
+            playMusic(4);
             return; // Stop further updates if game is over
         }
 

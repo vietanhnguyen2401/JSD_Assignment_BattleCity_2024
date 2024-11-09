@@ -60,8 +60,7 @@ public class KeyHandler implements KeyListener {
                     gp.retry();
                 };
                 if(gp.ui.commandNumber == 3){
-                    gp.gameState = gp.TITLE_STATE;
-                    gp.ui.commandNumber = 0;
+                    System.exit(0);
                 }
             }
         }

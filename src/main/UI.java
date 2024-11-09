@@ -33,6 +33,7 @@ public class UI {
         }
         if (gp.gameState == gp.GAME_OVER_STATE){
             drawGameOverScreen();
+
         }
     }
 
@@ -58,21 +59,27 @@ public class UI {
 
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 14));
 
+        String score = "SCORE    " + gp.totalPoint;
         // retry option
         String retry = "RETRY";
 
         // back to main menu option
         String quit = "QUIT";
 
-        x = getXForCenteredText(retry);
+        x = getXForCenteredText(score);
         y = gp.tileSize*15;
+
+        g2.drawString(score, x - 20, y);
+
+        x = getXForCenteredText(retry);
+        y = gp.tileSize*18;
         if (commandNumber == 0){
             g2.drawString(">",  x - x/5, y);
         }
         g2.drawString(retry, x, y);
 
         x = getXForCenteredText(quit);
-        y = gp.tileSize*17;
+        y = gp.tileSize*20;
         if (commandNumber == 3){
             g2.drawString(">",  x - x/5, y);
         }

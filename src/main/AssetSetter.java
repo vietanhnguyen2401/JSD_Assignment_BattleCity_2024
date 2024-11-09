@@ -16,6 +16,7 @@ public class AssetSetter {
     }
 
     public void setTimedItems() {
+
         // Schedule each item to appear every 10 seconds
         timer.schedule(new SpawnItemTask(new Item_Grenade(gp), 14, 14), 0);          // Immediate
         timer.schedule(new SpawnItemTask(new Item_Helmet(gp), 20, 10), 10000);       // 10 seconds
@@ -44,11 +45,23 @@ public class AssetSetter {
             item.x = x * gp.tileSize;
             item.y = y * gp.tileSize;
 
-            // Find the next available slot for the item in gp.item array
+            // First, check if an item of this type already exists; if so, replace it
+            boolean itemReplaced = false;
             for (int i = 0; i < gp.item.length; i++) {
-                if (gp.item[i] == null) {
-                    gp.item[i] = item;
+                if (gp.item[i] != null && gp.item[i].getClass() == item.getClass()) {
+                    gp.item[i] = item; // Replace existing item of the same type
+                    itemReplaced = true;
                     break;
+                }
+            }
+
+            // If no replacement was made, find the next available slot
+            if (!itemReplaced) {
+                for (int i = 0; i < gp.item.length; i++) {
+                    if (gp.item[i] == null) {
+                        gp.item[i] = item;
+                        break;
+                    }
                 }
             }
         }

@@ -76,7 +76,7 @@ public class CollisionChecker {
     public void handleItemPickUp(String itemName){
         //TODO add item effects
         System.out.println("picked up: " + itemName);
-
+        gp.playMusic(5);
         if (itemName == "Timer"){
             for(Enemy e : gp.npc) {
                 //todo delay 3 seconds -> e.setFreezed(false)
