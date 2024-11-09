@@ -4,8 +4,6 @@ import entity.Enemy;
 import entity.Entity;
 import entity.Explosion;
 
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.ForkJoinPool;
 
 public class CollisionChecker {
@@ -76,24 +74,13 @@ public class CollisionChecker {
     public void handleItemPickUp(String itemName){
         //TODO add item effects
         System.out.println("picked up: " + itemName);
-        gp.playMusic(5);
+
         if (itemName == "Timer"){
             for(Enemy e : gp.npc) {
                 //todo delay 3 seconds -> e.setFreezed(false)
                 if (e != null) e.setFreezed(true);
             }
-            Timer timer = new Timer();
-            TimerTask task1 = new TimerTask() {
-                public void run() {
-                    for(Enemy e : gp.npc) {
-                        if (e != null) e.setFreezed(false);
-                    }
-                }
-
-            };
-            timer.schedule(task1, 3000);
-
-        } else if (itemName == "Star"){
+            } else if (itemName == "Star"){
             gp.player.starCount++;
             System.out.println("current star count:" + gp.player.starCount);
         } else if (itemName == "Tank"){
