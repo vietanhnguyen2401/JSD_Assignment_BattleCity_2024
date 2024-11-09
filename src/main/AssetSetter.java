@@ -24,9 +24,9 @@ public class AssetSetter {
         timer.schedule(new SpawnItemTask(new Item_Tank(gp), 15, 15), 40000);         // 40 seconds
 
         // Schedule 3 Star items at 10-second intervals after the Tank
-        timer.schedule(new SpawnItemTask(new Item_Star(gp), 17, 18), 0);         // 50 seconds
-        timer.schedule(new SpawnItemTask(new Item_Star(gp), 18, 23), 0);         // 60 seconds
-        timer.schedule(new SpawnItemTask(new Item_Star(gp), 19, 25), 0);         // 70 seconds
+        timer.schedule(new SpawnItemTask(new Item_Star(gp), 17, 18), 20000);         // 50 seconds
+        timer.schedule(new SpawnItemTask(new Item_Star(gp), 18, 23), 30000);         // 60 seconds
+        timer.schedule(new SpawnItemTask(new Item_Star(gp), 19, 25), 40000);         // 70 seconds
     }
 
     // Inner class to handle spawning an item at a specific position
