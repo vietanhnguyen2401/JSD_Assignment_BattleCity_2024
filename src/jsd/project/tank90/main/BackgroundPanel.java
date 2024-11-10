@@ -1,4 +1,4 @@
-package main;
+package jsd.project.tank90.main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,8 +17,7 @@ public class BackgroundPanel extends JPanel {
         gameFont = new Font("Font 7x7 Regular", Font.PLAIN, 40);
 
         // Load the image from the resources
-        // Assuming "sideInstruction.png" is located in the "res/instruction" folder within the project
-        sideImage = new ImageIcon(getClass().getResource("/res/instruction/sideInstruction.png")).getImage();
+        sideImage = new ImageIcon(getClass().getResource("/jsd/project/tank90/res/instruction/sideInstruction.png")).getImage();
 
         // Add the GamePanel to the BackgroundPanel and center it
         add(gamePanel);
@@ -42,13 +41,10 @@ public class BackgroundPanel extends JPanel {
         int y = (getHeight() - rectHeight) / 2; // Center vertically
 
         g2.fillRect(x, y, rectWidth, rectHeight);
-
         // Draw the image in the left side space only
         drawImageInLeftSpace(g2);
-
         // Update GamePanel's position to keep it centered
         gp.setBounds(getCenteredX(), getCenteredY(), gp.screenWidth, gp.screenHeight);
-
         drawGameInformationRightSide(g2);    }
 
     // Method to draw the image in the left side space only
@@ -56,7 +52,6 @@ public class BackgroundPanel extends JPanel {
         if (sideImage != null) {
             int leftX = getCenteredX() - sideImage.getWidth(null) - 20; // Left side with some margin
             int imageY = (getHeight() - sideImage.getHeight(null)) / 2; // Vertically center the image
-
             // Draw the image on the left side of the GamePanel
             g2.drawImage(sideImage, leftX, imageY, null);  // Left side
         } else {

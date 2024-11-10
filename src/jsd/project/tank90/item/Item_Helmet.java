@@ -1,6 +1,6 @@
-package item;
+package jsd.project.tank90.item;
 
-import main.GamePanel;
+import jsd.project.tank90.main.GamePanel;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
@@ -14,7 +14,7 @@ public class Item_Helmet extends SuperItem{
         this.gp = gp;
         name="Helmet";
         try {
-            image = ImageIO.read(getClass().getResourceAsStream("/res/items/helmet.png"));
+            image = ImageIO.read(getClass().getResourceAsStream("/jsd/project/tank90/res/items/helmet.png"));
             uTool.scaleImage(image, gp.TILE_SIZE*2 -6, gp.TILE_SIZE*2 -6);
 
         } catch (IOException e) {

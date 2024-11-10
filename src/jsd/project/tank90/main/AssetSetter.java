@@ -1,7 +1,9 @@
-package main;
+package jsd.project.tank90.main;
 
-import entity.Enemy;
-import item.*;
+import jsd.project.tank90.entity.Enemy;
+
+import jsd.project.tank90.item.*;
+
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Random;

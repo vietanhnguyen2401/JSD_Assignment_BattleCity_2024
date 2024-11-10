@@ -1,10 +1,10 @@
-package tile;
+package jsd.project.tank90.tile;
 
-import entity.Bullet;
-import entity.Enemy;
-import main.GamePanel;
-import entity.Player;
-import main.UtilityTool;
+import jsd.project.tank90.entity.Bullet;
+import jsd.project.tank90.entity.Enemy;
+import jsd.project.tank90.main.GamePanel;
+import jsd.project.tank90.entity.Player;
+import jsd.project.tank90.main.UtilityTool;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -23,7 +23,6 @@ public class Drawer {
 
     public Drawer(GamePanel gp) {
         this.gp = gp;
-
         tile = new Tile[10];
         mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
         getTileImage();
@@ -43,7 +42,7 @@ public class Drawer {
 
         try{
             tile[index] = new Tile();
-            tile[index].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/" + imagePath + "_tile.png"));
+            tile[index].image = ImageIO.read(getClass().getResourceAsStream("/jsd/project/tank90/res/tiles/" + imagePath + "_tile.png"));
             tile[index].image = uTool.scaleImage(tile[index].image, gp.TILE_SIZE, gp.TILE_SIZE);
             tile[index].collision = collision;
         } catch (IOException e){
@@ -51,13 +50,11 @@ public class Drawer {
         }
     }
     public void loadMap() {
-        String levelMapPath = "/res/maps/level01.txt";
-        if (gp.currentLevel == 2) levelMapPath = "/res/maps/level02.txt";
-        if (gp.currentLevel == 3) levelMapPath = "/res/maps/level03.txt";
-        if (gp.currentLevel == 4) levelMapPath = "/res/maps/level04.txt";
-        if (gp.currentLevel == 5) levelMapPath = "/res/maps/level05.txt";
-
-
+        String levelMapPath = "/jsd/project/tank90/res/maps/level01.txt";
+        if (gp.currentLevel == 2) levelMapPath = "/jsd/project/tank90/res/maps/level02.txt";
+        if (gp.currentLevel == 3) levelMapPath = "/jsd/project/tank90/res/maps/level03.txt";
+        if (gp.currentLevel == 4) levelMapPath = "/jsd/project/tank90/res/maps/level04.txt";
+        if (gp.currentLevel == 5) levelMapPath = "/jsd/project/tank90/res/maps/level05.txt";
 
         try {
             InputStream is = getClass().getResourceAsStream(levelMapPath);
@@ -93,7 +90,7 @@ public class Drawer {
         int y = 0;
         while(col < gp.maxScreenCol  && row < gp.maxScreenRow){
             int tileNum = mapTileNum[col][row];
-            if(tileNum != 5) { // If the tile is not grass, draw it
+            if(tileNum != 5) { // If the jsd.project.tank90.tile is not grass, draw it
                 g2.drawImage(tile[tileNum].image, x , y, null);
             }
             col++;
@@ -134,7 +131,7 @@ public class Drawer {
 
         while(col < gp.maxScreenCol && row < gp.maxScreenRow){
             int tileNum = mapTileNum[col][row];
-            if(tileNum == 5) { // If the tile is grass, draw it
+            if(tileNum == 5) { // If the jsd.project.tank90.tile is grass, draw it
                 g2.drawImage(tile[tileNum].image, x, y, null);
             }
             col++;

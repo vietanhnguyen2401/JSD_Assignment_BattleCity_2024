@@ -1,4 +1,4 @@
-package main;
+package jsd.project.tank90.main;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -12,13 +12,13 @@ public class Sound {
     URL soundURL[] = new URL[10];
 
     public Sound() {
-        soundURL[0] = getClass().getResource("/res/sounds/game_start.wav");
-        soundURL[1] = getClass().getResource("/res/sounds/bullet_shot.wav");
-        soundURL[2] = getClass().getResource("/res/sounds/explosion_1.wav");
-        soundURL[3] = getClass().getResource("/res/sounds/level_up.wav");
-        soundURL[4] = getClass().getResource("/res/sounds/game_over.wav");
-        soundURL[5] = getClass().getResource("/res/sounds/item_pickup.wav");
-        soundURL[6] = getClass().getResource("/res/sounds/game_win.wav");
+        soundURL[0] = getClass().getResource("/jsd/project/tank90/res/sounds/game_start.wav");
+        soundURL[1] = getClass().getResource("/jsd/project/tank90/res/sounds/bullet_shot.wav");
+        soundURL[2] = getClass().getResource("/jsd/project/tank90/res/sounds/explosion_1.wav");
+        soundURL[3] = getClass().getResource("/jsd/project/tank90/res/sounds/level_up.wav");
+        soundURL[4] = getClass().getResource("/jsd/project/tank90/res/sounds/game_over.wav");
+        soundURL[5] = getClass().getResource("/jsd/project/tank90/res/sounds/item_pickup.wav");
+        soundURL[6] = getClass().getResource("/jsd/project/tank90/res/sounds/game_win.wav");
     }
     public void setFile(int i) {
         try {
@@ -36,13 +36,11 @@ public class Sound {
             clip.start();
         }
     }
-
     public void loop() {
         if (clip != null) {
             clip.loop(Clip.LOOP_CONTINUOUSLY);
         }
     }
-
     public void stop() {
         if (clip != null) {
             clip.stop();

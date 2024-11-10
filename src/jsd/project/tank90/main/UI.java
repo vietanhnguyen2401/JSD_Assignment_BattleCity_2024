@@ -1,4 +1,4 @@
-package main;
+package jsd.project.tank90.main;
 
 import java.awt.*;
 /**
@@ -9,7 +9,7 @@ public class UI {
     GamePanel gp;
     Graphics2D g2;
     Font gameFont;
-    public int commandNumber = 0; // 0: one player, 1: two players, 2: game exit, 3: back to main menu
+    public int commandNumber = 0; // 0: one player, 1: two players, 2: game exit, 3: back to jsd.project.tank90.main menu
     public UI(GamePanel gp){
         this.gp = gp;
         gameFont = new Font("Font 7x7 Regular", Font.PLAIN, 40);
@@ -66,7 +66,7 @@ public class UI {
         // retry option
         String retry = "RETRY";
 
-        // back to main menu option
+        // back to jsd.project.tank90.main menu option
         String quit = "QUIT";
 
         x = getXForCenteredText(score);
@@ -100,15 +100,11 @@ public class UI {
         String text = "BATTLE CITY";
         int x = getXForCenteredText(text);
         int y = gp.TILE_SIZE*5;
-
         g2.setColor(Color.WHITE);
         g2.drawString(text, x, y);
-
-
         // MENU OPTIONS
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 14));
-
-        String onePlayer = "1 PLAYER";
+        String onePlayer = "PLAY";
         String quit = "QUIT";
 
         x = getXForCenteredText(onePlayer);
@@ -122,10 +118,5 @@ public class UI {
             g2.drawString(">",  x - x/5, y);
         }
         g2.drawString(quit, x, y);
-
-
-
     }
-
-
 }

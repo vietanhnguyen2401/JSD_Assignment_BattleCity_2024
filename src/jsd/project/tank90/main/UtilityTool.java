@@ -1,4 +1,4 @@
-package main;
+package jsd.project.tank90.main;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

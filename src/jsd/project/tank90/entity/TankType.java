@@ -1,4 +1,4 @@
-package entity;
+package jsd.project.tank90.entity;
 
 public enum TankType {
     BIG_RED(1, 4, "/res/player/big_red", 600),

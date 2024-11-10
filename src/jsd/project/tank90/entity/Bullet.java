@@ -1,11 +1,11 @@
-package entity;
+package jsd.project.tank90.entity;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-import main.GamePanel;
-import main.Sound;
+import jsd.project.tank90.main.GamePanel;
+import jsd.project.tank90.main.Sound;
 
 import javax.imageio.ImageIO;
 
@@ -55,10 +55,10 @@ public class Bullet extends Entity {
 
     public void getBulletImage() {
         try {
-            upImage = ImageIO.read(getClass().getResourceAsStream("/res/bullets/up.png"));
-            downImage = ImageIO.read(getClass().getResourceAsStream("/res/bullets/down.png"));
-            leftImage = ImageIO.read(getClass().getResourceAsStream("/res/bullets/left.png"));
-            rightImage = ImageIO.read(getClass().getResourceAsStream("/res/bullets/right.png"));
+            upImage = ImageIO.read(getClass().getResourceAsStream("/jsd/project/tank90/res/bullets/up.png"));
+            downImage = ImageIO.read(getClass().getResourceAsStream("/jsd/project/tank90/res/bullets/down.png"));
+            leftImage = ImageIO.read(getClass().getResourceAsStream("/jsd/project/tank90/res/bullets/left.png"));
+            rightImage = ImageIO.read(getClass().getResourceAsStream("/jsd/project/tank90/res/bullets/right.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -104,14 +104,14 @@ public class Bullet extends Entity {
                 Rectangle expandedBulletRect = new Rectangle(centerX - margin, centerY - margin, 6 + 2 * margin, 6 + 2 * margin);
 
                 if (gp.drawer.tile[tileNum].collision && expandedBulletRect.intersects(tileRect)) {
-                    if (tileNum == 1) { // Brick tile
+                    if (tileNum == 1) { // Brick jsd.project.tank90.tile
                         System.out.println("Bullet hit brick. Breaking it.");
                         gp.drawer.mapTileNum[checkCol][checkRow] = 0;
                         sound.setFile(2);
                         sound.play();
                         alive = false;
                         return;
-                    } else if (tileNum == 2) { // Steel tile
+                    } else if (tileNum == 2) { // Steel jsd.project.tank90.tile
                         handleSteelTileInteraction(tileNum, checkCol, checkRow);
                     }
                 }

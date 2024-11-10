@@ -1,9 +1,8 @@
-package entity;
+package jsd.project.tank90.entity;
 
 
-import main.GamePanel;
-import main.Sound;
-import main.UtilityTool;
+import jsd.project.tank90.main.GamePanel;
+import jsd.project.tank90.main.UtilityTool;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -180,14 +179,14 @@ public class Enemy extends Entity {
     }
     public void getEnemyImage(){
             String basePath = tankType.imagePath;
-            up1 = setup(basePath + " (1).png");
-            up2 = setup(basePath + " (2).png");
-            left1 = setup(basePath + " (3).png");
-            left2 = setup(basePath + " (4).png");
-            down1 = setup(basePath + " (5).png");
-            down2 = setup(basePath + " (6).png");
-            right1 = setup(basePath + " (7).png");
-            right2 = setup(basePath + " (8).png");
+            up1 = setup("/jsd/project/tank90" + basePath + " (1).png");
+            up2 = setup("/jsd/project/tank90" + basePath + " (2).png");
+            left1 = setup("/jsd/project/tank90" + basePath + " (3).png");
+            left2 = setup("/jsd/project/tank90" + basePath + " (4).png");
+            down1 = setup("/jsd/project/tank90" + basePath + " (5).png");
+            down2 = setup("/jsd/project/tank90" + basePath + " (6).png");
+            right1 = setup("/jsd/project/tank90" + basePath + " (7).png");
+            right2 = setup("/jsd/project/tank90" + basePath + " (8).png");
     }
     public BufferedImage setup(String imagePath){
         UtilityTool uTool = new UtilityTool();

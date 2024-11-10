@@ -1,10 +1,10 @@
-package entity;
+package jsd.project.tank90.entity;
 
-import item.Shield;
-import main.GamePanel;
-import main.KeyHandler;
-import main.UtilityTool;
-import main.Sound;
+import jsd.project.tank90.item.Shield;
+import jsd.project.tank90.main.GamePanel;
+import jsd.project.tank90.main.KeyHandler;
+import jsd.project.tank90.main.UtilityTool;
+import jsd.project.tank90.main.Sound;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -88,16 +88,16 @@ public class Player extends Entity implements Runnable {
     }
 
     private void loadPlayerImages() {
-        up1 = loadImage("/res/player/yellow_small (1).png");
-        up2 = loadImage("/res/player/yellow_small (2).png");
-        down1 = loadImage("/res/player/yellow_small (5).png");
-        down2 = loadImage("/res/player/yellow_small (6).png");
-        left1 = loadImage("/res/player/yellow_small (3).png");
-        left2 = loadImage("/res/player/yellow_small (4).png");
-        right1 = loadImage("/res/player/yellow_small (7).png");
-        right2 = loadImage("/res/player/yellow_small (8).png");
-        shield1 = loadImage("/res/shield/shield1.png");
-        shield2 = loadImage("/res/shield/shield2.png");
+        up1 = loadImage("/jsd/project/tank90/res/player/yellow_small (1).png");
+        up2 = loadImage("/jsd/project/tank90/res/player/yellow_small (2).png");
+        down1 = loadImage("/jsd/project/tank90/res/player/yellow_small (5).png");
+        down2 = loadImage("/jsd/project/tank90/res/player/yellow_small (6).png");
+        left1 = loadImage("/jsd/project/tank90/res/player/yellow_small (3).png");
+        left2 = loadImage("/jsd/project/tank90/res/player/yellow_small (4).png");
+        right1 = loadImage("/jsd/project/tank90/res/player/yellow_small (7).png");
+        right2 = loadImage("/jsd/project/tank90/res/player/yellow_small (8).png");
+        shield1 = loadImage("/jsd/project/tank90/res/shield/shield1.png");
+        shield2 = loadImage("/jsd/project/tank90/res/shield/shield2.png");
     }
 
     private BufferedImage loadImage(String imagePath) {

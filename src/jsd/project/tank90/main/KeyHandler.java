@@ -1,4 +1,4 @@
-package main;
+package jsd.project.tank90.main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -31,7 +31,6 @@ public class KeyHandler implements KeyListener {
             }
             if (code == KeyEvent.VK_ENTER) {
                 if (gp.ui.commandNumber == 0) gp.gameState = gp.PLAY_STATE;
-                if (gp.ui.commandNumber == 1) gp.gameState = gp.PLAY_STATE;
                 if (gp.ui.commandNumber == 2) System.exit(0);
             }
         }

@@ -1,4 +1,4 @@
-package item;
+package jsd.project.tank90.item;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -28,8 +28,8 @@ public class Shield {
 
         // Load the two shield images
         try {
-            shieldImage1 = ImageIO.read(getClass().getResourceAsStream("/res/shield/shield1.png")); // Adjust path as needed
-            shieldImage2 = ImageIO.read(getClass().getResourceAsStream("/res/shield/shield2.png")); // Adjust path as needed
+            shieldImage1 = ImageIO.read(getClass().getResourceAsStream("/jsd/project/tank90/res/shield/shield1.png")); // Adjust path as needed
+            shieldImage2 = ImageIO.read(getClass().getResourceAsStream("/jsd/project/tank90/res/shield/shield2.png")); // Adjust path as needed
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -39,8 +39,8 @@ public class Shield {
     public void activate(int x, int y) {
         isActive = true;
         counter = 0;
-        this.x = x;
-        this.y = y;
+        this.x = x - 5;
+        this.y = y - 5;
     }
 
     public void setDuration(int duration) {

@@ -1,6 +1,6 @@
-package entity;
+package jsd.project.tank90.entity;
 
-import main.GamePanel;
+import jsd.project.tank90.main.GamePanel;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -10,7 +10,6 @@ import java.awt.image.BufferedImage;
  * It contains properties for position, movement, appearance, collision detection, and more.
  */
 public class Entity {
-
     // Position of the entity on the game panel
     public int x, y;
 

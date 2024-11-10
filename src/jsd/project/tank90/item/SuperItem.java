@@ -1,9 +1,7 @@
-package item;
+package jsd.project.tank90.item;
 
-import entity.Player;
-import jdk.jshell.execution.Util;
-import main.GamePanel;
-import main.UtilityTool;
+import jsd.project.tank90.main.GamePanel;
+import jsd.project.tank90.main.UtilityTool;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

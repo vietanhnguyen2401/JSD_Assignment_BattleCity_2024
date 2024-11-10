@@ -1,6 +1,6 @@
-package entity;
+package jsd.project.tank90.entity;
 
-import main.GamePanel;
+import jsd.project.tank90.main.GamePanel;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -24,8 +24,8 @@ public class Explosion {
     private void loadExplosionImages() {
         explosionImages = new BufferedImage[3];
         try {
-            explosionImages[0] = ImageIO.read(getClass().getResourceAsStream("/res/explosion/big.png"));
-            explosionImages[1] = ImageIO.read(getClass().getResourceAsStream("/res/explosion/small.png"));
+            explosionImages[0] = ImageIO.read(getClass().getResourceAsStream("/jsd/project/tank90/res/explosion/big.png"));
+            explosionImages[1] = ImageIO.read(getClass().getResourceAsStream("/jsd/project/tank90/res/explosion/small.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

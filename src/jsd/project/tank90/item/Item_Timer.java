@@ -1,6 +1,6 @@
-package item;
+package jsd.project.tank90.item;
 
-import main.GamePanel;
+import jsd.project.tank90.main.GamePanel;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
@@ -14,7 +14,7 @@ public class Item_Timer extends SuperItem{
         this.gp = gp;
         name="Timer";
         try {
-            image = ImageIO.read(getClass().getResourceAsStream("/res/items/timer.png"));
+            image = ImageIO.read(getClass().getResourceAsStream("/jsd/project/tank90/res/items/timer.png"));
             uTool.scaleImage(image, gp.TILE_SIZE*2 -6, gp.TILE_SIZE*2 -6);
 
         } catch (IOException e) {

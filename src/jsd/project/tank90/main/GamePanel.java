@@ -1,8 +1,8 @@
-package main;
+package jsd.project.tank90.main;
 
-import entity.*;
-import item.SuperItem;
-import tile.Drawer;
+import jsd.project.tank90.item.SuperItem;
+import jsd.project.tank90.entity.*;
+import jsd.project.tank90.tile.Drawer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +14,7 @@ import java.util.Random;
  * The GamePanel class is used for running the game.
  */
 public class GamePanel extends JPanel implements Runnable {
-    final int ORIGINAL_TILE_SIZE = 8; // 8 x 8 tile size
+    final int ORIGINAL_TILE_SIZE = 8; // 8 x 8 jsd.project.tank90.tile size
     final int SCALE = 2; // Scaling factor
 
     public final int TILE_SIZE = ORIGINAL_TILE_SIZE * SCALE;

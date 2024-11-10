@@ -1,11 +1,11 @@
-package main;
+package jsd.project.tank90.main;
 
-import entity.Enemy;
-import entity.Entity;
-import entity.Explosion;
+import jsd.project.tank90.entity.Enemy;
+import jsd.project.tank90.entity.Entity;
+import jsd.project.tank90.entity.Explosion;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.ForkJoinPool;
+
 /**
  * The CollisionChecker class is used for handling all the collisions
  */

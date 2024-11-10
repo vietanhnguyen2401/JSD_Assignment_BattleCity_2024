@@ -1,6 +1,6 @@
-package entity;
+package jsd.project.tank90.entity;
 
-import main.GamePanel;
+import jsd.project.tank90.main.GamePanel;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -34,10 +34,10 @@ public class Base extends Entity {
     // Function to get all the image needed for base displaying
     public void getBaseImage(){
         try{
-            normalBase = ImageIO.read(getClass().getResourceAsStream("/res/base/base.png"));
-            destroyedBase = ImageIO.read(getClass().getResourceAsStream("/res/base/destroyed_base.png"));
-            explosion1 = ImageIO.read(getClass().getResourceAsStream("/res/explosion/small.png"));
-            explosion2 = ImageIO.read(getClass().getResourceAsStream("/res/explosion/big.png"));
+            normalBase = ImageIO.read(getClass().getResourceAsStream("/jsd/project/tank90/res/base/base.png"));
+            destroyedBase = ImageIO.read(getClass().getResourceAsStream("/jsd/project/tank90/res/base/destroyed_base.png"));
+            explosion1 = ImageIO.read(getClass().getResourceAsStream("/jsd/project/tank90/res/explosion/small.png"));
+            explosion2 = ImageIO.read(getClass().getResourceAsStream("/jsd/project/tank90/res/explosion/big.png"));
         } catch(IOException e) {
             e.printStackTrace();
         }
