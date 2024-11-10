@@ -37,9 +37,6 @@
         private final int flickerDuration = 60; // Total duration for flickering
         private boolean running = true; // Flag to control the player thread
 
-
-        private int maxBulletsAllowed = 1; // Number of bullets allowed based on power level
-        private int bulletSpeed = 2; // Bullet speed modifier
         public boolean canDestroySteel = false; // Flag for destroying steel walls
 
 
@@ -77,7 +74,7 @@
             y = 400;
             starCount = 0;
             lives = 3;
-
+            shotCooldown = 1000;
             speed = 1;
             direction = "up";
             shield = new Shield(4 * 60, 10, gp.tileSize * 2 - 5);
@@ -254,7 +251,7 @@
         public void resetPowerLevel() {
             // Reset power level when the player dies
             starCount = 0;
-            maxBulletsAllowed = 1;
+            shotCooldown = 1000;
             for (var bullet : bullets) {
                 bullet.speed = 2;
             }

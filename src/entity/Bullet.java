@@ -147,12 +147,18 @@ public class Bullet extends Entity {
                         sound.play();
                         alive = false; // Bullet is destroyed upon collision
                         return; // Stop after breaking the brick
-                    } else if (tileNum == 2 && canDestroySteel) { // Steel wall
+                    }
+                    else if (tileNum == 2 && canDestroySteel) { // Steel wall
                         gp.TManager.mapTileNum[checkCol][checkRow] = 0; // Destroy steel wall if player has this ability
                         sound.setFile(2);
                         sound.play();
                         alive = false;
-                    }alive = false;
+                        return;
+                    } else if (tileNum == 2 && isEnemyBullet) {
+                        alive = false;
+                    } else if (tileNum == 2 && !canDestroySteel) {
+                        alive = false;
+                    }
                 }
             }
         }
@@ -189,17 +195,24 @@ public class Bullet extends Entity {
             }
         } else {
             // Check collision with enemies (for player bullets)
-            for (Enemy enemy : gp.npc) {
+            for (int i = 0; i < gp.npc.length; i++) {
+                Enemy enemy = gp.npc[i];
                 if (enemy != null && enemy.alive) {
                     Rectangle enemyRect = new Rectangle(enemy.x, enemy.y, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6);
                     if (bulletRect.intersects(enemyRect)) {
                         System.out.println("Player bullet hit an enemy!");
                         alive = false;
-                        enemy.alive = false;
-                        sound.setFile(2);
+                        enemy.lives--;
+                        System.out.println("enemy tank " + enemy.tankType + i + " " + " Live: " + enemy.lives);
+
+                        if(enemy.lives <= 0) {
+                            enemy.alive = false; sound.setFile(2);
                         sound.play();
-                        gp.explosions.add(new Explosion(gp, enemy.x, enemy.y));
                         gp.totalPoint += enemy.point;
+                        }
+                        gp.explosions.add(new Explosion(gp, enemy.x, enemy.y));
+
+  
                         break;
                     }
                 }
