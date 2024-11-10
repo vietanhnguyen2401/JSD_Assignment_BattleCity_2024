@@ -6,12 +6,16 @@ public enum TankType {
     SUPER_RED(1, 5, "/res/player/super_red"),
     GREEN(1, 2, "/res/player/green_small"),
     TANK_ARMOR(1, 8, "/res/player/tank_armor");
+
     public final int speed;
     public final int lives;
     public final String imagePath;
-    private TankType(int speed, int lives, String imagePath) {
+    public int point;
+  
+    private TankType(int speed, int lives, String imagePath, int point) {
         this.speed = speed;
         this.lives = lives;
         this.imagePath = imagePath;
+        this.point = point;
     }
 }

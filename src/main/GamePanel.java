@@ -75,12 +75,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setupGame() {
         aSetter.setTimedItems();
-        //        gameState = PLAY_STATE;
-        playMusic(0);
         gameState = TITLE_STATE;
-//        playMusic(0);
+        playMusic(0);
         aSetter.setNPC();
-//        playMusic(0);
     }
 
     public void startGameThread() {
@@ -130,8 +127,6 @@ public class GamePanel extends JPanel implements Runnable {
                 int attempts = 0;
 
                 do {
-//                    spawnX = (random.nextInt(4) + maxScreenCol - 5) * tileSize; // Cột từ 21 đến 27
-//                    spawnY = (random.nextInt(4) + 1) * tileSize;
                       spawnX = 398;
                       spawnY = 50;
                     // Check if the spawn position is unblocked and unoccupied
@@ -163,9 +158,11 @@ public class GamePanel extends JPanel implements Runnable {
         player.setDefaultValues();
         totalPoint = 0;
         currentLevel = 1;
+
         for (int i = 0; i < npc.length; i++) {
             npc[i] = null; // Xóa tất cả các enemy NPC hiện tại
         }
+
         enemyCount=10;
         aSetter.setNPC();
         aSetter.setTimedItems();
@@ -185,6 +182,7 @@ public class GamePanel extends JPanel implements Runnable {
             currentLevel++;
         } else if(currentLevel == 5){
             gameState = GAME_OVER_STATE;
+            playMusic(6);
         }
         aSetter.setNPC();
         aSetter.setTimedItems();
@@ -201,7 +199,7 @@ public class GamePanel extends JPanel implements Runnable {
         if (player.lives == 0) {
             gameState = GAME_OVER_STATE;
             System.out.println("Game Over!");
-
+            playMusic(4);
             return; // Stop further updates if game is over
         }
 
