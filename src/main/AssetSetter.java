@@ -7,36 +7,59 @@ import java.util.TimerTask;
 import java.util.Random;
 
 /**
- * The AssetSetter class is used for setting Items on the game screen
-
+ * The AssetSetter class is responsible for setting items and NPCs on the game screen.
  */
 public class AssetSetter {
-    GamePanel gp;
-    private Timer timer;
+    private final GamePanel gp;
+    private final Timer timer;
 
     public AssetSetter(GamePanel gp) {
         this.gp = gp;
         this.timer = new Timer();
     }
 
+    /**
+     * Sets timed items to appear on the game screen at specific intervals.
+     */
     public void setTimedItems() {
+        // Schedule each item to appear at specified intervals
+        timer.schedule(new SpawnItemTask(new Item_Grenade(gp), 14, 14), 40000);  // Immediate
+        timer.schedule(new SpawnItemTask(new Item_Helmet(gp), 20, 10), 20000);   // 20 seconds
+        timer.schedule(new SpawnItemTask(new Item_Timer(gp), 10, 21), 30000);    // 30 seconds
+        timer.schedule(new SpawnItemTask(new Item_Tank(gp), 15, 15), 40000);     // 40 seconds
 
-        // Schedule each item to appear every 10 seconds
-        timer.schedule(new SpawnItemTask(new Item_Grenade(gp), 14, 14), 40000);          // Immediate
-        timer.schedule(new SpawnItemTask(new Item_Helmet(gp), 20, 10), 20000);       // 10 seconds
-        timer.schedule(new SpawnItemTask(new Item_Timer(gp), 10, 21), 30000);        // 30 seconds
-        timer.schedule(new SpawnItemTask(new Item_Tank(gp), 15, 15), 40000);         // 40 seconds
-
-        // Schedule 3 Star items at 10-second intervals after the Tank
-        timer.schedule(new SpawnItemTask(new Item_Star(gp), 17, 18), 20000);         // 50 seconds
-        timer.schedule(new SpawnItemTask(new Item_Star(gp), 18, 23), 30000);         // 60 seconds
-        timer.schedule(new SpawnItemTask(new Item_Star(gp), 19, 25), 40000);         // 70 seconds
+        // Schedule 3 Star items at intervals after the Tank
+        timer.schedule(new SpawnItemTask(new Item_Star(gp), 17, 18), 50000);     // 50 seconds
+        timer.schedule(new SpawnItemTask(new Item_Star(gp), 18, 23), 60000);     // 60 seconds
+        timer.schedule(new SpawnItemTask(new Item_Star(gp), 19, 25), 70000);     // 70 seconds
     }
 
-    // Inner class to handle spawning an item at a specific position
+    /**
+     * Cancels all scheduled tasks to prevent resource leaks.
+     */
+    public void cancelTimers() {
+        timer.cancel();
+    }
+
+    /**
+     * Spawns NPCs at specific locations.
+     */
+    public void setNPC() {
+        Random random = new Random();
+
+        for (int i = 0; i < 4; i++) {
+            gp.npc[i] = new Enemy(gp);
+            gp.npc[i].x = 398;
+            gp.npc[i].y = 50;
+        }
+    }
+
+    /**
+     * Inner class responsible for spawning an item at a specific position.
+     */
     private class SpawnItemTask extends TimerTask {
-        private SuperItem item;
-        private int x, y;
+        private final SuperItem item;
+        private final int x, y;
 
         public SpawnItemTask(SuperItem item, int x, int y) {
             this.item = item;
@@ -49,17 +72,17 @@ public class AssetSetter {
             item.x = x * gp.TILE_SIZE;
             item.y = y * gp.TILE_SIZE;
 
-            // First, check if an item of this type already exists; if so, replace it
+            // Check for existing item of the same type and replace it if found
             boolean itemReplaced = false;
             for (int i = 0; i < gp.item.length; i++) {
                 if (gp.item[i] != null && gp.item[i].getClass() == item.getClass()) {
-                    gp.item[i] = item; // Replace existing item of the same type
+                    gp.item[i] = item;  // Replace existing item of the same type
                     itemReplaced = true;
                     break;
                 }
             }
 
-            // If no replacement was made, find the next available slot
+            // If no replacement was made, add the item to the next available slot
             if (!itemReplaced) {
                 for (int i = 0; i < gp.item.length; i++) {
                     if (gp.item[i] == null) {
@@ -70,29 +93,4 @@ public class AssetSetter {
             }
         }
     }
-
-    // Cancel the timer when no longer needed to prevent resource leaks
-    public void cancelTimers() {
-        timer.cancel();
-    }
-    public void setNPC(){
-        Random random = new Random();
-        gp.npc[0] = new Enemy(gp);
-        gp.npc[0].x = 398;
-        gp.npc[0].y = 50;
-
-
-        gp.npc[1] = new Enemy(gp);
-        gp.npc[1].x = 398;
-        gp.npc[1].y = 50;
-
-        gp.npc[2] = new Enemy(gp);
-        gp.npc[2].x = 398;
-        gp.npc[2].y = 50;
-
-        gp.npc[3] = new Enemy(gp);
-        gp.npc[3].x = 398;
-        gp.npc[3].y = 50;
-    }
-
 }

@@ -43,6 +43,10 @@ public class Shield {
         this.y = y;
     }
 
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
     // Update shield's position, duration, and flickering
     public void update(int playerX, int playerY) {
         if (!isActive) return;
