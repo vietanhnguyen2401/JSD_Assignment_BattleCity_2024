@@ -6,6 +6,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Random;
 
+/**
+ * The AssetSetter class is used for setting Items on the game screen
+
+ */
 public class AssetSetter {
     GamePanel gp;
     private Timer timer;
@@ -42,8 +46,8 @@ public class AssetSetter {
 
         @Override
         public void run() {
-            item.x = x * gp.tileSize;
-            item.y = y * gp.tileSize;
+            item.x = x * gp.TILE_SIZE;
+            item.y = y * gp.TILE_SIZE;
 
             // First, check if an item of this type already exists; if so, replace it
             boolean itemReplaced = false;

@@ -12,13 +12,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+/**
+ * The Drawer class is used for drawing all components in the Game
+ */
 
-public class TileManager {
+public class Drawer {
     GamePanel gp;
     public Tile[] tile;
     public int mapTileNum[][];
 
-    public TileManager(GamePanel gp) {
+    public Drawer(GamePanel gp) {
         this.gp = gp;
 
         tile = new Tile[10];
@@ -41,7 +44,7 @@ public class TileManager {
         try{
             tile[index] = new Tile();
             tile[index].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/" + imagePath + "_tile.png"));
-            tile[index].image = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
+            tile[index].image = uTool.scaleImage(tile[index].image, gp.TILE_SIZE, gp.TILE_SIZE);
             tile[index].collision = collision;
         } catch (IOException e){
             e.printStackTrace();
@@ -94,13 +97,13 @@ public class TileManager {
                 g2.drawImage(tile[tileNum].image, x , y, null);
             }
             col++;
-            x+= gp.tileSize;
+            x+= gp.TILE_SIZE;
 
             if (col == gp.maxScreenCol){
                 col = 0;
                 x=0;
                 row++;
-                y += gp.tileSize;
+                y += gp.TILE_SIZE;
             }
         }
 
@@ -108,7 +111,7 @@ public class TileManager {
         // Draw the player
         player.draw(g2);
 
-        //todo draw enemy here
+        // Draw the player
         for ( int i = 0 ; i < gp.npc.length; i++) {
             if (enemy[i] != null && enemy[i].alive) {
                 enemy[i].draw(g2);
@@ -128,19 +131,20 @@ public class TileManager {
         row = 0;
         x = 0;
         y = 0;
+
         while(col < gp.maxScreenCol && row < gp.maxScreenRow){
             int tileNum = mapTileNum[col][row];
             if(tileNum == 5) { // If the tile is grass, draw it
                 g2.drawImage(tile[tileNum].image, x, y, null);
             }
             col++;
-            x+= gp.tileSize;
+            x+= gp.TILE_SIZE;
 
             if (col == gp.maxScreenCol){
                 col = 0;
                 x=0;
                 row++;
-                y += gp.tileSize;
+                y += gp.TILE_SIZE;
             }
         }
     }

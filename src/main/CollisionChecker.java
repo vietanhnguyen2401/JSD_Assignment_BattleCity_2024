@@ -6,7 +6,9 @@ import entity.Explosion;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ForkJoinPool;
-
+/**
+ * The CollisionChecker class is used for handling all the collisions
+ */
 public class CollisionChecker {
     GamePanel gp;
     public CollisionChecker(GamePanel gp){
@@ -21,47 +23,47 @@ public class CollisionChecker {
         int entityBottomY = entity.y + entity.solidArea.y + entity.solidArea.height;
 
 
-        int entityLeftCol = entityLeftX / gp.tileSize;
-        int entityRightCol = entityRightX / gp.tileSize;
-        int entityTopRow = entityTopY / gp.tileSize;
-        int entityBottomRow = entityBottomY / gp.tileSize;
+        int entityLeftCol = entityLeftX / gp.TILE_SIZE;
+        int entityRightCol = entityRightX / gp.TILE_SIZE;
+        int entityTopRow = entityTopY / gp.TILE_SIZE;
+        int entityBottomRow = entityBottomY / gp.TILE_SIZE;
 
         switch (entity.direction) {
             case "up":
-                entityTopRow = (entityTopY - entity.speed) / gp.tileSize;
+                entityTopRow = (entityTopY - entity.speed) / gp.TILE_SIZE;
                 for (int col = entityLeftCol; col <= entityRightCol; col++) {
-                    int tileNum = gp.TManager.mapTileNum[col][entityTopRow];
-                    if (gp.TManager.tile[tileNum].collision) {
+                    int tileNum = gp.drawer.mapTileNum[col][entityTopRow];
+                    if (gp.drawer.tile[tileNum].collision) {
                         entity.collisionOn = true;
                         return;
                     }
                 }
                 break;
             case "down":
-                entityBottomRow = (entityBottomY + entity.speed) / gp.tileSize;
+                entityBottomRow = (entityBottomY + entity.speed) / gp.TILE_SIZE;
                 for (int col = entityLeftCol; col <= entityRightCol; col++) {
-                    int tileNum = gp.TManager.mapTileNum[col][entityBottomRow];
-                    if (gp.TManager.tile[tileNum].collision) {
+                    int tileNum = gp.drawer.mapTileNum[col][entityBottomRow];
+                    if (gp.drawer.tile[tileNum].collision) {
                         entity.collisionOn = true;
                         return;
                     }
                 }
                 break;
             case "left":
-                entityLeftCol = (entityLeftX - entity.speed) / gp.tileSize;
+                entityLeftCol = (entityLeftX - entity.speed) / gp.TILE_SIZE;
                 for (int row = entityTopRow; row <= entityBottomRow; row++) {
-                    int tileNum = gp.TManager.mapTileNum[entityLeftCol][row];
-                    if (gp.TManager.tile[tileNum].collision) {
+                    int tileNum = gp.drawer.mapTileNum[entityLeftCol][row];
+                    if (gp.drawer.tile[tileNum].collision) {
                         entity.collisionOn = true;
                         return;
                     }
                 }
                 break;
             case "right":
-                entityRightCol = (entityRightX + entity.speed) / gp.tileSize;
+                entityRightCol = (entityRightX + entity.speed) / gp.TILE_SIZE;
                 for (int row = entityTopRow; row <= entityBottomRow; row++) {
-                    int tileNum = gp.TManager.mapTileNum[entityRightCol][row];
-                    if (gp.TManager.tile[tileNum].collision) {
+                    int tileNum = gp.drawer.mapTileNum[entityRightCol][row];
+                    if (gp.drawer.tile[tileNum].collision) {
                         entity.collisionOn = true;
                         return;
                     }
@@ -71,12 +73,9 @@ public class CollisionChecker {
     }
 
     public void handleItemPickUp(String itemName){
-        //TODO add item effects
-        System.out.println("picked up: " + itemName);
         gp.playMusic(5);
         if (itemName == "Timer"){
             for(Enemy e : gp.npc) {
-                //todo delay 3 seconds -> e.setFreezed(false)
                 if (e != null) e.setFreezed(true);
             }
             Timer timer = new Timer();
@@ -114,20 +113,17 @@ public class CollisionChecker {
                 // Get entity's solid area position
                 entity.solidArea.x = entity.x + entity.solidArea.x;
                 entity.solidArea.y = entity.y + entity.solidArea.y;
-
                 gp.item[i].solidArea.x = gp.item[i].x + gp.item[i].solidArea.x;
                 gp.item[i].solidArea.y = gp.item[i].y + gp.item[i].solidArea.y;
 
                 switch (entity.direction) {
                     case "up":
                         entity.solidArea.y -= entity.speed;
-
                         if (entity.solidArea.intersects(gp.item[i].solidArea)){
                            if (isPlayer == true){
                                 index = i;
                                handleItemPickUp(gp.item[i].name);
                            }
-
                         }
 
                     case "down":
@@ -145,7 +141,6 @@ public class CollisionChecker {
                             if (isPlayer == true){
                                 index = i;
                                 handleItemPickUp(gp.item[i].name);
-
                             }
                         }
 
@@ -155,12 +150,11 @@ public class CollisionChecker {
                             if (isPlayer == true){
                                 index = i;
                                 handleItemPickUp(gp.item[i].name);
-
                             }
-
                         }
-
                 }
+
+                // reset entity's solid area position
                 entity.solidArea.x = entity.solidAreaDefaultX;
                 entity.solidArea.y = entity.solidAreaDefaultY;
                 gp.item[i].solidArea.x = gp.item[i].solidAreaDefaultX;
@@ -179,7 +173,6 @@ public class CollisionChecker {
                 // Get entity's solid area position
                 entity.solidArea.x = entity.x + entity.solidArea.x;
                 entity.solidArea.y = entity.y + entity.solidArea.y;
-
                 target[i].solidArea.x = target[i].x + target[i].solidArea.x;
                 target[i].solidArea.y = target[i].y + target[i].solidArea.y;
 
@@ -213,7 +206,6 @@ public class CollisionChecker {
                         }
                         break;
                 }
-
                 entity.solidArea.x = entity.solidAreaDefaultX;
                 entity.solidArea.y = entity.solidAreaDefaultY;
                 target[i].solidArea.x = target[i].solidAreaDefaultX;
@@ -314,10 +306,10 @@ public class CollisionChecker {
     }
 
     public boolean checkTileCollision(int x, int y) {
-        int col = x / gp.tileSize;
-        int row = y / gp.tileSize;
-        int tileNum = gp.TManager.mapTileNum[col][row];
-        return gp.TManager.tile[tileNum].collision;
+        int col = x / gp.TILE_SIZE;
+        int row = y / gp.TILE_SIZE;
+        int tileNum = gp.drawer.mapTileNum[col][row];
+        return gp.drawer.tile[tileNum].collision;
     }
     public boolean isPositionOccupiedByEntity(int x, int y) {
         // Check if this position collides with the player

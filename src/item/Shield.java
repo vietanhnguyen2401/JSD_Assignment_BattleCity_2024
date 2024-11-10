@@ -4,7 +4,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-
+/**
+ * The Shield class represents the "shield" that player get after reviving or picking up the "Helmet" item
+ * player is immutable when having shield
+ */
 public class Shield {
     private int duration; // Duration of shield in frames
     private int flickerFrequency; // Frequency of flickering

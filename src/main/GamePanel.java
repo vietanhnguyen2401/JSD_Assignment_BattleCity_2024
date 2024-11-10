@@ -2,30 +2,33 @@ package main;
 import entity.*;
 
 import item.SuperItem;
-import tile.TileManager;
+import tile.Drawer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+/**
+ * The GamePanel class is used for running the game
+ */
 
 public class GamePanel extends JPanel implements Runnable {
-    final int originalTileSize = 8; // 8 x 8 tile size
-    final int scale = 2;
+    final int ORIGINAL_TILE_SIZE = 8; // 8 x 8 tile size
+    final int SCALE = 2; // 8 x 8 tile size
 
-    public final int tileSize = originalTileSize * scale;
+    public final int TILE_SIZE = ORIGINAL_TILE_SIZE * SCALE;
     public final int maxScreenCol = 28;
     public final int maxScreenRow = 28;
-    public final int screenWidth = tileSize * maxScreenCol;
-    public final int screenHeight = tileSize * maxScreenRow;
+    public final int screenWidth = TILE_SIZE * maxScreenCol;
+    public final int screenHeight = TILE_SIZE * maxScreenRow;
     public UI ui = new UI(this);
 
     // FPS
     final int FPS = 60;
     final long ONE_SECOND_IN_NANOSECOND = 1000000000;
     // System
-    public TileManager TManager = new TileManager(this);
+    public Drawer drawer = new Drawer(this);
     KeyHandler keyHandler = new KeyHandler(this);
     Thread gameThread;
 
@@ -64,8 +67,6 @@ public class GamePanel extends JPanel implements Runnable {
     // Maximum enemies allowed on the screen at a time
     private final int MAX_ENEMIES = npc.length;
     public GamePanel(){
-
-
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
@@ -85,10 +86,10 @@ public class GamePanel extends JPanel implements Runnable {
         gameThread.start();
     }
 
+    // Game loop
     @Override
     public void run() {
         double drawInterval = ONE_SECOND_IN_NANOSECOND/FPS;  // 0.01666666 seconds
-
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime;
@@ -131,8 +132,8 @@ public class GamePanel extends JPanel implements Runnable {
                       spawnY = 50;
                     // Check if the spawn position is unblocked and unoccupied
                     validPosition = true;
-                    for (int x = spawnX; x < spawnX + tileSize; x += tileSize / 2) {
-                        for (int y = spawnY; y < spawnY + tileSize; y += tileSize / 2) {
+                    for (int x = spawnX; x < spawnX + TILE_SIZE; x += TILE_SIZE / 2) {
+                        for (int y = spawnY; y < spawnY + TILE_SIZE; y += TILE_SIZE / 2) {
                             if (cChecker.checkTileCollision(x, y) ||
                                     cChecker.isPositionOccupiedByEntity(x, y)) {
                                 validPosition = false;
@@ -166,7 +167,7 @@ public class GamePanel extends JPanel implements Runnable {
         enemyCount=10;
         aSetter.setNPC();
         aSetter.setTimedItems();
-        TManager.loadMap();
+        drawer.loadMap();
     }
 
     public void nextLevel(){
@@ -186,7 +187,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
         aSetter.setNPC();
         aSetter.setTimedItems();
-        TManager.loadMap();
+        drawer.loadMap();
     }
     public void update() {
         if (gameState == GAME_OVER_STATE) {
@@ -272,7 +273,7 @@ public class GamePanel extends JPanel implements Runnable {
             ui.draw(g2);
         } else {
             // this will draw tiles and player
-            TManager.draw(g2, player, npc);
+            drawer.draw(g2, player, npc);
             base.draw(g2);
 
             for (SuperItem value : item) {

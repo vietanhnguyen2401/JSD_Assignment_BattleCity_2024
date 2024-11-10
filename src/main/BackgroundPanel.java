@@ -1,10 +1,11 @@
 package main;
 
-import entity.Enemy;
-
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * The BackgroundPanel class is used for displaying the
+ * instruction and some statistics on both sides of the game screen
+ */
 public class BackgroundPanel extends JPanel {
     private GamePanel gp;
     private final Image sideImage;
@@ -69,22 +70,22 @@ public class BackgroundPanel extends JPanel {
 
             String text = "BATTLE CITY";
             int x = 900; // center x for right panel
-            int y = gp.tileSize*5;
+            int y = gp.TILE_SIZE*5;
             g2.setColor(Color.WHITE);
             g2.drawString(text, x, y);
 
-            y = gp.tileSize*7;
+            y = gp.TILE_SIZE*7;
             String enemy = "ENEMY: ";
             g2.drawString(enemy, x, y);
             g2.drawString(gp.enemyCount+"", x + 100, y);
 
 
-            y = gp.tileSize*9;
+            y = gp.TILE_SIZE*9;
                 String player = "PLAYER: ";
                 g2.drawString(player, x, y);
                 g2.drawString(gp.player.lives+"", x + 100, y);
 
-            y = gp.tileSize*14;
+            y = gp.TILE_SIZE*14;
             g2.setFont(g2.getFont().deriveFont(Font.BOLD, 16));
 
             String score = "SCORE: ";

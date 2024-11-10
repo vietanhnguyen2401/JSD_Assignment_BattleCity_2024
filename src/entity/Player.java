@@ -1,8 +1,6 @@
     package entity;
 
-    import item.Item_Grenade;
     import item.Shield;
-    import item.SuperItem;
     import main.GamePanel;
     import main.KeyHandler;
     import main.UtilityTool;
@@ -45,7 +43,7 @@
 
             this.gp = gp;
             this.kh = kh;
-            solidArea = new Rectangle(0, 0, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6);
+            solidArea = new Rectangle(0, 0, gp.TILE_SIZE * 2 - 6, gp.TILE_SIZE * 2 - 6);
 
             solidAreaDefaultX = solidArea.x;
             solidAreaDefaultY = solidArea.y;
@@ -77,7 +75,7 @@
             shotCooldown = 1000;
             speed = 1;
             direction = "up";
-            shield = new Shield(4 * 60, 10, gp.tileSize * 2 - 5);
+            shield = new Shield(4 * 60, 10, gp.TILE_SIZE * 2 - 5);
         }
 
         public BufferedImage setup(String imagePath){
@@ -86,7 +84,7 @@
 
             try{
                 image = ImageIO.read(getClass().getResourceAsStream(imagePath));
-                image = uTool.scaleImage(image, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6);
+                image = uTool.scaleImage(image, gp.TILE_SIZE * 2 - 6, gp.TILE_SIZE * 2 - 6);
             } catch(IOException e){
                 e.printStackTrace();
             }
@@ -170,7 +168,7 @@
                 // CHECK NPC COLLISION
                 int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
                 interactNPC(npcIndex);
-              
+
                 // CHECK ITEM COLLISION
                     int itemIndex = gp.cChecker.checkItem(this, true);
                     pickUpItem(itemIndex);
@@ -260,11 +258,11 @@
 
 
         private void fireBullet() {
-            int bulletWidth = gp.tileSize - 10;
-            int bulletHeight = gp.tileSize - 10;
+            int bulletWidth = gp.TILE_SIZE - 10;
+            int bulletHeight = gp.TILE_SIZE - 10;
 
-            int tankWidth = gp.tileSize * 2 - 6;
-            int tankHeight = gp.tileSize * 2 - 6;
+            int tankWidth = gp.TILE_SIZE * 2 - 6;
+            int tankHeight = gp.TILE_SIZE * 2 - 6;
 
             int tankCenterX = x + tankWidth / 2;
             int tankCenterY = y + tankHeight / 2;
@@ -367,7 +365,7 @@
                 }
 
 
-                g2.drawImage(image, x, y, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6, null);
+                g2.drawImage(image, x, y, gp.TILE_SIZE * 2 - 6, gp.TILE_SIZE * 2 - 6, null);
             }
             shield.draw(g2);
         }

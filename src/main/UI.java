@@ -1,6 +1,9 @@
 package main;
 
 import java.awt.*;
+/**
+ * The UI class is used for rendering all UI (menus) components
+ */
 
 public class UI {
     GamePanel gp;
@@ -67,19 +70,19 @@ public class UI {
         String quit = "QUIT";
 
         x = getXForCenteredText(score);
-        y = gp.tileSize*15;
+        y = gp.TILE_SIZE*15;
 
         g2.drawString(score, x - 20, y);
 
         x = getXForCenteredText(retry);
-        y = gp.tileSize*18;
+        y = gp.TILE_SIZE*18;
         if (commandNumber == 0){
             g2.drawString(">",  x - x/5, y);
         }
         g2.drawString(retry, x, y);
 
         x = getXForCenteredText(quit);
-        y = gp.tileSize*20;
+        y = gp.TILE_SIZE*20;
         if (commandNumber == 3){
             g2.drawString(">",  x - x/5, y);
         }
@@ -96,7 +99,7 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 40));
         String text = "BATTLE CITY";
         int x = getXForCenteredText(text);
-        int y = gp.tileSize*5;
+        int y = gp.TILE_SIZE*5;
 
         g2.setColor(Color.WHITE);
         g2.drawString(text, x, y);
@@ -109,12 +112,12 @@ public class UI {
         String quit = "QUIT";
 
         x = getXForCenteredText(onePlayer);
-        y = gp.tileSize*15;
+        y = gp.TILE_SIZE*15;
         if (commandNumber == 0){
             g2.drawString(">",  x - x/5, y);
         }
         g2.drawString(onePlayer, x, y);
-        y = gp.tileSize*17;
+        y = gp.TILE_SIZE*17;
         if (commandNumber == 2){
             g2.drawString(">",  x - x/5, y);
         }

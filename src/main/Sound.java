@@ -4,7 +4,9 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.net.URL;
-
+/**
+ * The Sound class is used for playing all SFXs in the game
+ */
 public class Sound {
     Clip clip;
     URL soundURL[] = new URL[10];
@@ -17,7 +19,6 @@ public class Sound {
         soundURL[4] = getClass().getResource("/res/sounds/game_over.wav");
         soundURL[5] = getClass().getResource("/res/sounds/item_pickup.wav");
         soundURL[6] = getClass().getResource("/res/sounds/game_win.wav");
-
     }
     public void setFile(int i) {
         try {
@@ -47,5 +48,4 @@ public class Sound {
             clip.stop();
         }
     }
-
 }

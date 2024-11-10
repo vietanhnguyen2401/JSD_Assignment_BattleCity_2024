@@ -7,6 +7,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+/**
+ * The Base class represents the base that player has to protect in the game.
+ */
 public class Base extends Entity {
     GamePanel gp;
     private boolean exploding = false;  // Tracks if explosion is in progress
@@ -15,10 +18,7 @@ public class Base extends Entity {
 
     public Base(GamePanel gp){
         this.gp = gp;
-
-
-        solidArea = new Rectangle(0,0, gp.tileSize*2 - 6, gp.tileSize*2 - 6);
-
+        solidArea = new Rectangle(0,0, gp.TILE_SIZE*2 - 6, gp.TILE_SIZE*2 - 6);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         setDefaultValues();
@@ -26,11 +26,12 @@ public class Base extends Entity {
     }
 
     public void setDefaultValues(){
-        x = gp.screenWidth / 2 - (gp.tileSize*2 - 6) / 2;
+        x = gp.screenWidth / 2 - (gp.TILE_SIZE*2 - 6) / 2;
         y = 404;
 
     }
 
+    // Function to get all the image needed for base displaying
     public void getBaseImage(){
         try{
             normalBase = ImageIO.read(getClass().getResourceAsStream("/res/base/base.png"));
@@ -66,11 +67,11 @@ public class Base extends Entity {
             if (exploding) {
                 // Alternate explosion frames for animation effect
                 BufferedImage explosionImage = (explosionCounter / 10 % 2 == 0) ? explosion1 : explosion2;
-                g2.drawImage(explosionImage, x, y, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6, null);
+                g2.drawImage(explosionImage, x, y, gp.TILE_SIZE * 2 - 6, gp.TILE_SIZE * 2 - 6, null);
             }
         }
 
-        g2.drawImage(image, x, y, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6, null);
+        g2.drawImage(image, x, y, gp.TILE_SIZE * 2 - 6, gp.TILE_SIZE * 2 - 6, null);
     }
 
 }

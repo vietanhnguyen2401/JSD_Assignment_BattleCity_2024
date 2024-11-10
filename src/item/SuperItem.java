@@ -21,6 +21,6 @@ public class SuperItem {
 
     public void draw(Graphics2D g2, GamePanel gp) {
 
-                g2.drawImage(image, x, y, gp.tileSize*2 -6, gp.tileSize*2 - 6   , null);
+                g2.drawImage(image, x, y, gp.TILE_SIZE*2 -6, gp.TILE_SIZE*2 - 6   , null);
         }
 }

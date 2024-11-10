@@ -100,7 +100,7 @@ public class Bullet extends Entity {
         }
 
         if (bulletImage != null) {
-            g2.drawImage(bulletImage, x, y, gp.tileSize - 10, gp.tileSize - 10, null);
+            g2.drawImage(bulletImage, x, y, gp.TILE_SIZE - 10, gp.TILE_SIZE - 10, null);
         } else {
             // Fallback if image fails to load
             g2.setColor(Color.YELLOW);
@@ -114,12 +114,12 @@ public class Bullet extends Entity {
         int margin = 4; // Check for tiles within 1 pixel around the bullet
 
         // Calculate the bullet's center position
-        int centerX = x + (gp.tileSize - 8) / 2;
-        int centerY = y + (gp.tileSize - 8) / 2;
+        int centerX = x + (gp.TILE_SIZE - 8) / 2;
+        int centerY = y + (gp.TILE_SIZE - 8) / 2;
 
         // Determine the primary tile the bullet is over
-        int col = centerX / gp.tileSize;
-        int row = centerY / gp.tileSize;
+        int col = centerX / gp.TILE_SIZE;
+        int row = centerY / gp.TILE_SIZE;
 
         // Check primary tile and surrounding tiles within the margin
         for (int i = -1; i <= 1; i++) {
@@ -132,24 +132,24 @@ public class Bullet extends Entity {
                     continue;
                 }
 
-                int tileNum = gp.TManager.mapTileNum[checkCol][checkRow];
+                int tileNum = gp.drawer.mapTileNum[checkCol][checkRow];
 
                 // Define a slightly larger rectangle for bullet detection
-                Rectangle tileRect = new Rectangle(checkCol * gp.tileSize, checkRow * gp.tileSize, gp.tileSize, gp.tileSize);
+                Rectangle tileRect = new Rectangle(checkCol * gp.TILE_SIZE, checkRow * gp.TILE_SIZE, gp.TILE_SIZE, gp.TILE_SIZE);
                 Rectangle expandedBulletRect = new Rectangle(centerX - margin, centerY - margin, 6 + 2 * margin, 6 + 2 * margin);
 
                 // Check if the expanded bullet rectangle intersects with the tile's rectangle
-                if (gp.TManager.tile[tileNum].collision && expandedBulletRect.intersects(tileRect)) {
+                if (gp.drawer.tile[tileNum].collision && expandedBulletRect.intersects(tileRect)) {
                     if (tileNum == 1) { // Brick tile
                         System.out.println("Bullet hit brick. Breaking it.");
-                        gp.TManager.mapTileNum[checkCol][checkRow] = 0; // Replace brick with non-collidable tile (e.g., grass)
+                        gp.drawer.mapTileNum[checkCol][checkRow] = 0; // Replace brick with non-collidable tile (e.g., grass)
                         sound.setFile(2);
                         sound.play();
                         alive = false; // Bullet is destroyed upon collision
                         return; // Stop after breaking the brick
                     }
                     else if (tileNum == 2 && canDestroySteel) { // Steel wall
-                        gp.TManager.mapTileNum[checkCol][checkRow] = 0; // Destroy steel wall if player has this ability
+                        gp.drawer.mapTileNum[checkCol][checkRow] = 0; // Destroy steel wall if player has this ability
                         sound.setFile(2);
                         sound.play();
                         alive = false;
@@ -172,7 +172,7 @@ public class Bullet extends Entity {
 
         if (isEnemyBullet) {
             // Check collision with the player
-            Rectangle playerRect = new Rectangle(gp.player.x, gp.player.y, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6);
+            Rectangle playerRect = new Rectangle(gp.player.x, gp.player.y, gp.TILE_SIZE * 2 - 6, gp.TILE_SIZE * 2 - 6);
             if (bulletRect.intersects(playerRect)) {
                 if (!gp.player. getShield().isActive()) {
                     System.out.println("Enemy bullet hit the player!");
@@ -186,7 +186,7 @@ public class Bullet extends Entity {
             }
 
             // Check collision with the base
-            Rectangle baseRect = new Rectangle(gp.base.x, gp.base.y, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6);
+            Rectangle baseRect = new Rectangle(gp.base.x, gp.base.y, gp.TILE_SIZE * 2 - 6, gp.TILE_SIZE * 2 - 6);
             if (bulletRect.intersects(baseRect)) {
                 System.out.println("Enemy bullet hit the base!");
                 alive = false; // Bullet is destroyed on impact
@@ -198,7 +198,7 @@ public class Bullet extends Entity {
             for (int i = 0; i < gp.npc.length; i++) {
                 Enemy enemy = gp.npc[i];
                 if (enemy != null && enemy.alive) {
-                    Rectangle enemyRect = new Rectangle(enemy.x, enemy.y, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6);
+                    Rectangle enemyRect = new Rectangle(enemy.x, enemy.y, gp.TILE_SIZE * 2 - 6, gp.TILE_SIZE * 2 - 6);
                     if (bulletRect.intersects(enemyRect)) {
                         System.out.println("Player bullet hit an enemy!");
                         alive = false;

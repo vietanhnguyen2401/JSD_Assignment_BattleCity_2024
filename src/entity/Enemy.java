@@ -1,6 +1,6 @@
 package entity;
 
-import item.Shield;
+
 import main.GamePanel;
 import main.Sound;
 import main.UtilityTool;
@@ -12,31 +12,26 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * The Base Enemy represents the enemy tanks that player has to fight with in the game.
+ */
 public class Enemy extends Entity {
     GamePanel gp;
-    public int lives;
-    public boolean alive = true; // Add this attribute
-    public TankType tankType;
-    private final long shotCooldown = 1000;
-
-public int point = 0;
-
-    public void setFreezed(boolean freezed) {
-        isFreezed = freezed;
-    }
-
-    private long lastShotTime;
+    public int lives; // lives of each enemy tank
+    public boolean alive = true; // alive state
+    public TankType tankType; // used to define the type of each enemy tank
+    private final long shotCooldown = 1000; // shoot cooldown of each enemy tank
+    public int point = 0; // points the player will get if he destroys an enemy tank, each type have different points
+    private long lastShotTime; // used to track the bullet
     public ArrayList<Bullet> bullets = new ArrayList<>();
-    Sound sound = new Sound();
-
-    public boolean isFreezed = false;
+    public boolean isFreezed = false; // state to execute the "Timer" item pickup
 
     public Enemy(GamePanel gp) {
         this.gp = gp;
-        solidArea = new Rectangle(0, 0, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6);
+        solidArea = new Rectangle(0, 0, gp.TILE_SIZE * 2 - 6, gp.TILE_SIZE * 2 - 6);
         setRandomTankType();
         setDefaultValues();
-        getPlayerImage();
+        getEnemyImage();
     }
 
     private void setDefaultValues() {
@@ -47,8 +42,12 @@ public int point = 0;
         direction = directions[random.nextInt(directions.length)];
     }
 
-    public void setAction() {
+    // function triggered when "Timer" is picked up by the player
+    public void setFreezed(boolean freezed) {
+        isFreezed = freezed;
+    }
 
+    public void setAction() {
             actionLockCounter++;
             if (actionLockCounter == 80) {
                 Random r = new Random();
@@ -120,11 +119,11 @@ public int point = 0;
     }
 
     private void fireBullet() {
-        int bulletWidth = gp.tileSize - 6;
-        int bulletHeight = gp.tileSize - 6;
+        int bulletWidth = gp.TILE_SIZE - 6;
+        int bulletHeight = gp.TILE_SIZE - 6;
 
-        int tankWidth = gp.tileSize * 2 - 6;
-        int tankHeight = gp.tileSize * 2 - 6;
+        int tankWidth = gp.TILE_SIZE * 2 - 6;
+        int tankHeight = gp.TILE_SIZE * 2 - 6;
 
         int tankCenterX = x + tankWidth / 2;
         int tankCenterY = y + tankHeight / 2;
@@ -179,7 +178,7 @@ public int point = 0;
         this.lives = tankType.lives;
         this.point = tankType.point;
     }
-    public void getPlayerImage(){
+    public void getEnemyImage(){
             String basePath = tankType.imagePath;
             up1 = setup(basePath + " (1).png");
             up2 = setup(basePath + " (2).png");
@@ -196,7 +195,7 @@ public int point = 0;
 
         try{
             image = ImageIO.read(getClass().getResourceAsStream(imagePath));
-            image = uTool.scaleImage(image, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6);
+            image = uTool.scaleImage(image, gp.TILE_SIZE * 2 - 6, gp.TILE_SIZE * 2 - 6);
         } catch(IOException e){
             e.printStackTrace();
         }
@@ -244,6 +243,6 @@ public int point = 0;
                 break;
         }
 
-        g2.drawImage(image, x, y, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6, null);
+        g2.drawImage(image, x, y, gp.TILE_SIZE * 2 - 6, gp.TILE_SIZE * 2 - 6, null);
     }
 }
