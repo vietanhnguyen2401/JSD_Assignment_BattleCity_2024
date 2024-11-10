@@ -55,7 +55,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 
     // Variables for NPC spawn timing
-    private final int SPAWN_INTERVAL = 10 * 60; // 10 seconds * 60 FPS
+    private final int SPAWN_INTERVAL = 15 * 60; // 10 seconds * 60 FPS
     private int spawnTimer = 0;
 
     // Keep track of the number of spawned enemies
@@ -193,7 +193,7 @@ public class GamePanel extends JPanel implements Runnable {
             return; // Skip updates if game is over
         }
         if(enemyCount <= 0) {
-            // todo sound level
+            playMusic(3);
             nextLevel();
         }
         if (player.lives == 0) {

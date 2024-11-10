@@ -59,7 +59,7 @@ public class UI {
 
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 14));
 
-        String score = "SCORE    " + gp.totalPoint;
+        String score = "      SCORE    " + gp.totalPoint;
         // retry option
         String retry = "RETRY";
 
@@ -106,7 +106,6 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 14));
 
         String onePlayer = "1 PLAYER";
-        String twoPlayer = "2 PLAYERS";
         String quit = "QUIT";
 
         x = getXForCenteredText(onePlayer);
@@ -116,16 +115,11 @@ public class UI {
         }
         g2.drawString(onePlayer, x, y);
         y = gp.tileSize*17;
-        if (commandNumber == 1){
-            g2.drawString(">",  x - x/5, y);
-        }
-        g2.drawString(twoPlayer, x, y);
-        x = getXForCenteredText(quit);
-        y = gp.tileSize*19;
         if (commandNumber == 2){
             g2.drawString(">",  x - x/5, y);
         }
         g2.drawString(quit, x, y);
+
 
 
     }

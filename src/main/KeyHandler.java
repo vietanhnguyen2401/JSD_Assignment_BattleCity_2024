@@ -21,10 +21,10 @@ public class KeyHandler implements KeyListener {
         // TITLE STATE
         if (gp.gameState == gp.TITLE_STATE){
             if (code == KeyEvent.VK_W){
-                if (gp.ui.commandNumber > 0)gp.ui.commandNumber--;
+                if (gp.ui.commandNumber == 2)gp.ui.commandNumber=0;
             }
             if (code == KeyEvent.VK_S){
-                if(gp.ui.commandNumber < 2) gp.ui.commandNumber++;
+                if(gp.ui.commandNumber == 0) gp.ui.commandNumber=2;
             }
             if (code == KeyEvent.VK_ENTER){
                 if(gp.ui.commandNumber == 0) gp.gameState = gp.PLAY_STATE;

@@ -18,8 +18,8 @@ public class AssetSetter {
     public void setTimedItems() {
 
         // Schedule each item to appear every 10 seconds
-        timer.schedule(new SpawnItemTask(new Item_Grenade(gp), 14, 14), 0);          // Immediate
-        timer.schedule(new SpawnItemTask(new Item_Helmet(gp), 20, 10), 0);       // 10 seconds
+        timer.schedule(new SpawnItemTask(new Item_Grenade(gp), 14, 14), 40000);          // Immediate
+        timer.schedule(new SpawnItemTask(new Item_Helmet(gp), 20, 10), 20000);       // 10 seconds
         timer.schedule(new SpawnItemTask(new Item_Timer(gp), 10, 21), 30000);        // 30 seconds
         timer.schedule(new SpawnItemTask(new Item_Tank(gp), 15, 15), 40000);         // 40 seconds
 
