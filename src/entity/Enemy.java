@@ -1,7 +1,9 @@
 package entity;
 
+import item.Shield;
 import main.GamePanel;
 import main.Sound;
+import main.UtilityTool;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -12,8 +14,9 @@ import java.util.Random;
 
 public class Enemy extends Entity {
     GamePanel gp;
+    public int lives;
     public boolean alive = true; // Add this attribute
-    private TankType tankType;
+    public TankType tankType;
     private final long shotCooldown = 1000;
 
 public int point = 0;
@@ -70,7 +73,8 @@ public int point = 0;
     public void update() {
         if (!alive) {
             System.out.println("Enemy not alive, skipping update.");
-            return;  }
+            return;
+        }
         if (!isFreezed) {
             setAction();
             collisionOn = false;
@@ -172,24 +176,31 @@ public int point = 0;
         Random random = new Random();
         this.tankType = types[random.nextInt(types.length)];
         this.speed = tankType.speed; // Use speed based on tank type
+        this.lives = tankType.lives;
         this.point = tankType.point;
     }
     public void getPlayerImage(){
-        try{
             String basePath = tankType.imagePath;
-            up1 = ImageIO.read(getClass().getResourceAsStream(basePath + " (1).png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream(basePath + " (2).png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream(basePath + " (3).png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream(basePath + " (4).png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream(basePath + " (5).png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream(basePath + " (6).png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream(basePath + " (7).png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream(basePath + " (8).png"));
+            up1 = setup(basePath + " (1).png");
+            up2 = setup(basePath + " (2).png");
+            left1 = setup(basePath + " (3).png");
+            left2 = setup(basePath + " (4).png");
+            down1 = setup(basePath + " (5).png");
+            down2 = setup(basePath + " (6).png");
+            right1 = setup(basePath + " (7).png");
+            right2 = setup(basePath + " (8).png");
+    }
+    public BufferedImage setup(String imagePath){
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage image = null;
 
-
-        }catch(IOException e){
+        try{
+            image = ImageIO.read(getClass().getResourceAsStream(imagePath));
+            image = uTool.scaleImage(image, gp.tileSize * 2 - 6, gp.tileSize * 2 - 6);
+        } catch(IOException e){
             e.printStackTrace();
         }
+        return image;
     }
 
 

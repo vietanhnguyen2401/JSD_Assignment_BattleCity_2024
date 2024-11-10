@@ -158,6 +158,11 @@ public class GamePanel extends JPanel implements Runnable {
         player.setDefaultValues();
         totalPoint = 0;
         currentLevel = 1;
+
+        for (int i = 0; i < npc.length; i++) {
+            npc[i] = null; // Xóa tất cả các enemy NPC hiện tại
+        }
+
         enemyCount=10;
         aSetter.setNPC();
         aSetter.setTimedItems();
@@ -221,6 +226,7 @@ public class GamePanel extends JPanel implements Runnable {
                 Enemy enemy = npc[i];
                 if (enemy != null && enemy.alive) {
                     enemy.update();
+//                    System.out.println("enemy tank " + enemy.tankType + i + " " + " Live: " + enemy.lives);
                 } else if (enemy != null && !enemy.alive) {
                     npc[i] = null; // Remove enemy when dead
                     enemyCount--;
